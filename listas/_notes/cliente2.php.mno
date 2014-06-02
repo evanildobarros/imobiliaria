@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rscliente" value="name:data;datatype:int,name:login;datatype:int,name:cliente;datatype:int,name:apelido;datatype:int,name:endereco;datatype:int,name:bairro;datatype:int,name:municipio;datatype:int,name:local;datatype:int,name:cpf_titular;datatype:int,name:cnpj;datatype:int,name:cpf_procu;datatype:int,name:procuracao;datatype:int,name:aniversario;datatype:int,name:telefone;datatype:int,name:email;datatype:int,name:status;datatype:int,name:status2;datatype:int,name:capa;datatype:int,name:id_cliente;datatype:int" />
+</info>

@@ -1,0 +1,53 @@
+body,td,th {
+	font-family: Museo Sans 100;
+	font-size: 13px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background:#333;
+}
+
+
+
+.topo{
+width:90%;
+background:#0033CC;
+margin:0 auto;
+height:100px;
+}
+.menu{
+width:90%;
+background:#3399FF;
+margin:0 auto;
+height:30px;
+}
+
+.conteudo{
+width:90%;
+background:#FFF;
+margin:0 auto;
+min-height:0px;
+}
+
+.esquerda{
+background:#CCCCCC;
+width:200px;
+mini-height:0px;
+}
+
+.banner{
+background:#CCCCCC;
+width:400px;
+height:200px;
+margin:-480px 0px 200px 220px;
+}
+
+.rodape{
+width:90%;
+background:#3399FF;
+margin:0 auto;
+height:30px;
+}
