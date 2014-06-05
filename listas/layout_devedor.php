@@ -79,7 +79,7 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	<?php include('menu.php');  ?>
 	</div>
 	<div class="conteudo">
-     <?php include('../financeiro/conta_devedor.php');  ?>
+     <?php include('lista_data2.php');  ?>
     </div>
     
     
