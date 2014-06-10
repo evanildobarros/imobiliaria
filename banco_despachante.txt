@@ -1,0 +1,1066 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.0
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tempo de Geração: Abr 28, 2014 as 12:13 AM
+-- Versão do Servidor: 5.0.45
+-- Versão do PHP: 5.2.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Banco de Dados: `gerenciador_despachante`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acesso`
+--
+
+CREATE TABLE `acesso` (
+  `cod` int(3) unsigned NOT NULL auto_increment,
+  `usuario` varchar(100) default NULL,
+  `senha` varchar(100) default NULL,
+  `nome` varchar(100) default NULL,
+  `email` varchar(200) default NULL,
+  `telefone` varchar(100) default NULL,
+  `chave` tinyint(1) default NULL,
+  `vencimento` varchar(255) NOT NULL,
+  PRIMARY KEY  (`cod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `acesso`
+--
+
+INSERT INTO `acesso` (`cod`, `usuario`, `senha`, `nome`, `email`, `telefone`, `chave`, `vencimento`) VALUES
+(1, 'admin', 'admin', 'Administrador', 'xyz@xyz.com', '11111', 0, '2014-03-14'),
+(2, 'Eneylton', '123', 'Eneylton', 'eneylton@hotmail.com', '98 8800 3198', 1, '2014-03-14'),
+(3, 'Maria ', '123', 'Maria', 'maria', '3456789', 2, '2014-03-14');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aviso`
+--
+
+CREATE TABLE `aviso` (
+  `id_aviso` int(11) NOT NULL auto_increment,
+  `aviso` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_aviso`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `aviso`
+--
+
+INSERT INTO `aviso` (`id_aviso`, `aviso`) VALUES
+(1, 'Ligar para o cliente'),
+(2, 'avisado'),
+(3, 'não atendi'),
+(4, 'fora de area '),
+(5, 'caixa postal'),
+(6, 'viajando'),
+(7, 'enviou mensagem'),
+(8, 'enviou email');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `Categoria` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`id_cat`, `Categoria`) VALUES
+(1, 'Cartão de Credito'),
+(2, 'Pagamento á vista');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria_financeiro`
+--
+
+CREATE TABLE `categoria_financeiro` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `categoria_financeiro`
+--
+
+INSERT INTO `categoria_financeiro` (`id_cat`, `desc`) VALUES
+(1, 'Pagamento á Vista'),
+(2, 'Cartão de Crédito'),
+(3, 'Nota Promissória'),
+(4, 'Nota Avulsa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cat_veiculo`
+--
+
+CREATE TABLE `cat_veiculo` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `cat_veiculo`
+--
+
+INSERT INTO `cat_veiculo` (`id_cat`, `desc`) VALUES
+(1, 'particular'),
+(2, 'aluguel'),
+(3, 'amaprendizagem'),
+(4, 'oficial');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL auto_increment,
+  `data` varchar(255) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `apelido` varchar(255) default NULL,
+  `endereco` varchar(255) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `municipio` varchar(255) NOT NULL,
+  `local` varchar(255) default NULL,
+  `cpf_titular` varchar(255) default NULL,
+  `cnpj` varchar(255) default NULL,
+  `cpf_procu` varchar(255) default NULL,
+  `procuracao` varchar(255) default NULL,
+  `aniversario` date default NULL,
+  `telefone` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `status` varchar(255) NOT NULL,
+  `status2` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cliente`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=492 ;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`id_cliente`, `data`, `login`, `cliente`, `apelido`, `endereco`, `bairro`, `municipio`, `local`, `cpf_titular`, `cnpj`, `cpf_procu`, `procuracao`, `aniversario`, `telefone`, `email`, `status`, `status2`) VALUES
+(396, 'Quinta, 03 de Abril de 2014 | Hora: 12:24', 'Administrador', 'Eneylton Barros', 'Enexs', 'Rua 16 Qd.05', 'Cohatrac IV', 'Imperatriz', NULL, '652.145.563-32', NULL, NULL, NULL, '2014-04-03', '(98)8955-5555 ', 'eneylton@hotmail.com', 'Fora de Área', 'Cancelado'),
+(397, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', '(98)8898-8898 ', 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(398, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(399, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(400, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(401, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(402, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(403, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(404, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(405, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(406, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(407, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(408, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneyton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(409, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(410, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(411, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(412, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(413, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(414, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(415, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(416, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(417, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(418, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(419, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(420, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(421, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(422, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(423, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(424, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(425, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(426, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(427, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(428, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(429, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(430, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(431, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(432, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(433, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(434, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(435, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(436, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(437, 'Domingo, 20 de Abril de 2014 | Hora: 11:10', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(438, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, '009.999.999-99', NULL, NULL, NULL, '2014-04-20', '(98)9988-9999 ', 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(439, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(440, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(441, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(442, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(443, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(444, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(445, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(446, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(447, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(448, 'Domingo, 20 de Abril de 2014 | Hora: 15:42', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Imperatriz', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(449, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, '999.999.999-99', NULL, NULL, NULL, '2014-08-08', '(99)9999-99', '99999999', 'Ausente', 'Pendente'),
+(450, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(451, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(452, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(453, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(454, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(455, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(456, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(457, 'Domingo, 20 de Abril de 2014 | Hora: 19:00', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-08-08', NULL, '99999999', 'Ligar para o cliente', 'Aguardando...'),
+(458, 'Domingo, 20 de Abril de 2014 | Hora: 19:13', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, '990.900.909-09', NULL, NULL, NULL, '2014-04-20', '(98)9898-9898 / (98) ', '8989898989898', 'Fora de Área', 'Cancelado'),
+(459, 'Domingo, 20 de Abril de 2014 | Hora: 19:13', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, '8989898989898', 'Ligar para o cliente', 'Aguardando...'),
+(460, 'Domingo, 20 de Abril de 2014 | Hora: 19:13', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, '8989898989898', 'Ligar para o cliente', 'Aguardando...'),
+(461, 'Domingo, 20 de Abril de 2014 | Hora: 19:13', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, '8989898989898', 'Ligar para o cliente', 'Aguardando...'),
+(462, 'Domingo, 20 de Abril de 2014 | Hora: 19:13', 'Maria', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, NULL, '2014-04-20', NULL, '8989898989898', 'Ligar para o cliente', 'Aguardando...'),
+(463, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, '09.090.909/', NULL, '0900909', '2014-04-20', '(09)0909-', '0909', 'Ligar para o cliente', 'Aguardando...'),
+(464, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(465, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(466, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(467, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(468, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(469, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(470, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(471, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(472, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(473, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(474, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(475, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(476, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(477, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(478, 'Domingo, 20 de Abril de 2014 | Hora: 19:15', 'Eneylton', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '0900909', '2014-04-20', NULL, '0909', 'Ligar para o cliente', 'Aguardando...'),
+(479, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(480, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(481, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(482, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(483, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(484, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(485, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(486, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(487, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(488, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(489, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(490, 'Segunda, 21 de Abril de 2014 | Hora: 21:36', 'Administrador', 'MAria campos ', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', NULL, NULL, NULL, NULL, '9888887887788', '2014-04-21', NULL, 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...'),
+(491, 'Quinta, 24 de Abril de 2014', 'Administrador', 'Jose de Ribamar', ' mariaru', 'rua 16', 'apeadouro', 'Acailândia', 'Padaria aeromoça', NULL, '00.990.999/0999-99', '90990999099', '9998888888', '2014-04-24', '89 8899-8888', 'eneylton@hotmail.com', 'Ligar para o cliente', 'Aguardando...');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `combustivel`
+--
+
+CREATE TABLE `combustivel` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Extraindo dados da tabela `combustivel`
+--
+
+INSERT INTO `combustivel` (`id`, `desc`) VALUES
+(1, 'Diesil'),
+(2, 'Etanol'),
+(3, 'Alcool'),
+(4, 'Gasolina'),
+(5, 'Alcool / Gasolina'),
+(6, 'Gas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cor`
+--
+
+CREATE TABLE `cor` (
+  `id` int(11) NOT NULL auto_increment,
+  `cor` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Extraindo dados da tabela `cor`
+--
+
+INSERT INTO `cor` (`id`, `cor`) VALUES
+(1, 'Branco'),
+(2, 'Azul'),
+(3, 'Vermelho'),
+(4, 'Amarelo'),
+(5, 'Verde'),
+(6, 'Cinza'),
+(7, 'Roxo'),
+(8, 'Laranja'),
+(9, 'Preto');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `documentacao`
+--
+
+CREATE TABLE `documentacao` (
+  `id_doc` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_doc`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=146 ;
+
+--
+-- Extraindo dados da tabela `documentacao`
+--
+
+INSERT INTO `documentacao` (`id_doc`, `id_cliente`, `img`) VALUES
+(137, 491, '250414-DSCF0326.jpg'),
+(136, 490, '250414-Taca_013.jpg'),
+(135, 491, '250414-Taca_012.jpg'),
+(138, 491, '250414-Taca_126.jpg'),
+(139, 489, '250414-Taca_002.jpg'),
+(140, 489, '250414-Taca_127.jpg'),
+(141, 491, '250414-Taca_001.jpg'),
+(142, 491, '250414-Taca_127.jpg'),
+(143, 486, '250414-Taca_Magnifica.jpg'),
+(144, 486, '250414-Taca_128.jpg'),
+(145, 491, '250414-001.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `id_entrega` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `placa` varchar(255) default NULL,
+  `renavam` varchar(255) default NULL,
+  `data` varchar(233) NOT NULL,
+  `hora` varchar(233) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_entrega`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=230 ;
+
+--
+-- Extraindo dados da tabela `entrega`
+--
+
+INSERT INTO `entrega` (`id_entrega`, `id_cliente`, `placa`, `renavam`, `data`, `hora`, `status`) VALUES
+(194, 0, '', '', '', '14', ''),
+(193, 0, '', '', '', '14', ''),
+(191, 0, '', '', '', '14', ''),
+(192, 0, '', '', '', '14', ''),
+(190, 0, '', '', '', '14', ''),
+(189, 0, '', '', '', '14', ''),
+(188, 0, '', '', '', '14', ''),
+(187, 0, '', '', '', '14', ''),
+(186, 0, '', '', '', '14', ''),
+(185, 0, '', '', '', '14', ''),
+(184, 0, '', '', '', '14', ''),
+(183, 0, '', '', '', '14', ''),
+(182, 0, '', '', '', '14', ''),
+(181, 0, '', '', '', '14', ''),
+(180, 0, '', '', '', '14', ''),
+(179, 0, '', '', '', '14', ''),
+(178, 0, '', '', '', '13', ''),
+(195, 0, '', '', '', '14', ''),
+(196, 0, '', '', '', '14', ''),
+(197, 0, '', '', '', '14', ''),
+(198, 0, '', '', '', '14', ''),
+(199, 0, '', '', '', '14', ''),
+(200, 0, '', '', '', '14', ''),
+(201, 0, '', '', '', '14', ''),
+(202, 0, '', '', '', '14', ''),
+(203, 0, '', '', '', '14', ''),
+(204, 0, '', '', '', '14', ''),
+(205, 0, '', '', '', '14', ''),
+(206, 0, '', '', '', '14', ''),
+(207, 0, '', '', '', '14', ''),
+(208, 0, '', '', '', '14', ''),
+(209, 0, '', '', '', '14', ''),
+(210, 0, '', '', '', '14', ''),
+(211, 0, '', '', '', '14', ''),
+(212, 0, '', '', '', '14', ''),
+(213, 0, '', '', '', '14', ''),
+(214, 0, '', '', '', '14', ''),
+(215, 0, '', '', '', '14', ''),
+(216, 0, '', '', '', '14', 'Aguardando...'),
+(217, 0, '', '', '', '15', ''),
+(218, 0, 'nnn - 7899', '8998888', '', '15', 'Aguardando...'),
+(219, 0, '', '', '', '15', ''),
+(220, 0, '', '', '', '15', 'Aguardando...'),
+(221, 0, '', '', '', '12', ''),
+(222, 0, '', '', '', '12', 'Aguardando...'),
+(223, 0, '', '', '', '12', ''),
+(224, 0, '', '', '', '12', 'Aguardando...'),
+(225, 0, '', '', '', '19', ''),
+(226, 0, '', '', '', '19', ''),
+(227, 0, '', '', '', '19', ''),
+(228, 0, '', '', '', '11', ''),
+(229, 0, '', '', '', '11', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `especie`
+--
+
+CREATE TABLE `especie` (
+  `id_especie` int(11) NOT NULL auto_increment,
+  `especie` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_especie`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `especie`
+--
+
+INSERT INTO `especie` (`id_especie`, `especie`) VALUES
+(1, 'ciclomotor'),
+(2, 'motoneta'),
+(3, 'triciculo'),
+(4, 'quadriciculo'),
+(5, 'automovel'),
+(6, 'reboque / semi-reboque'),
+(7, 'utilitario'),
+(8, 'caminhão'),
+(9, 'caminhão - trator'),
+(10, 'trator');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `forma_pg`
+--
+
+CREATE TABLE `forma_pg` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `forma_pg`
+--
+
+INSERT INTO `forma_pg` (`id`, `desc`) VALUES
+(1, 'Pagamento de Funcionario'),
+(2, 'Combustivel'),
+(3, 'despesas do escritorio'),
+(4, 'Material de despesas');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `log`
+--
+
+CREATE TABLE `log` (
+  `cod` int(100) unsigned NOT NULL auto_increment,
+  `usuario` varchar(200) default '0',
+  `data` varchar(100) default '0',
+  `hora` varchar(100) default '0',
+  `op` varchar(200) default '0',
+  `ip` varchar(50) default '0',
+  PRIMARY KEY  (`cod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=915 ;
+
+--
+-- Extraindo dados da tabela `log`
+--
+
+INSERT INTO `log` (`cod`, `usuario`, `data`, `hora`, `op`, `ip`) VALUES
+(896, 'admin', '2014-04-27', '23:09', 'Saiu do sistema !', '127.0.0.1'),
+(897, 'Eneylton', '2014-04-27', '23:10', 'Saiu do sistema !', '127.0.0.1'),
+(898, 'admin', '2014-04-27', '23:13', 'Entrou no sistema !', '127.0.0.1'),
+(899, 'admin', '2014-04-27', '23:18', 'Entrou no sistema !', '127.0.0.1'),
+(900, 'admin', '2014-04-27', '23:18', 'Saiu do sistema !', '127.0.0.1'),
+(901, 'admin', '2014-04-27', '23:19', 'Entrou no sistema !', '127.0.0.1'),
+(902, 'Eneylton', '2014-04-27', '23:19', 'Entrou no sistema !', '127.0.0.1'),
+(903, 'Eneylton', '2014-04-27', '23:19', 'Saiu do sistema !', '127.0.0.1'),
+(904, 'admin', '2014-04-27', '23:19', 'Entrou no sistema !', '127.0.0.1'),
+(905, 'admin', '2014-04-27', '23:19', 'Saiu do sistema !', '127.0.0.1'),
+(906, 'admin', '2014-04-27', '23:20', 'Entrou no sistema !', '127.0.0.1'),
+(907, 'admin', '2014-04-27', '23:20', 'Saiu do sistema !', '127.0.0.1'),
+(908, 'Eneylton', '2014-04-27', '23:20', 'Entrou no sistema !', '127.0.0.1'),
+(909, 'Eneylton', '2014-04-27', '23:20', 'Saiu do sistema !', '127.0.0.1'),
+(910, 'Eneylton', '2014-04-27', '23:20', 'Entrou no sistema !', '127.0.0.1'),
+(911, 'Eneylton', '2014-04-27', '23:20', 'Saiu do sistema !', '127.0.0.1'),
+(912, 'admin', '2014-04-27', '23:20', 'Entrou no sistema !', '127.0.0.1'),
+(913, 'admin', '2014-04-27', '23:41', 'Entrou no sistema !', '127.0.0.1'),
+(914, 'admin', '2014-04-28', '00:00', 'Entrou no sistema !', '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `marca_modelo`
+--
+
+CREATE TABLE `marca_modelo` (
+  `id` int(11) NOT NULL auto_increment,
+  `descri` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `marca_modelo`
+--
+
+INSERT INTO `marca_modelo` (`id`, `descri`) VALUES
+(1, 'Ford Fista 1.0'),
+(2, 'Volkswagen Gol 1.0'),
+(3, 'Chevrolet Cruzer'),
+(4, 'Ford Ranger'),
+(5, 'Honda Acord 2.0'),
+(6, 'chevrolett Prisma 1.6'),
+(7, 'Honda accord 2.6');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `meses`
+--
+
+CREATE TABLE `meses` (
+  `id_mes` int(11) NOT NULL auto_increment,
+  `descricao` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_mes`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Extraindo dados da tabela `meses`
+--
+
+INSERT INTO `meses` (`id_mes`, `descricao`) VALUES
+(1, 'JANEIRO'),
+(2, 'FEVEREIRO'),
+(3, 'MARÇO'),
+(4, 'ABRIL'),
+(5, 'MAIO'),
+(6, 'JUNHO'),
+(7, 'JULHO'),
+(8, 'AGOSTO'),
+(9, 'SETEMBRO'),
+(10, 'OUTUBRO'),
+(11, 'NOVEMBRO'),
+(12, 'DEZEMBRO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `movimento`
+--
+
+CREATE TABLE `movimento` (
+  `id_mov` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `servico` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_mov`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=574 ;
+
+--
+-- Extraindo dados da tabela `movimento`
+--
+
+INSERT INTO `movimento` (`id_mov`, `id_cliente`, `data`, `cliente`, `servico`, `tipo`, `categoria`, `descricao`, `valor`, `valor2`, `status`, `mes`) VALUES
+(444, 0, '22/02/2014', 'MAria campos ', '', '0', '', 'ook', '500', '500', '1', 'Abril'),
+(443, 0, '22/02/2014', 'MAria campos ', '', '0', '', 'ook', '500', '500', '1', 'Abril'),
+(441, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(442, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(440, 0, '22/02/2014', '', '', '0', '', 'ok', '300', '300', '1', 'Abril'),
+(439, 0, '', '', '', '', '', '', '', '', '', 'April'),
+(438, 0, '', '', '', '', '', '', '', '', '', 'April'),
+(437, 0, '22/02/2014', '', '', '0', '', 'ok', '300', '', '1', 'Abril'),
+(436, 0, '', '', '', '', '', '', '', '', '', 'April'),
+(435, 0, '', '', '', '', '', '', '', '', '', 'April'),
+(445, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(446, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(447, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(448, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(449, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(450, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(451, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(452, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(453, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(454, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(455, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(456, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(457, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(458, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(459, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(460, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(461, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(462, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(463, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(464, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(465, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(466, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(467, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(468, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(469, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(470, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(471, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(472, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(473, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(474, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(475, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(476, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(477, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(478, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(479, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(480, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(481, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(482, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(483, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(484, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(485, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(486, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(487, 0, '2014-04-24', 'MAria campos ', '', '0', '', 'falta pagmento', '900', '', '1', 'Abril'),
+(488, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(489, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(490, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(491, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(492, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(493, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(494, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(495, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(496, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(497, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(498, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(499, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(500, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(501, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(502, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(503, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(504, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(505, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(506, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(507, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(508, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(509, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(510, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(511, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(512, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(513, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(514, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(515, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(516, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(517, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(518, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(519, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(520, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(521, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(522, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(523, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(524, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(525, 0, '2014-04-24', 'MAria campos ', '', '0', '', 'ok', '780', '780', '1', 'Abril'),
+(526, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(527, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(528, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(529, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(530, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(531, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(532, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(533, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(534, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(535, 0, '', 'Resource id #4', '', '', '', '', '', '', '', 'April'),
+(536, 0, '', 'Resource id #8', '', '', '', '', '', '', '', 'April'),
+(537, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(538, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(539, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(540, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(541, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(542, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(543, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(544, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(545, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(546, 0, '2014-04-24', 'Jose de Ribamar', '', '0', 'Cartão de Crédito', 'Pagamento a vista', '500', '', '1', 'Abril'),
+(547, 0, '', 'Resource id #6', '', '', 'Resource id #7', '', '', '', '', 'April'),
+(548, 0, '', 'Resource id #18', '', '', 'Resource id #20', '', '', '', '', 'Resource id #19'),
+(549, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(550, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(551, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(552, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(553, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(554, 0, '2014-04-25', 'MAria campos ', '', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril'),
+(555, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(556, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(557, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(558, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(559, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(560, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(561, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(562, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(563, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(564, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(565, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(566, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(567, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(568, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(569, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(570, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(571, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(572, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April'),
+(573, 0, '', 'Resource id #10', '', '', 'Resource id #11', '', '', '', '', 'April');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `municipio`
+--
+
+CREATE TABLE `municipio` (
+  `id` int(11) NOT NULL auto_increment,
+  `municipio` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `municipio`
+--
+
+INSERT INTO `municipio` (`id`, `municipio`) VALUES
+(1, 'Imperatriz'),
+(2, 'Acailândia'),
+(3, 'Gov. Edson. Lobão'),
+(4, 'Grajau');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `nota`
+--
+
+CREATE TABLE `nota` (
+  `int_id` int(10) unsigned NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `id_servico` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `forma_pag` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `venci` varchar(255) NOT NULL,
+  PRIMARY KEY  (`int_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `nota`
+--
+
+INSERT INTO `nota` (`int_id`, `id_cliente`, `id_servico`, `data`, `tipo`, `categoria`, `forma_pag`, `descricao`, `valor`, `valor2`, `status`, `mes`, `cliente`, `venci`) VALUES
+(1, 0, 'Empresa', '24/03/2014', '1', 'Pagamento de Funcionario', 'Pagamento á Vista', 'Pagamento de salário', '750', '', '1', 'Março', 'Jose de ribamar', '24/03/2014'),
+(2, 0, 'Empresa', '03/04/2014', '1', 'Combustivel', 'Pagamento á Vista', 'abastecimento do veiculo', '800', '', '1', 'Abril', 'Eneylton Barros', '03/04/2014');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `online`
+--
+
+CREATE TABLE `online` (
+  `id` int(11) NOT NULL auto_increment,
+  `entrada` varchar(100) NOT NULL default '',
+  `ip` varchar(200) NOT NULL default '',
+  `ult_click` varchar(100) NOT NULL default '',
+  `sessao` varchar(200) NOT NULL default '',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+
+--
+-- Extraindo dados da tabela `online`
+--
+
+INSERT INTO `online` (`id`, `entrada`, `ip`, `ult_click`, `sessao`) VALUES
+(29, '1398646026', '127.0.0.1', '1398646169', 'ab4c716152a3d7d3c58e0cd4fdd47c91');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `processo`
+--
+
+CREATE TABLE `processo` (
+  `id_processo` int(11) NOT NULL auto_increment,
+  `id_veiculo` int(11) NOT NULL,
+  `codigo` varchar(255) NOT NULL,
+  `local` varchar(255) default NULL,
+  `descricao` varchar(255) default NULL,
+  `status` varchar(255) default NULL,
+  `entrada` varchar(255) default NULL,
+  `movimentacao` varchar(255) default NULL,
+  `hora` varchar(255) default NULL,
+  PRIMARY KEY  (`id_processo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=321 ;
+
+--
+-- Extraindo dados da tabela `processo`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `serv`
+--
+
+CREATE TABLE `serv` (
+  `int_id` int(10) unsigned NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `id_servico` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `venci` varchar(255) NOT NULL,
+  PRIMARY KEY  (`int_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+
+--
+-- Extraindo dados da tabela `serv`
+--
+
+INSERT INTO `serv` (`int_id`, `id_cliente`, `id_servico`, `data`, `tipo`, `categoria`, `descricao`, `valor`, `valor2`, `status`, `mes`, `cliente`, `venci`) VALUES
+(6, 0, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', '', 'ok', '300', '300', '1', 'Abril', '', '22/02/2014'),
+(7, 0, 'Transferência de veículo', '24/04/2014', '0', '', 'ok', '300', '300', '1', 'Abril', '', '22/02/2014'),
+(8, 490, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', '', 'ook', '500', '500', '1', 'Abril', 'MAria campos ', '22/02/2014'),
+(9, 490, 'Transferência de veículo', '24/04/2014', '0', '', 'ook', '500', '500', '1', 'Abril', 'MAria campos ', '22/02/2014'),
+(10, 490, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', '', 'ook', '500', '500', '1', 'Abril', 'MAria campos ', '22/02/2014'),
+(11, 490, 'Transferência de veículo', '24/04/2014', '0', '', 'ook', '500', '500', '1', 'Abril', 'MAria campos ', '22/02/2014'),
+(12, 490, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', '', 'falta pagmento', '900', '', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(13, 490, 'Transferência de veículo', '24/04/2014', '0', '', 'falta pagmento', '900', '', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(14, 490, 'Licenciamento de veículo ', '24/04/2014', '0', '', 'falta pagmento', '900', '', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(15, 490, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', '', 'ok', '780', '780', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(16, 490, 'Transferência de veículo', '24/04/2014', '0', '', 'ok', '780', '780', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(17, 490, 'Licenciamento de veículo ', '24/04/2014', '0', '', 'ok', '780', '780', '1', 'Abril', 'MAria campos ', '2014-04-24'),
+(18, 491, 'Veículo Novo (1º. Registro + Licença)', '24/04/2014', '0', 'Cartão de Crédito', 'Pagamento a vista', '500', '', '1', 'Abril', 'Jose de Ribamar', '2014-04-24'),
+(19, 491, 'Transferência de veículo', '24/04/2014', '0', 'Cartão de Crédito', 'Pagamento a vista', '500', '', '1', 'Abril', 'Jose de Ribamar', '2014-04-24'),
+(20, 490, 'Veículo Novo (1º. Registro + Licença)', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25'),
+(21, 490, 'Transferência de veículo', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25'),
+(22, 490, 'Licenciamento de veículo ', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25'),
+(23, 490, '2º. Via de Licenciamento', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25'),
+(24, 490, 'Registro de CNH', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25'),
+(25, 490, 'Renovação de CNH', '25/04/2014', '0', 'Cartão de Crédito', 'ok', '963', '562', '1', 'Abril', 'MAria campos ', '2014-04-25');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `sevicos`
+--
+
+CREATE TABLE `sevicos` (
+  `id_servico` int(11) NOT NULL auto_increment,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_servico`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Extraindo dados da tabela `sevicos`
+--
+
+INSERT INTO `sevicos` (`id_servico`, `descricao`, `valor`) VALUES
+(1, 'Veículo Novo (1º. Registro + Licença)', '380'),
+(2, 'Transferência de veículo', '250'),
+(3, 'Licenciamento de veículo', '110'),
+(4, 'Licenciamento c/ débitos', '130'),
+(5, 'Cópia Autêntica', '40'),
+(6, 'Prodesp ou Certidão de Propriedade', '40'),
+(7, 'Laudo de Vistoria Lacrado', '100'),
+(8, 'Laudo de Vistoria Lacrado', '100'),
+(9, '2º. Via de Licenciamento', '120'),
+(10, 'Placa Comum ou Targeta', '78'),
+(11, 'Lacração Domiciliar', '111'),
+(12, 'Revistoria ou Relacração', '150'),
+(13, 'Remarcação de Chassi ( Processo )', '150'),
+(14, 'Licença Especial', '100'),
+(15, 'Cadastramento Motor', '50'),
+(16, 'Cadastramento Motor', '50'),
+(17, 'Bloqueio de Veículo', '40'),
+(18, 'Cadastro de Espelho p/ outra UF', '140'),
+(19, 'Desbloq. Judicial Provisório p/ Licença', '40'),
+(20, 'Taxa Registro Veiculo outro UF', '100'),
+(21, 'Renovação de CNH', '70'),
+(22, 'Registro de CNH', '170'),
+(23, 'Veículos', '106'),
+(24, 'Caminhonetes', '111'),
+(25, 'Motos', '292'),
+(26, 'Onibus (Particulares)', '248'),
+(27, 'Onibus (Alugueis)', '397');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tcategorias`
+--
+
+CREATE TABLE `tcategorias` (
+  `catCodigo` tinyint(3) unsigned NOT NULL default '0',
+  `catDescricao` char(40) NOT NULL default '',
+  `catAtualiz` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`catCodigo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tcategorias`
+--
+
+INSERT INTO `tcategorias` (`catCodigo`, `catDescricao`, `catAtualiz`) VALUES
+(1, 'Particular', '2002-01-09 22:37:39'),
+(2, 'Aluguel', '2002-01-09 22:37:39'),
+(3, 'Oficial', '2002-01-09 22:37:39'),
+(5, 'Aprendizagem', '2002-01-09 22:37:39'),
+(6, 'Fabricante', '2002-01-09 22:37:39'),
+(8, 'Corpo consular', '2002-01-09 22:37:39'),
+(9, 'Organismos internacionais', '2002-01-09 22:37:39');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ttiposv`
+--
+
+CREATE TABLE `ttiposv` (
+  `tpvCodigo` smallint(5) unsigned NOT NULL default '0',
+  `tpvDescricao` char(40) NOT NULL default '',
+  `tpvAtualiz` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`tpvCodigo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `ttiposv`
+--
+
+INSERT INTO `ttiposv` (`tpvCodigo`, `tpvDescricao`, `tpvAtualiz`) VALUES
+(1, 'Bicicleta', '2002-01-09 22:37:52'),
+(10, 'Reboque', '2002-01-09 22:37:52'),
+(11, 'Semi-reboque', '2002-01-09 22:37:52'),
+(12, 'Charrete', '2002-01-09 22:37:52'),
+(13, 'Camioneta', '2002-01-09 22:37:52'),
+(14, 'Caminhão', '2002-01-09 22:37:52'),
+(15, 'Carroça', '2002-01-09 22:37:52'),
+(16, 'Carro-de-mão', '2002-01-09 22:37:52'),
+(17, 'Caminhão-trator', '2002-01-09 22:37:52'),
+(18, 'Trator de rodas', '2002-01-09 22:37:52'),
+(19, 'Trator de esteiras', '2002-01-09 22:37:52'),
+(2, 'Ciclomotor', '2002-01-09 22:37:52'),
+(20, 'Trator misto', '2002-01-09 22:37:52'),
+(21, 'Quadriciclo', '2002-01-09 22:37:52'),
+(23, 'Caminhonete', '2002-01-09 22:37:52'),
+(24, 'Side-car', '2002-01-09 22:37:52'),
+(25, 'Utilitário', '2002-01-09 22:37:52'),
+(3, 'Motoneta', '2002-01-09 22:37:52'),
+(4, 'Motocicleta', '2002-01-09 22:37:52'),
+(5, 'Triciclo', '2002-01-09 22:37:52'),
+(6, 'Automóvel', '2002-01-09 22:37:52'),
+(7, 'Microônibus', '2002-01-09 22:37:52'),
+(8, 'Ônibus', '2002-01-09 22:37:52'),
+(9, 'Bonde', '2002-01-09 22:37:52');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `veiculos`
+--
+
+CREATE TABLE `veiculos` (
+  `id_veiculo` int(11) NOT NULL auto_increment,
+  `cliente` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `data_nota` varchar(255) default NULL,
+  `vencimento` varchar(255) default NULL,
+  `placa` varchar(255) default NULL,
+  `renavam` varchar(255) default NULL,
+  `chassi` varchar(255) default NULL,
+  `cor` varchar(255) default NULL,
+  `tipo` varchar(255) default NULL,
+  `categoria` varchar(255) default NULL,
+  `Marca_Modelo` varchar(255) default NULL,
+  `ano_fab_modelo` varchar(255) default NULL,
+  `combustivel` varchar(255) default NULL,
+  `aviso` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_veiculo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=209 ;
+
+--
+-- Extraindo dados da tabela `veiculos`
+--
+
+INSERT INTO `veiculos` (`id_veiculo`, `cliente`, `data`, `data_nota`, `vencimento`, `placa`, `renavam`, `chassi`, `cor`, `tipo`, `categoria`, `Marca_Modelo`, `ano_fab_modelo`, `combustivel`, `aviso`) VALUES
+(208, '491', '2014-04-24', '2014-04-24', '2014-04-24', NULL, NULL, '9000909', 'Azul', 'Utilitário', 'Particular', 'Volkswagen Gol 1.0', '2014 / 2014', 'Etanol', ' » Aguardando...');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vencimento`
+--
+
+CREATE TABLE `vencimento` (
+  `id` int(11) NOT NULL auto_increment,
+  `inicial` date NOT NULL,
+  `fim` date NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `vencimento`
+--
+
+INSERT INTO `vencimento` (`id`, `inicial`, `fim`) VALUES
+(4, '2014-02-01', '2014-02-06');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vencimento2`
+--
+
+CREATE TABLE `vencimento2` (
+  `id` int(11) NOT NULL auto_increment,
+  `inicial` varchar(255) NOT NULL,
+  `final` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `vencimento2`
+--
+
+INSERT INTO `vencimento2` (`id`, `inicial`, `final`) VALUES
+(1, '26/02/2014', '28/02/2014');

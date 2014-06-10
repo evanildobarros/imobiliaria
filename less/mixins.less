@@ -1,0 +1,65 @@
+/*************
+*	Mixins
+*************/
+.clearfix {
+	*zoom: 1;
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+.border-radius (@radius: 10px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.box-sizing (@box-sizing: border-box) {
+	-webkit-box-sizing: @box-sizing;
+	-moz-box-sizing: @box-sizing;
+	box-sizing: @box-sizing; 
+}
+
+.column-count (@cols: 2) {
+	-moz-column-count:@cols;
+	-webkit-column-count:@cols;
+	column-count:@cols;
+}
+
+.column-gap (@gap: 20px) {
+	-moz-column-gap:@gap;
+	-webkit-column-gap:@gap;
+	column-gap:@gap;
+}
+
+.disable-highlighting {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.opacity (@opacity: 0.5) {
+	-moz-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-webkit-opacity: @opacity;
+	opacity: @opacity;
+	@opperc: @opacity * 100;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+	filter: ~"alpha(opacity=@{opperc})";
+}
+
+.transition ( @property: all, @speed: .2s ) {
+	-webkit-transition: @property @speed;
+	-moz-transition: @property @speed;
+	-o-transition: @property @speed;
+	transition: @property @speed;
+}

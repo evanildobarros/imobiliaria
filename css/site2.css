@@ -1,0 +1,100 @@
+* {
+  margin:0;
+  padding:0;
+  font-family: Museo Sans 100;
+  font-size: 13px;
+  font-weight:normal;
+  }
+  
+  body{
+  margin:0;
+  padding:0;
+  background:url(../img/pat_03.png);
+  background-color:#3c5069;
+  }
+  
+  #box{
+  width:1200px; 
+  margin:0 auto;
+  }
+  
+  #content{
+  width:1200px;
+  float:left;
+  margin:0 auto;
+  background:#26354c;
+  }	
+  
+  #topo{
+  width:1200px;
+  background:url(../img/pat_03.png);
+  background-color:#3c5069;
+  margin: 0 auto;
+  height:90px;
+  float:left;
+  }
+  
+  #logo{
+  width:25 	0px;
+  height:60px;
+  float:left;
+  margin:15px;
+  }
+  
+  #busca{
+  width:300px;
+  height:30px;
+  float:right;
+  
+  margin:38px 15px;
+  }
+  
+  #menu{
+  width:1200px;
+  background:#263548;
+  height:30px;
+  float:left;
+  }
+  
+  #meio{
+  width:960px;
+  margin:5px 0px;
+  float:left;
+  }
+  
+  #sidebar-left{
+  background:#FFFFFF;
+  width:180px;
+  height:500px;
+  float:left;
+  margin:0px 5px;
+  }
+  
+  #conteudo{
+  width:820px;
+  height:500px;
+  float:left;
+  margin:-500px 190px;
+  background:#FFFFFF;
+  }
+  
+  #sidebar-right{
+  background:#FFFFFF;
+  width:180px;
+  height:500px;
+  float:right;
+  margin:-500px -235px;
+  }
+  
+  #clear{
+  clear:both;
+  }
+  
+  #rodape{
+  width:1200px;
+  height:70px;
+  float:left;
+  background:#40546d;
+  }
+  
+     
