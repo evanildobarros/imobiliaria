@@ -191,7 +191,7 @@ function CheckAll() {
 <br />
 
     
-    <table cellpadding="1" cellspacing="5"  width="1000" align="center" style="background-color:#006699;">
+    <table cellpadding="1" cellspacing="5"  width="1200" align="center" style="background-color:#006699;">
 
 <tr>
 
@@ -236,7 +236,7 @@ for ($i=1;$i<=12;$i++){
 
 
     
-    <table width="1000" border="0" align="center" style="border-collapse:collapse;">
+    <table width="1200" border="0" align="center" style="border-collapse:collapse;">
 			<tr>
 			  <td bgcolor="#FFFFFF" class="">
               
@@ -265,14 +265,14 @@ color:#CC0033;">Total Geral <?php
 			<label>
 			<input class="bt2" type="submit" name="button" id="button" value="Pesquisar">
 			</label>
-			<span class="span7">&nbsp; &nbsp; &nbsp;Lan&ccedil;amentos ( Cliente devedor)</span>
+			<span class="span7">&nbsp; &nbsp; &nbsp;Lan&ccedil;amentos ( Contas a Pagar)</span>
 			</form>			</td>
 			</tr>
 			</table>
 			
 			
 			<form name="frmMain" action="" method="post" OnSubmit="return onDelete();" enctype="multipart/form-data">
-			<table width="1000" border="0" align="center" class="td2" style="border-collapse:collapse;">
+			<table width="1200" border="0" align="center" class="td2" style="border-collapse:collapse;">
 			
 			
 	  
@@ -311,7 +311,7 @@ color:#CC0033;">Total Geral <?php
 			else
 			$filtro1 = $_REQUEST['filtro1'];
 			
-			 $sql = "SELECT lcm.id,lcm.vencimento,lcm.valor2,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '0' AND lcm.status='2' AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
+			 $sql = "SELECT lcm.id,lcm.vencimento,lcm.valor2,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '0' AND lcm.status='2' AND lcm.fornecedor like '".$filtro."%' ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
 			
 			$rs  = mysql_query($sql);
 			
@@ -335,14 +335,14 @@ color:#CC0033;">Total Geral <?php
         <td valign="top" class="td"><label>
         <input type="checkbox" name="chkDel[]" value="<?php echo $resultado["id"];?>">
         </label>          <span class="span6"><?php echo $resultado['cliente']; ?><?php echo $resultado['fornecedor']; ?></span></td>
-        <td valign="top" class="td"><div align="center"><span class="span6"><?php echo $resultado['dia']; ?>/<?php echo $resultado['mes']; ?>/<?php echo $resultado['ano']; ?></span></div></td>
-        <td valign="top" class="td"><span class="span6"><?php echo $resultado['nome']; ?></span></td>
+        <td valign="middle" class="td"><div align="center"><span class="span6"><?php echo $resultado['dia']; ?>/<?php echo $resultado['mes']; ?>/<?php echo $resultado['ano']; ?></span></div></td>
+        <td valign="middle" class="td"><span class="span6"><?php echo $resultado['nome']; ?></span></td>
         
-        <td valign="top" class="td"><?php if ($resultado['status'] == 2){
+        <td valign="middle" class="td"><?php if ($resultado['status'] == 2){
                echo "<span class=\"span22\">Em Aberto</span>"; 
                }    ?> </td>
-        <td  valign="top" class="td"><span class="span6">R$&nbsp;<?php $total10 = $resultado['valor2']; echo number_format( $total10  , 2 , ',' , '.' ); ?></span></td>
-        <td  valign="top" class="td"><span class="span6"> <?php
+        <td  valign="middle" class="td"><span class="span6">R$&nbsp;<?php $total10 = $resultado['valor2']; echo number_format( $total10  , 2 , ',' , '.' ); ?></span></td>
+        <td  valign="middle" class="td"><span class="span6"> <?php
 		    if ($dias >= 10){
             echo "<img src=\"../img/01.png\" />&nbsp; Faltam ".$dias." Dias para o Pagamento!</span>"."</br>";
 		    }
@@ -361,7 +361,7 @@ color:#CC0033;">Total Geral <?php
 		    else if ($dias == 6){
             echo "<img src=\"../img/05.png\" />&nbsp; Faltam ".$dias." Dias para o Pagamento!</span>"."</br>";
 		    } else if ($dias == 5){
-            echo "<img src=\"img/04.png\" />&nbsp; Faltam ".$dias." Dias para o  Pagamento!</span>"."</br>";
+            echo "<img src=\"../img/04.png\" />&nbsp; Faltam ".$dias." Dias para o  Pagamento!</span>"."</br>";
 			 } else if ($dias == 4){
             echo "<img src=\"../img/04.png\" />&nbsp; Faltam ".$dias." Dias para o Pagamento!</span>"."</br>";
             }
@@ -383,7 +383,7 @@ color:#CC0033;">Total Geral <?php
 			
             ?></span></td>
         
-                <td  valign="top" class="td"><div align="center"><a  href="javascript:abrir('baixar.php?id=<?php echo $resultado['id']; ?>')">Baixar</a></div></td>
+                <td  valign="top" class="td"><div align="center"><a  href="javascript:abrir('baixar.php?id=<?php echo $resultado['id']; ?>')"><img width="80" height="35" src="../img/icon_baixar.gif" /></a></div></td>
         </tr>
         <tr><?php $cont ++; }?>
 

@@ -44,11 +44,12 @@
                 <a>Financeiro</a>
                 <ul>
                     <li><a href="layout_servico.php">Registrar Servi&ccedil;os</a></li>
-                    <li><a href="index_financeiro.php">Livro Caixa</a></li>
-                    <li><a href="layout_contas_a_pagar.php">Contas a Pagar</a></li>
-                    <li><a href="layout_contas_a_receber.php">Contas a Receber</a></li>
-                    <li><a href="layout_contas_devedor.php">Cliente Devedor</a></li>
-                   <li><a href="consulta_mensal.php">Fluxo de Caixa</a></li>
+                    <li><a href="index_financeiro.php">fluxo de Caixa</a></li>
+                    <li><a href="layout_contas_a_pagar.php">Contas Pagas</a></li>
+                    <li><a href="layout_contas_devedor.php">Contas a Pagar</a></li>
+                    <li><a href="layout_pagamentos.php">Contas a Receber</a></li>
+                   <li><a href="layout_agendamento.php">Agendar</a></li> 
+                   <li><a href="consulta_mensal.php">Relatorio</a></li>
               </ul>
             </li>
             

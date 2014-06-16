@@ -177,7 +177,7 @@ function CheckAll() {
 <br />
 
     
-    <table cellpadding="1" cellspacing="5"  width="1000" align="center" style="background-color:#006699;">
+    <table cellpadding="1" cellspacing="5"  width="1200" align="center" style="background-color:#006699;">
 
 <tr>
 
@@ -222,7 +222,7 @@ for ($i=1;$i<=12;$i++){
 
 
     
-    <table width="1000" border="0" align="center" style="border-collapse:collapse;">
+    <table width="1200" border="0" align="center" style="border-collapse:collapse;">
 			<tr>
 			  <td bgcolor="#FFFFFF" class="">
               
@@ -230,7 +230,7 @@ for ($i=1;$i<=12;$i++){
 color:#CC0033;">Total Geral <?php 
 			
 		
-			$sql5 = mysql_query("SELECT SUM(valor) as total from lc_movimento WHERE tipo = '1' AND status='1' AND mes='$mes_hoje'");
+			$sql5 = mysql_query("SELECT SUM(valor2) as total from lc_movimento WHERE tipo = '0' AND mes='$mes_hoje'");
 			
 			while ($result = @mysql_fetch_array($sql5)){
 			$total = $result['total'];
@@ -258,7 +258,7 @@ color:#CC0033;">Total Geral <?php
 			
 			
 			<form name="frmMain" action="" method="post" OnSubmit="return onDelete();" enctype="multipart/form-data">
-			<table width="1000" border="0" align="center" class="td2" style="border-collapse:collapse;">
+			<table width="1200" border="0" align="center" class="td2" style="border-collapse:collapse;">
 			
 			
 	  
@@ -297,7 +297,7 @@ color:#CC0033;">Total Geral <?php
 			else
 			$filtro1 = $_REQUEST['filtro1'];
 			
-			 $sql = "SELECT lcm.id,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '1' AND lcm.status='1' AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
+			 $sql = "SELECT lcm.id,lcm.valor2,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '0'  AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
 			
 			$rs  = mysql_query($sql);
 			
@@ -319,11 +319,11 @@ color:#CC0033;">Total Geral <?php
         <td valign="top" class="td"><div align="center"><span class="span6"><?php echo $resultado['dia']; ?>/<?php echo $resultado['mes']; ?>/<?php echo $resultado['ano']; ?></span></div></td>
         <td valign="top" class="td"><span class="span6"><?php echo $resultado['nome']; ?></span></td>
         <td valign="top" class="td"><span class="span6"><?php echo $resultado['descricao']; ?></span></td>
-        <td valign="top" class="td"><?php if ($resultado['status'] == 1){
-               echo "<span class=\"span16\">Pago</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check.png\" />"; 
+        <td valign="top" class="td" width="150"><?php if ($resultado['tipo'] == 0){
+               echo "<span class=\"span8\">Em Aberto</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check.png\" />"; 
                }    ?>            </td>
-        <td width="77" valign="top" class="td"><span class="span6">R$&nbsp;<?php $total10 = $resultado['valor']; echo number_format( $total10  , 2 , ',' , '.' ); ?></span></td>
-        <td width="111" valign="top" class="td"><div align="center"><a href="recibo2.php?id=<?php echo $resultado['id']; ?>"><img src="../img/BTR.jpg" /></a></div></td>
+        <td width="77" valign="top" class="td"><span class="span6">R$&nbsp;<?php $total10 = $resultado['valor2']; echo number_format( $total10  , 2 , ',' , '.' ); ?></span></td>
+        <td width="111" valign="top" class="td"><div align="center"></td>
         </tr>
         <tr><?php $cont ++; }?>
 

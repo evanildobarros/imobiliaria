@@ -153,6 +153,21 @@ else
 <meta name="AUDIENCE" content="all" />
 <meta name="RATING" content="GENERAL" />
 <link href="../css/layout.css" rel="stylesheet" type="text/css" />
+
+<script>
+			function alterna(tipo) {
+			
+			if (tipo == 2	) {
+			document.getElementById("tipo1").style.display = "block";
+			document.getElementById("tipo2").style.display = "none";
+			} else {
+			document.getElementById("tipo1").style.display = "none";
+			document.getElementById("tipo2").style.display = "block";
+			}
+			
+			}
+</script>
+
 <script language="javascript" src="scripts.js"></script>
 
    <script language="JavaScript">
@@ -395,7 +410,8 @@ $ene = $row6['nome'];
 
 
 <strong>Categoria:</strong><br />
-<input type="hidden" name="status" value="1" />
+
+
 <select name="cat">
 <?php
 while ($row=mysql_fetch_array($qr)){
@@ -435,8 +451,18 @@ $en = $row5['desc'];
 
 <br />
 
-<label for="tipo_receita" style="color:#030"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
+<label for="tipo_receita" style="color:#0033CC"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
 <label for="tipo_despesa" style="color:#C00"><input type="radio" name="tipo" value="0" id="tipo_despesa" /> Despesa</label>
+<label for="tipo_Emberto" style="color:#009999"><input type="radio" name="status" value="2" onclick="alterna(this.value);" /> Em Abero
+
+<div id="tipo1" style="display:none;">
+			  <input name="valor2"  value="" class="placeholder" placeholder="Valor a ser Pago !" size="20">
+			  </div>
+
+
+
+
+</label>
 <br />
 <br />
 

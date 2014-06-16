@@ -138,7 +138,7 @@ function CheckAll() {
 </script>
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
             
-			<title>Gerenciador Auto Escola</title>
+			<title>Gerenciador Imobiliaria</title>
 			
 			</head>
               
@@ -179,7 +179,7 @@ function CheckAll() {
 <br />
 
     
-    <table cellpadding="1" cellspacing="5"  width="1000" align="center" style="background-color:#006699;">
+    <table cellpadding="1" cellspacing="5"  width="1200" align="center" style="background-color:#006699;">
 
 <tr>
 
@@ -224,7 +224,7 @@ for ($i=1;$i<=12;$i++){
 
 
     
-    <table width="1000" border="0" align="center" style="border-collapse:collapse;">
+    <table width="1200" border="0" align="center" style="border-collapse:collapse;">
 			<tr>
 			  <td bgcolor="#FFFFFF" class="">
               
@@ -232,9 +232,9 @@ for ($i=1;$i<=12;$i++){
 color:#CC0033;">Total Geral <?php 
 			
 		
-			$sql5 = mysql_query("SELECT SUM(valor) as total from lc_movimento WHERE tipo = '0' AND status='1' AND mes='$mes_hoje'");
+			$sql5 = mysql_query("SELECT SUM(valor) as total from lc_movimento WHERE mes='$mes_hoje'");
 			
-			while ($result = mysql_fetch_array($sql5)){
+			while ($result = @mysql_fetch_array($sql5)){
 			$total = $result['total'];
 			echo number_format( $total  , 2 , ',' , '.' );
 			}
@@ -253,14 +253,14 @@ color:#CC0033;">Total Geral <?php
 			<label>
 			<input class="bt2" type="submit" name="button" id="button" value="Pesquisar">
 			</label>
-			<span class="span7">&nbsp; &nbsp; &nbsp;Lan&ccedil;amentos ( Contas a Pagar )</span>
+			<span class="span7">&nbsp; &nbsp; &nbsp; Receita ( Contas Pagas )</span>
 			</form>			</td>
 			</tr>
 			</table>
 			
 			
 			<form name="frmMain" action="" method="post" OnSubmit="return onDelete();" enctype="multipart/form-data">
-			<table width="1000" border="0" align="center" class="td2" style="border-collapse:collapse;">
+			<table width="1200" border="0" align="center" class="td2" style="border-collapse:collapse;">
 			
 			
 	  
@@ -299,7 +299,7 @@ color:#CC0033;">Total Geral <?php
 			else
 			$filtro1 = $_REQUEST['filtro1'];
 			
-		 $sql = "SELECT lcm.id,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '0' AND lcm.status='1' AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
+		 $sql = "SELECT lcm.id,lcm.dia,lcm.mes,lcm.valor2,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status,lcm.tipo from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.cliente like '".$filtro."%' ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
 			
 			$rs  = mysql_query($sql);
 			
@@ -315,17 +315,26 @@ color:#CC0033;">Total Geral <?php
 			$cor = ($cont%2 == 0)? "#EDEDED":"ffffff";
 			?>
 		 <tr bgcolor="<?php echo $cor ; ?>">
-        <td valign="top" class="td"><label>
+        <td valign="top"><label>
         <input type="checkbox" name="chkDel[]" value="<?php echo $resultado["id_mov"];?>">
         </label>          <span class="span6"><?php echo $resultado['cliente']; ?><?php echo $resultado['fornecedor']; ?></span></td>
-        <td valign="top" class="td"><div align="center"><span class="span6"><?php echo $resultado['dia']; ?>/<?php echo $resultado['mes']; ?>/<?php echo $resultado['ano']; ?></span></div></td>
-        <td valign="top" class="td"><span class="span6"><?php echo $resultado['nome']; ?></span></td>
-        <td valign="top" class="td"><span class="span6"><?php echo $resultado['descricao']; ?></span></td>
-        <td valign="top" class="td"><?php if ($resultado['status'] == 1){
-               echo "<span class=\"span16\">Pago</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check.png\" />"; 
-               }    ?>            </td>
+        <td  valign="top"  ><div align="center"><span class="span6"><?php echo $resultado['dia']; ?>/<?php echo $resultado['mes']; ?>/<?php echo $resultado['ano']; ?></span></div></td>
+        <td  valign="top" width="200"><span class="span6"><?php echo $resultado['nome']; ?></span></td>
+        <td valign="top"><span class="span6"><?php echo $resultado['descricao']; ?></span></td>
+        <td  valign="top" width="200"><?php if ($resultado['status'] == 2){
+               echo "<span style=\"COLOR:#ff7f6a;\">&bull;&bull;&bull; Aguardando</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check2.png\" />"; 
+               } elseif ($resultado['tipo']==1){
+			   
+			   echo "<span class=\"span11\">Pago</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check.png\" />";
+			   
+			   }elseif ($resultado['tipo']==0){
+			    echo "<span class=\"span8\">Pago</span> <img width=\"25\" height=\"20\" src=\"../img/Green_check.png\" />";
+			   } 
+			
+			   
+			    ?>            </td>
         <td width="77" valign="top" class="td"><span class="span6">R$&nbsp;<?php $total10 = $resultado['valor']; echo number_format( $total10  , 2 , ',' , '.' ); ?></span></td>
-        <td width="111" valign="top" class="td"><div align="center"><a href="recibo2.php?id=<?php echo $resultado['id']  ?>"><img src="../img/BTR.jpg" /></a></div></td>
+       
         </tr>
         <tr><?php $cont ++; }?>
 

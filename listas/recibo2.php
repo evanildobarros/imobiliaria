@@ -248,7 +248,7 @@ $id = $_GET['id'];
 
 ?>
       <?php
-$con = mysql_connect("localhost","root","jedai2003");
+$con = mysql_connect("localhost","root","");
 $bd  = mysql_select_db("MI");
 $qr1=mysql_query("SELECT * FROM lc_movimento as m, lc_cat as c Where m.cat = c.id AND m.id ='$id'");
 while ($row5=@mysql_fetch_array($qr1)){
@@ -332,7 +332,7 @@ $val3 = $row5['valor'];
     <td colspan="3" bgcolor="#F7F7F7"><div style="background:#FFFFFF; border-radius:5px; min-height:0px; width:600px; border:1px solid #999999; padding:10px; margin:auto;"><br />
            
             <?php
-$con = mysql_connect("localhost","root","jedai2003");
+$con = mysql_connect("localhost","root","");
 $bd  = mysql_select_db("MI");
 $qr1=mysql_query("SELECT * FROM lc_movimento as m, lc_cat as c Where m.cat = c.id AND m.id ='$id'");
 while ($row5=@mysql_fetch_array($qr1)){

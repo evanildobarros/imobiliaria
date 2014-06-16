@@ -96,23 +96,38 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="7"><input type="checkbox" name="id_servico[]" value="Ve&iacute;culo Novo (1&ordm;. Registro + Licen&ccedil;a)" />
-          <label for="checkbox"><span class="span5">Ve&iacute;culo Novo (1&ordm;. Registro + Licen&ccedil;a)</span></label>
+      <td colspan="3"><input type="checkbox" name="id_servico[]" value="Avalia&ccedil;&atilde;o de Imovel" />
+          <label for="checkbox"><span class="span5">Avalia&ccedil;&atilde;o de Imovel</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="Transfer&ecirc;ncia de ve&iacute;culo" />
-          <label for="checkbox2"><span class="span5">Transfer&ecirc;ncia de ve&iacute;culo</span></label>
+          <input type="checkbox" name="id_servico[]" value="Comissões " />
+          <label for="checkbox2"><span class="span5">Comissões</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="Licenciamento de ve&iacute;culo " />
-          <label for="checkbox3"><span class="span5">Licenciamento de ve&iacute;culo</span></label>
+          <input type="checkbox" name="id_servico[]" value="Conta Poubança" />
+          <label for="checkbox3"><span class="span5">Conta Poupança</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="2&ordm;. Via de Licenciamento"  />
-          <label for="checkbox4"><span class="span5">2&ordm;. Via de Licenciamento</span></label>
+          <input type="checkbox" name="id_servico[]" value="Conta Corrente"  />
+          <label for="checkbox4"><span class="span5">Conta Corrente</span></label>
           <input type='hidden' name='int_id' value='<?php echo $id?>'>
           <br>
-          <input type="checkbox" name="id_servico[]" value="Registro de CNH" />
-        <span class="span5">Registro de CNH</span><br>
-        <input type="checkbox" name="id_servico[]" value="Renova&ccedil;&atilde;o de CNH" />
-    <span class="span5">Renova&ccedil;&atilde;o de CNH</span>    </tr>
+          <input type="checkbox" name="id_servico[]" value="CROT Automatizado" />
+        <span class="span5">CROT Automatizada</span><br>
+        <input type="checkbox" name="id_servico[]" value="Consignado" />
+    <span class="span5">Consignado</span>          
+      <td colspan="3" valign="top">
+      <input type="checkbox" name="id_servico[]" value="Cartão de crédito" />
+        <span class="span5">Cartão de crédito</span><br> 
+        <input type="checkbox" name="id_servico[]" value="CDC" />
+        <span class="span5">CDC</span><br>  
+        <input type="checkbox" name="id_servico[]" value="CCSBPE Automatizado" />
+        <span class="span5">CCSBPE Automatizado</span><br> 
+         <input type="checkbox" name="id_servico[]" value="CCFGTS Automatizado" />
+        <span class="span5">CCFGTS Automatizado</span><br> 
+        <input type="checkbox" name="id_servico[]" value="Pesquisas cadastrais" />
+        <span class="span5">Pesquisas cadastrais</span><br> 
+        <input type="checkbox" name="id_servico[]" value="Outros serviços" />
+        <span class="span5">Outros serviços</span><br>   
+               
+    <td>          </tr>
     <tr>
       <td colspan="8">&nbsp;    </tr>
     <tr>

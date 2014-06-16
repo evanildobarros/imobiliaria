@@ -72,7 +72,7 @@ $totalRows_baixa = mysql_num_rows($baixa);
         
       <tr valign="baseline">
         <td colspan="2" align="right" nowrap="nowrap"><div align="left">
-          <input type="hidden" name="tipo" value="1" size="32" />
+          <input type="hidden" name="tipo" value="0" size="32" />
         Baixar</div></td>
       </tr>
       <tr valign="baseline">

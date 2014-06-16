@@ -320,7 +320,7 @@ do {
 		$dormitorio        = $_POST['dormitorio'];
 		$suites            = $_POST['suites'];
 		$garagem           = $_POST['garagem'];
-		$valor             = $_POST['valor '];
+		$val3              = $_POST['valor'];
 		$data_fim          = $_POST['data_fim'];
 		$autorizar         = $_POST['autorizar'];
 		$servico           = $_POST['id_servico'];
@@ -367,7 +367,7 @@ do {
 													  '$dormitorio',
 													  '$suites',
 													  '$garagem',
-													  '$valor',
+													  '$val3',
 													  '$data_fim',
 													  '$autorizar',
 													  '$valor')");

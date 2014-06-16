@@ -87,6 +87,6 @@
 			$op="Consultou Exame de legislação !";
 			$sql5 = "INSERT INTO log (cod, usuario, nome, data, hora, op, ip) VALUES 
 			('', '$_SESSION[usuario_logado]', '$_SESSION[usuario]', '$_SESSION[data]', '$msghora', '$op', '$_SERVER[REMOTE_ADDR]')";
-			mysql_query($sql5);
+			@mysql_query($sql5);
 			?>
 			</html>
