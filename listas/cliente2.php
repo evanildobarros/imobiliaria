@@ -20,6 +20,41 @@ $formValidation = new tNG_FormValidation();
 $tNGs->prepareValidation($formValidation);
 // End trigger
 
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+mysql_select_db($database_conexao, $conexao);
+$query_municipio = "SELECT * FROM municipio";
+$municipio = mysql_query($query_municipio, $conexao) or die(mysql_error());
+$row_municipio = mysql_fetch_assoc($municipio);
+$totalRows_municipio = mysql_num_rows($municipio);
+
 //start Trigger_ImageUpload trigger
 //remove this line if you want to edit the code by hand 
 function Trigger_ImageUpload(&$tNG) {
@@ -133,9 +168,24 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
           <?php echo $tNGs->displayFieldHint("bairro");?> <?php echo $tNGs->displayFieldError("cliente", "bairro"); ?> </td>
     </tr>
     <tr>
-      <td class="KT_th"><label for="municipio">Municipio:</label></td>
-      <td><input type="text" name="municipio" id="municipio" value="<?php echo KT_escapeAttribute($row_rscliente['municipio']); ?>" size="32" />
-          <?php echo $tNGs->displayFieldHint("municipio");?> <?php echo $tNGs->displayFieldError("cliente", "municipio"); ?> </td>
+      <td class="KT_th"><label for="">Municipio:</label></td>
+      <td><label>
+        <select name="municipio" id="municipio">
+          <?php
+do {  
+?>
+          <option value="<?php echo $row_municipio['municipio']?>"><?php echo $row_municipio['municipio']?></option>
+          <?php
+} while ($row_municipio = mysql_fetch_assoc($municipio));
+  $rows = mysql_num_rows($municipio);
+  if($rows > 0) {
+      mysql_data_seek($municipio, 0);
+	  $row_municipio = mysql_fetch_assoc($municipio);
+  }
+?>
+        </select>
+      </label>
+        <?php echo $tNGs->displayFieldHint("municipio");?> <?php echo $tNGs->displayFieldError("cliente", "municipio"); ?> </td>
     </tr>
     <tr>
       <td class="KT_th"><label for="local">Ponto de Referencia:</label></td>
@@ -199,3 +249,6 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
 
 </body>
 </html>
+<?php
+mysql_free_result($municipio);
+?>

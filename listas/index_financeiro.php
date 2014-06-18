@@ -386,15 +386,15 @@ if (mysql_num_rows($qr)==0)
 
 else{
 ?>
+
 <form method="post" action="?mes=<?php echo $mes_hoje?>&ano=<?php echo $ano_hoje?>">
 <input type="hidden" name="acao" value="1" />
 
-<strong>Fornecedor:</strong><br />
 
-
-<input type="hidden" name="data" size="11" maxlength="10" value="<?php echo date('d')?>/<?php echo $mes_hoje?>/<?php echo $ano_hoje?>" />
-<input name="m" value="<?php echo mostraMes($mes_hoje)?>" type="hidden" />
-<select name="fornecedor">
+<table width="100%" border="0">
+  <tr>
+    <td><strong>Fornecedor:</strong></td>
+    <td><select name="fornecedor">
 <option>Selecione</option>
 <?php
 $qr11=mysql_query("SELECT * FROM fornecedor");
@@ -404,31 +404,36 @@ $ene = $row6['nome'];
 ?>
 <option value="<?php echo $ene; ?>"><?php echo $ene; ?></option>
 <?php }?>
-</select>
-
-<br /><br />
-
-
-<strong>Categoria:</strong><br />
-
-
-<select name="cat">
+</select></td>
+    <td><strong>Cliente</strong></td>
+    <td><select name="cliente">
+<option>Selecione</option>
 <?php
-while ($row=mysql_fetch_array($qr)){
+$qr1=mysql_query("SELECT * FROM cliente");
+while ($row5=@mysql_fetch_array($qr1)){
+$en = $row5['cliente'];
+
 ?>
-<option value="<?php echo $row['id']?>"><?php echo $row['nome']?></option>
+<option value="<?php echo $en; ?>"><?php echo $en; ?></option>
 <?php }?>
-</select>
-<br /><br />
+</select></td>
+<td width="100"><strong>Categoria</strong></td>
+<td><select name="cliente">
+<option>Selecione</option>
+<?php
+$qr1=mysql_query("SELECT * FROM lc_cat");
+while ($row5=@mysql_fetch_array($qr1)){
+$id = $row5['id'];
+$en = $row5['nome'];
 
-<strong>Nota:</strong><br />
-<input type="text" name="nota"  />
-<br /><br />
-
-
-<strong>Forma de pagamento:</strong><br />
-
-<select name="fpagamento">
+?>
+<option value="<?php echo $id; ?>"><?php echo $en; ?></option>
+<?php }?>
+</select></td>
+  </tr>
+  <tr>
+    <td><strong>Forma de pagamento</strong></td>
+    <td><select name="fpagamento">
 <option>Selecione</option>
 <?php
 $qr1=mysql_query("SELECT * FROM forma_pg");
@@ -438,47 +443,59 @@ $en = $row5['desc'];
 ?>
 <option value="<?php echo $en; ?>"><?php echo $en; ?></option>
 <?php }?>
-</select>
-
-<br />
-<br />
-
-
-
-<strong>Data do Vencimento:</strong><br />
-<input type="date" name="vencimento"  />
-<br />
-
-<br />
-
-<label for="tipo_receita" style="color:#0033CC"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
+</select></td>
+    <td><strong>Nº da Nota</strong></td>
+    <td><input type="text" name="nota"  /></td>
+  </tr>
+    <tr>
+  
+   <td><strong>Vencimento</strong></td>
+   <td><input type="date" nome="vencimento"  /></td>
+   <td><div style="color:#ff0000; margin:auto;">* Campo obrigatório</div></td>
+ 
+  </tr>
+    <tr>
+    <td><strong>Tipo</strong></td>
+    <td colspan="3"><label for="tipo_receita" style="color:#0033CC"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
 <label for="tipo_despesa" style="color:#C00"><input type="radio" name="tipo" value="0" id="tipo_despesa" /> Despesa</label>
-<label for="tipo_Emberto" style="color:#009999"><input type="radio" name="status" value="2" onclick="alterna(this.value);" /> Em Abero
-
-<div id="tipo1" style="display:none;">
+<label for="tipo_Emberto" style="color:#009999"><input type="radio" name="status" value="2" onclick="alterna(this.value);" /> Em Abero</td>
+   
+  </tr>
+  
+    <tr>
+    <td><strong>Valor a ser cobrado</strong></td>
+    <td><div id="tipo1" style="display:none;">
 			  <input name="valor2"  value="" class="placeholder" placeholder="Valor a ser Pago !" size="20">
 			  </div>
+</td>
+   
+  </tr>
+  <tr>
+    <td><strong>Valor</strong></td>
+    <td><input type="text" name="valor" placeholder="R$" size="5" />
+    </td>
+    <td colspan="8"><div style="color:#ff0000; margin:auto;">* Inserir valor somente se for pagemento a vista o debito</div></td>
+  </tr>
+  <tr>
+    <td><strong>Descrição</strong></td>
+    <td colspan="3"><textarea name="descricao" cols="" rows=""></textarea></td>
+   
+  </tr>
+  
+   <tr>
+    <td></td>
+    <td colspan="3"><input type="submit" class="botao" value="Enviar" /></td>
+   
+  </tr>
+</table>
 
 
 
-
-</label>
 <br />
-<br />
 
-<strong>Descrição:</strong><br />
-<textarea name="descricao" cols="" rows=""></textarea>
 
-<br />
-<br />
-
-<strong>Valor:</strong><br />
-<input placeholder="R$" type="text" name="valor" size="8" maxlength="10" />
-
-<br />
-<br />
-
-<input type="submit" class="botao" value="Enviar" />
+<input type="hidden" name="data" size="11" maxlength="10" value="<?php echo date('d')?>/<?php echo $mes_hoje?>/<?php echo $ano_hoje?>" />
+<input name="m" value="<?php echo mostraMes($mes_hoje)?>" type="hidden" />
 
 </form>
 <?php }?>

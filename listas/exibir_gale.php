@@ -41,7 +41,7 @@ if (isset($_GET['id_cliente'])) {
   $colname_exibir33 = $_GET['id_cliente'];
 }
 mysql_select_db($database_conexao, $conexao);
-$query_exibir33 = sprintf("SELECT * FROM documentacao WHERE id_cliente = %s", GetSQLValueString($colname_exibir33, "int"));
+$query_exibir33 = sprintf("SELECT * FROM galeria WHERE id_cliente = %s", GetSQLValueString($colname_exibir33, "int"));
 $exibir33 = mysql_query($query_exibir33, $conexao) or die(mysql_error());
 $row_exibir33 = mysql_fetch_assoc($exibir33);
 $totalRows_exibir33 = mysql_num_rows($exibir33);

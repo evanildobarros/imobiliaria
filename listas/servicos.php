@@ -160,7 +160,7 @@ $en = $row5['desc'];
               <a href="#" onClick="MM_openBrWindow('../listas/cat_financeiro.php','','scrollbars=yes,resizable=yes,width=450,height=160')"><img src="../img/check_green.jpg" width="30" height="30"></a>
       <td colspan="3"><input checked type="radio" name="tipo" id="tipo" value="1">
         <span class="span5">Receita</span>
-        <input type="radio" name="tipo" id="tipo2" value="0">
+        <input type="radio" name="tipo" id="tipo2" value="1">
         <span class="span5">Aguardando pagamento da parcela</span></td>
     </tr>
     <tr>
@@ -172,7 +172,7 @@ $en = $row5['desc'];
     <td>    </tr>
     <tr>
       <td><span class="span5">Situa&ccedil;&atilde;o</span>  
-      <td colspan="7"><input class="input radius" checked type="radio" name="status" id="status" value="1">
+      <td colspan="7"><input class="input radius" checked type="radio" name="status" id="status" value="2">
         <span class="span5">Pago</span>
         <input class="input radius" type="radio" name="status" id="status" value="2">
        <span class="span5"> Em aberto </span></td>

@@ -48,55 +48,73 @@ $cliente = $row_proces['cliente'];
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>Gereciador Despachante</title>
+<link rel="stylesheet" href="css/layout.css" type="text/css">
+	<link rel="stylesheet" href="css/menu_horizontal.css" type="text/css">
+<title>Gereciador Imobiliaria</title>
+<script type="text/javascript">
+<!--
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+//-->
+</script>
 </head>
 
 <body>
 <form name="frmMain" action="lista_detalhes.php" method="post" OnSubmit="return onDelete();" enctype="multipart/form-data">
-			<table width="1000" border="0" align="center">
+			<table width="1000" border="0" align="center" style="border-collapse:collapse;">
               <tr>
-                <td width="827"><img src="../img/LOGO_CARRO2.jpg" alt="" width="300" height="80" /></td>
-                <td width="157" valign="top">Endereço:</td>
+                <td width="585" bgcolor="#FFFFFF"><img src="../img/LOGO_CARRO2.jpg" alt="" width="300" height="80" /></td>
+                <td width="405" valign="top" bgcolor="#FFFFFF"><span style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">Av. Jer&ocirc;nimo de Albuquerque Pop Center Bloco C, Sala 08, , Cohab Anil III<br />
+S&atilde;o Lu&iacute;s, Maranh&atilde;o <br />
+CNPJ:9999.9999.0001-00</span></td>
               </tr>
             </table>
-			<table width="1000" border="0" align="center" class="td2" style="border-collapse:collapse;">
+<table width="1000" border="0" align="center" class="td2" style="border-collapse:collapse;">
 			
 			
 	  
 			<tr>
-			  <td colspan="6" valign="baseline">&nbsp;</td>
+			  <td colspan="6" valign="baseline" bgcolor="#FFFFFF">&nbsp;</td>
 			  </tr>
 			<tr>
-			  <td colspan="6" valign="baseline"><HR /></td>
+			  <td colspan="6" valign="baseline" bgcolor="#FFFFFF"><HR /></td>
 			  </tr>
 			<tr>
-			  <td colspan="2" valign="baseline"><p>&nbsp;</p>
-		      <p>Nº DO PROCESSO:<?php echo $row_proces['codigo']; ?><br />
+			  <td colspan="2" valign="baseline" bgcolor="#FFFFFF"><p>&nbsp;</p>
+		      <p align="left"><span class="span14">Nº DO PROCESSO</span>: <span class="span26"><?php echo $row_proces['codigo']; ?></span><br />
 		        <br />
-		      CLIENTE: <?php echo $row_proces['cliente']; ?><br />
+		        <span class="span12">CLIENTE:</span> <span class="span7"><?php echo $row_proces['cliente']; ?></span><br />
 		      <br />
-		      INICIO DO PROCESSO: <?php 
+		      <span class="span6">INICIO DO PROCESSO: <?php 
 	   $date = $row_proces['entrada'];  
 	  
 	   $your_date = date("d/m/Y", strtotime($date));
 	   echo $your_date;
-	   ?></p></td>
-			  <td valign="baseline"><div align="center"><strong>LISTA DETALHADA</strong></div></td>
-			  <td colspan="3" valign="baseline">&nbsp;</td>
+	   ?></span></p></td>
+			  <td valign="baseline" bgcolor="#FFFFFF"><div align="center" class="span7">
+			    <div align="right"><strong>LISTA DETALHADA</strong></div>
+			  </div></td>
+			  <td colspan="3" valign="baseline" bgcolor="#FFFFFF">&nbsp;</td>
 			  </tr>
 			<tr>
-			<td width="49" valign="baseline">&nbsp;</td>
-			<td width="217" valign="top" class="td" ><br />
-			  Local de Origem<br /></td>
-			<td width="312"  valign="top" class="td" ><br />
-			  Descrição do processo</td>
-			<td width="189"  valign="top" class="td"><br />
-			  Data da movimentação</td>
-			<td width="133"  valign="top" class="td"><div align="center"><br />
+			<td width="49" valign="baseline" bgcolor="#FFFFFF" class="span10"><div align="left"></div></td>
+			<td width="262" valign="top" bgcolor="#FFFFFF" class="span10" ><div align="left"><br />
+			  Local de Origem<br />
+			</div></td>
+			<td width="274"  valign="top" bgcolor="#FFFFFF" class="span10" ><div align="left"><br />
+			  Descrição do processo</div></td>
+			<td width="227"  valign="top" bgcolor="#FFFFFF" class="span10"><div align="left"><br />
+			  Data da movimentação</div></td>
+			<td width="88"  valign="top" bgcolor="#FFFFFF" class="span10"><div align="left"><br />
 			  Hora</div></td>
-			<td width="74" align="center" valign="top" class="td"><br />			
-			  Status<br /></td>
+			<td width="74" align="center" valign="top" bgcolor="#FFFFFF" class="span10"><div align="left"><br />			
+			  Status<br />
+			</div></td>
 			</tr>
 			<?php
 			
@@ -146,15 +164,17 @@ $cliente = $row_proces['cliente'];
 			<td valign="top" class="td3"><span class="span6"><?php echo $resultado['local']; ?></span></td>
 			
 			<td valign="top" class="td3"><span class="span6"><?php echo $resultado['descricao']; ?></span></td>
-			<td valign="top" class="td3"><span class="span6">
-			<?php 
+			<td valign="top" class="td3"><div align="center"><span class="span6">
+		    <?php 
 	   $date = $resultado['movimentacao']; 
 	  
 	   $your_date = date("d/m/Y", strtotime($date));
 	   echo $your_date;
-	   ?></span></td>
-			<td valign="top" class="td3"><div align="center"><?php echo $resultado['hora']; ?></div></td>
-			<td valign="top" class="td3"><div align="left"><?php if ($resultado['status'] == 1)
+	   ?>
+		    </span></div></td>
+			<td valign="top" class="td3"><div align="left" class="span6"><?php echo $resultado['hora']; ?></div>
+		    <div align="center"></div><div align="center"></div><div align="center"></div></td>
+			<td valign="top" class="td3"><div align="left" class="span6"><?php if ($resultado['status'] == 1)
 		{
 		echo "<img src=\"../img/001.jpg\">";
 		} else if ($resultado['status'] == 2){
@@ -184,8 +204,12 @@ $cliente = $row_proces['cliente'];
 			
 			$max_links = 3;
 			?>
-			<td colspan="6" align="center" valign="top"><br />
-			  IMPRIMIR<br />
+			<td colspan="6" align="center" valign="top" bgcolor="#FFFFFF"><br />
+			  <label>
+			  <input name="button2" type="submit" class="botao" id="button2" onclick="MM_goToURL('parent','layout_processo.php');return document.MM_returnValue" value="Voltar" />
+			  <input name="button" type="submit" class="botao" id="button" onclick="MM_callJS('print();')" value="IMPRIMIR" />
+			  </label>
+			  <br />
 			<br /></td>
 			</tr>
 			</table>

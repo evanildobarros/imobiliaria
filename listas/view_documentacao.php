@@ -54,7 +54,7 @@ $totalRows_doc = mysql_num_rows($doc);
 <br>
 
      <?php do { ?>
-              <a href="exibir_doc.php?id_doc=<?php echo $row_doc['id_doc']; ?>"><img class="img" src="../uploads/<?php echo $row_doc['img']; ?>" 
+              <a href="exibir_doc.php?id_cliente=<?php echo $row_doc['id_cliente']; ?>"><img class="img" src="../uploads/<?php echo $row_doc['img']; ?>" 
               width="160px" height="100px" /></a>
             <?php } while ($row_doc = mysql_fetch_assoc($doc)); ?>
     

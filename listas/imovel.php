@@ -1,4 +1,8 @@
 		<?php require_once('../Connections/conexao.php'); ?>
+<?php
+//MX Widgets3 include
+require_once('../includes/wdg/WDG.php');
+?>
 <?php require_once('../Connections/conexao.php'); ?>	
 		
 		<?php
@@ -121,14 +125,21 @@ $totalRows_municipio = mysql_num_rows($municipio);
 		
 		
 		
-		<html>
+		<html xmlns:wdg="http://ns.adobe.com/addt">
 		<head>
        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         
 		<link rel="stylesheet" href="../css/layout.css" type="text/css">
-		<title>Gerenciador Imobiliario</title></head>
+		<title>Gerenciador Imobiliario</title>
+		<script src="../includes/common/js/base.js" type="text/javascript"></script>
+		<script src="../includes/common/js/utility.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../includes/wdg/classes/MXWidgets.js"></script>
+		<script type="text/javascript" src="../includes/wdg/classes/MXWidgets.js.php"></script>
+		<script type="text/javascript" src="../includes/wdg/classes/MaskedInput.js"></script>
+		<link href="../includes/skins/mxkollection3.css" rel="stylesheet" type="text/css" media="all" />
+		</head>
 		<body><br>
 		<br>
 		
@@ -208,8 +219,10 @@ do {
 		
 		<tr>
 		  <td valign="top">&Aacute;rea construida        
-		  <td valign="top"><input name="a_construida" type="text" id="a_construida" size="5">
-		    
+		  <td valign="top"><h2>
+	        <input name="a_construida" type="text" id="a_construida" size="5">
+	        m&sup2;
+		  </h2>
 		  <td valign="top">Valor Alugu&eacute;l
 		  <td valign="top"><input placeholder="R$" name="valor_condominio" type="text" id="valor_condominio" size="5">        
 		  <td valign="top">Valor Im&oacute;vel
@@ -257,12 +270,12 @@ N&atilde;o
 		  <td valign="top">        
 		  <td colspan="3" valign="top">		  </tr>
 		<tr>
-		  <td valign="top">Endereço
+		  <td valign="top">Endere&ccedil;o
 		  <td colspan="2" valign="top"><label></label>          
 		    <input name="endereco" type="text" id="endereco" size="40">
 	      <td valign="top">Bairro
 		  <td valign="top"><input type="text" name="bairro" id="bairro">
-		  <td width="108" valign="top">Municipio          
+		  <td width="108" valign="top">Munic&iacute;pio          
 		  <td colspan="3" valign="top"><label>
 		  <select name="municipio" id="municipio">
 		    <option value="">Selecione</option>
@@ -282,7 +295,7 @@ do {
 		  </label>    		</tr>
 		<tr>
 		  <td valign="top">Telefone
-		  <td valign="top"><input type="text" name="telefone" id="telefone">          
+		  <td valign="top"><input name="telefone" id="telefone" value="" wdg:subtype="MaskedInput" wdg:mask="(98) 9999-999" wdg:restricttomask="no" wdg:type="widget">          
 		  <td valign="top">Email
 		  <td colspan="3" valign="top"><input name="email" type="text" id="email" size="50">          
 		  <td colspan="3" valign="top">

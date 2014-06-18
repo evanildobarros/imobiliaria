@@ -309,7 +309,7 @@ color:#CC0033;">Total Geral <?php
 			else
 			$filtro1 = $_REQUEST['filtro1'];
 			
-			 $sql = "SELECT lcm.id,lcm.vencimento,lcm.valor2,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '1' AND lcm.status='2' AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
+			 $sql = "SELECT lcm.id,lcm.vencimento,lcm.valor2,lcm.dia,lcm.mes,lcm.ano,lcm.cliente,lcm.fornecedor,lcm.descricao,lcm.mes,cat.nome,lcm.valor,lcm.status,lcm.tipo from lc_movimento as lcm,lc_cat as cat WHERE lcm.cat = cat.id AND mes='$mes_hoje' AND lcm.tipo = '1' AND lcm.status='2' AND lcm.cliente like '".$filtro."%' AND lcm.fornecedor like '".$filtro1."%'  ORDER BY lcm.id DESC LIMIT $inicio, $qnt  ";
 			
 			$rs  = mysql_query($sql);
 			
