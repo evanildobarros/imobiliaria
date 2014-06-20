@@ -61,13 +61,13 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" href="css/layout.css" type="text/css">
 	<link rel="stylesheet" href="css/menu_horizontal.css" type="text/css">
-	<title>Gerenciador Despachante</title>
+	<title>Gerenciador Umobiliaria</title>
 	</head>
 	
 	<body>
 	<div class="banner">
 	
-<div class="logo"><img class="img_logo" src="../img/LOGO_CARRO.png"></div>
+	<div class="logo"><img class="img_logo" src="../img/LOGO_CARRO.png"></div>
 	<div class="titulo">
 	<span class="span1"> Hoje é <?php echo "$nomediadasemana, $dia de $nomemes de $ano";?><br>
 	Usuário: <span class="span2"><?php echo $_SESSION['MM_Username']; ?></span><br>
@@ -76,15 +76,12 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	
 	</div>
 	<div class="cont_menu">
-	<?php include('menu.php');  ?>
+	<?php include('../listas/menu.php');  ?>
 	</div>
 	<div class="conteudo">
      <?php include('../Agendamento/calendar.php');  ?>
     </div>
     
-    
-	<div class="rodape" align="center"><span class="span"> Mhs Soluções Web - Endereço: Rua 03 qd.05 Casa 36  Cohatrac IV<br>
-	   Contato: (98) 8800 - 3198 | 8128-6981 Email: eneylton@hotmail.com<br>
-	   todos os direitos reservados 2014 &copy;copyright</span></div>
+  
 	</body>
 	</html>

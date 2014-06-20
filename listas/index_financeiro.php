@@ -103,6 +103,8 @@ if (isset($_POST['acao']) && $_POST['acao'] == 2) {
 
     header("Location: ?mes=" . $_GET['mes'] . "&ano=" . $_GET['ano'] . "&cat_ok=1");
     exit();
+	
+	$cli = $_SESSION['MM_Username'];
 }
 
 if (isset($_POST['acao']) && $_POST['acao'] == 1) {
@@ -110,6 +112,8 @@ if (isset($_POST['acao']) && $_POST['acao'] == 1) {
     $data        = $_POST['data'];
     $tipo        = $_POST['tipo'];
     $cat         = $_POST['cat'];
+	$id_cli      = $_POST['id_cliente'];
+	$cliente     = $_POST['cliente'];
     $descricao   = $_POST['descricao'];
     $valor       = str_replace(",", ".", $_POST['valor']);
 	$valor2      = str_replace(",", ".", $_POST['valor2']);
@@ -125,7 +129,7 @@ if (isset($_POST['acao']) && $_POST['acao'] == 1) {
     $mes = $t[1];
     $ano = $t[2];
 
-    mysql_query("INSERT INTO lc_movimento (dia,mes,ano,cat,tipo,descricao,valor,valor2,status,vencimento,fpagamento,m,fornecedor,nota) values ('$dia','$mes','$ano','$cat','$tipo','$descricao','$valor','$valor2','$status','$vencimento','$f_pagamento','$m','$fornecedor','$nota')");
+    mysql_query("INSERT INTO lc_movimento (dia,mes,ano,cat,id_cliente,cliente,tipo,descricao,valor,valor2,status,vencimento,fpagamento,m,fornecedor,nota) values ('$dia','$mes','$ano','$cat','$id_cli','$cliente','$tipo','$descricao','$valor','$valor2','$status','$vencimento','$f_pagamento','$m','$fornecedor','$nota')");
 
     echo mysql_error();
 
@@ -153,22 +157,9 @@ else
 <meta name="AUDIENCE" content="all" />
 <meta name="RATING" content="GENERAL" />
 <link href="../css/layout.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="scripts.js">
 
-<script>
-			function alterna(tipo) {
-			
-			if (tipo == 2	) {
-			document.getElementById("tipo1").style.display = "block";
-			document.getElementById("tipo2").style.display = "none";
-			} else {
-			document.getElementById("tipo1").style.display = "none";
-			document.getElementById("tipo2").style.display = "block";
-			}
-			
-			}
 </script>
-
-<script language="javascript" src="scripts.js"></script>
 
    <script language="JavaScript">
         function abrir(URL) {
@@ -183,18 +174,35 @@ else
         
         }
         </script>
+        <script>
+			function alterna(tipo) {
+			
+			if (tipo == 2	) {
+			document.getElementById("tipo1").style.display = "block";
+			document.getElementById("tipo2").style.display = "none";
+			} else {
+			document.getElementById("tipo1").style.display = "none";
+			document.getElementById("tipo2").style.display = "block";
+			}
+			
+			}
+</script>
 			
 </head>
 <body>
 <div class="banner">
-<div class="logo"><img width="200" height="80" src="../img/LOGO_CARRO.png"></div>
+<div class="logo"><img style="margin:-10px 0px -20px 5px; padding:20px;" width="180" height="80" src='../img/LOGO_CARRO.png'></div>
 <div class="titulo">
 	<span class="span1"><a style="color:#FFF; text-decoration:none;" href="?mes=<?php echo date('m')?>&ano=<?php echo date('Y')?>">Hoje: <?php echo date('d')?> de <?php echo mostraMes(date('m'))?> de <?php echo date('Y')?><br>
 	Usuário: <span class="span2"><?php echo $_SESSION['MM_Username']; ?></span><br>
   <span ><a class="span15" href="../logout.php">sair</a></span></div>
 </div>
 <div class="cont_menu">
-	<?php include('../listas/menu.php');  ?>
+	<?php include('../listas/menu.php');  
+	
+	
+	
+	?>
 <?php
 mysql_free_result($fpg);
 ?>
@@ -203,7 +211,7 @@ mysql_free_result($fpg);
     <div class="conteudo"><br />
 <br />
 
-    <table cellpadding="1" cellspacing="10"  width="1100" align="center" style="background-color:#3b5998;">
+    <table cellpadding="1" cellspacing="10"  width="1100" align="center" style="background-color:#124085">
 
 
 
@@ -224,9 +232,9 @@ for ($i=1;$i<=12;$i++){
     <td align="center" style="<?php if ($i!=12) echo "border-right:1px solid #FFF;"?> padding-right:5px">
     <a href="?mes=<?php echo $i?>&ano=<?php echo $ano_hoje?>" style="
     <?php if($mes_hoje==$i){?>    
-    color:#00FFFF; font-size:12px; padding:5px; text-decoration:none;
+    color:#33CCFF; font-size:12px; padding:5px; text-decoration:none;
     <?php }else{?>
-    color:#FFF; font-size:12px; text-decoration:none;
+    color:#fff; font-size:12px; text-decoration:none;
     <?php }?>
     ">
     <?php echo mostraMes($i);?>
@@ -377,27 +385,32 @@ while ($row=mysql_fetch_array($qr)){
     </table>
 </div>
 
-<div style=" background-color:#F1F1F1; padding:10px; border:1px solid #999; margin:5px; display:none" id="add_movimento">
+
+
+<div style=" background-color:#FBFBFB; padding:10px; border:1px solid #999; margin:5px; display:none" id="add_movimento">
 <h3><font color="#CC0000">Contas a Pagar </font> / <font color="#0066FF">Contas a receber</font></h3>
+<form method="post" action="?mes=<?php echo $mes_hoje?>&ano=<?php echo $ano_hoje?>">
+<input type="hidden" name="acao" value="1" />
+<input type="hidden"  name="id_cliente" value="<?php  echo $_SESSION['MM_Username']; ?>" />
+
+
+<input type="hidden" name="data" size="11" maxlength="10" value="<?php echo date('d')?>/<?php echo $mes_hoje?>/<?php echo $ano_hoje?>" />
+<input name="m" value="<?php echo mostraMes($mes_hoje)?>" type="hidden" />
+
 <?php
-$qr=mysql_query("SELECT * FROM lc_cat");
+$qr=mysql_query("SELECT * FROM lc_cat order by nome asc");
 if (mysql_num_rows($qr)==0)
 	echo "Adicione ao menos uma categoria";
 
 else{
 ?>
-
-<form method="post" action="?mes=<?php echo $mes_hoje?>&ano=<?php echo $ano_hoje?>">
-<input type="hidden" name="acao" value="1" />
-
-
-<table width="100%" border="0">
+<table width="800" border="0" align="center">
   <tr>
-    <td><strong>Fornecedor:</strong></td>
+    <td><strong>Fornecedor</strong></td>
     <td><select name="fornecedor">
-<option>Selecione</option>
+<option value="">Selecione</option>
 <?php
-$qr11=mysql_query("SELECT * FROM fornecedor");
+$qr11=mysql_query("SELECT * FROM fornecedor order by nome asc");
 while ($row6=@mysql_fetch_array($qr11)){
 $ene = $row6['nome'];
 
@@ -407,33 +420,44 @@ $ene = $row6['nome'];
 </select></td>
     <td><strong>Cliente</strong></td>
     <td><select name="cliente">
-<option>Selecione</option>
+<option value="">Selecione</option>
 <?php
-$qr1=mysql_query("SELECT * FROM cliente");
-while ($row5=@mysql_fetch_array($qr1)){
-$en = $row5['cliente'];
+$qr178=mysql_query("SELECT * FROM cliente order by nome asc");
+while ($row56=@mysql_fetch_array($qr178)){
+$ene = $row56['cliente'];
 
 ?>
-<option value="<?php echo $en; ?>"><?php echo $en; ?></option>
+<option value="<?php echo $ene; ?>"><?php echo $ene; ?></option>
 <?php }?>
-</select></td>
-<td width="100"><strong>Categoria</strong></td>
-<td><select name="cliente">
-<option>Selecione</option>
+</select><br />
+</td>
+    <td><strong>Categoria</strong></td>
+    <td><input type="hidden" name="status" value="1" />
+<select name="cat">
 <?php
-$qr1=mysql_query("SELECT * FROM lc_cat");
-while ($row5=@mysql_fetch_array($qr1)){
-$id = $row5['id'];
-$en = $row5['nome'];
-
+while ($row=mysql_fetch_array($qr)){
 ?>
-<option value="<?php echo $id; ?>"><?php echo $en; ?></option>
+<option value="<?php echo $row['id']?>"><?php echo $row['nome']?></option>
 <?php }?>
 </select></td>
+    
   </tr>
   <tr>
-    <td><strong>Forma de pagamento</strong></td>
-    <td><select name="fpagamento">
+  <td valign="top"><strong>Nota Fiscal:</strong></td>
+  <td valign="top"><input type="text" name="nota"  /></td>
+  <td valign="top"><strong>tipo</strong></td>
+  <td colspan="3"><label for="tipo_receita" style="color:#0033CC"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
+<label for="tipo_despesa" style="color:#C00"><input type="radio" name="tipo" value="0" id="tipo_despesa" /> Despesa</label>
+<label for="tipo_Emberto" style="color:#009999"><input type="radio" name="status" value="2" onclick="alterna(this.value);" /> Em Abero<br />
+<div id="tipo1" style="display:none;">
+			  <input name="valor2"  value="" class="placeholder" placeholder="Valor a ser cobrado !" size="25">
+			  </div></td>
+
+ 
+  </tr>
+  <tr>
+  <td><strong>Forma de Pagamento</strong></td>
+  <td><select name="fpagamento">
 <option>Selecione</option>
 <?php
 $qr1=mysql_query("SELECT * FROM forma_pg");
@@ -444,58 +468,23 @@ $en = $row5['desc'];
 <option value="<?php echo $en; ?>"><?php echo $en; ?></option>
 <?php }?>
 </select></td>
-    <td><strong>Nº da Nota</strong></td>
-    <td><input type="text" name="nota"  /></td>
-  </tr>
-    <tr>
+  <td><strong>Vencimento</strong></td>
+  <td><input type="date" name="vencimento"  /></td>
   
-   <td><strong>Vencimento</strong></td>
-   <td><input type="date" nome="vencimento"  /></td>
-   <td><div style="color:#ff0000; margin:auto;">* Campo obrigatório</div></td>
- 
-  </tr>
-    <tr>
-    <td><strong>Tipo</strong></td>
-    <td colspan="3"><label for="tipo_receita" style="color:#0033CC"><input type="radio" name="tipo" value="1" id="tipo_receita" /> Receita</label>&nbsp; 
-<label for="tipo_despesa" style="color:#C00"><input type="radio" name="tipo" value="0" id="tipo_despesa" /> Despesa</label>
-<label for="tipo_Emberto" style="color:#009999"><input type="radio" name="status" value="2" onclick="alterna(this.value);" /> Em Abero</td>
-   
-  </tr>
-  
-    <tr>
-    <td><strong>Valor a ser cobrado</strong></td>
-    <td><div id="tipo1" style="display:none;">
-			  <input name="valor2"  value="" class="placeholder" placeholder="Valor a ser Pago !" size="20">
-			  </div>
-</td>
-   
   </tr>
   <tr>
-    <td><strong>Valor</strong></td>
-    <td><input type="text" name="valor" placeholder="R$" size="5" />
-    </td>
-    <td colspan="8"><div style="color:#ff0000; margin:auto;">* Inserir valor somente se for pagemento a vista o debito</div></td>
+  <td><strong>Valor</strong></td>
+  <td><input placeholder="R$" type="text" name="valor" size="8" maxlength="10" /></td>
   </tr>
   <tr>
-    <td><strong>Descrição</strong></td>
-    <td colspan="3"><textarea name="descricao" cols="" rows=""></textarea></td>
-   
-  </tr>
+  <td><strong>Descrição</strong></td>
+  <td><textarea name="descricao" cols="" rows=""></textarea></td>
   
-   <tr>
-    <td></td>
-    <td colspan="3"><input type="submit" class="botao" value="Enviar" /></td>
-   
+  </tr>
+  <tr>
+  <td><input type="submit" class="botao" value="Enviar" /></td>
   </tr>
 </table>
-
-
-
-<br />
-
-
-<input type="hidden" name="data" size="11" maxlength="10" value="<?php echo date('d')?>/<?php echo $mes_hoje?>/<?php echo $ano_hoje?>" />
-<input name="m" value="<?php echo mostraMes($mes_hoje)?>" type="hidden" />
 
 </form>
 <?php }?>
@@ -504,7 +493,7 @@ $en = $row5['desc'];
 </tr>
 
 <tr>
-<td align="left" valign="top" width="450" style="background-color:#BDD8F9;">
+<td align="left" valign="top" width="450" style="background-color:#09B8D7;">
 
 <?php
 $qr=mysql_query("SELECT SUM(valor) as total FROM lc_movimento WHERE tipo=1 && mes='$mes_hoje' && ano='$ano_hoje'");
@@ -518,7 +507,7 @@ $saidas=$row['total'];
 $resultado_mes=$entradas-$saidas;
 ?>
 
-    <fieldset style="width:500px">
+    <fieldset style="width:500px; border:1px solid #0099CC;">
         <legend style="font-size:14px;">Entradas e Saídas deste mês</legend><br />
 
         <table cellpadding="0" cellspacing="0" width="100%">
@@ -547,9 +536,9 @@ $resultado_mes=$entradas-$saidas;
 <td width="15">
 </td>
 
-<td align="left" valign="top" width="450" style="background-color:#F1F1F1">
+<td align="left" valign="top" width="450" style="background-color:#003366;">
 <fieldset style="width:500px">
-<legend style="font-size:14px;">Balanço Geral</legend><br />
+<legend style="font-size:14px; border:1px solid #003366;">Balanço Geral</legend><br />
 
 
 <?php

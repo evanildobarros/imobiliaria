@@ -47,6 +47,12 @@ $forma = mysql_query($query_forma, $conexao) or die(mysql_error());
 $row_forma = mysql_fetch_assoc($forma);
 $totalRows_forma = mysql_num_rows($forma);
 
+mysql_select_db($database_conexao, $conexao);
+$query_cli = "SELECT * FROM cliente ORDER BY cliente ASC";
+$cli = mysql_query($query_cli, $conexao) or die(mysql_error());
+$row_cli = mysql_fetch_assoc($cli);
+$totalRows_cli = mysql_num_rows($cli);
+
 session_start();
 
 ?>
@@ -187,7 +193,7 @@ body {
 
 
 <fieldset>
-<legend>Reserva</legend><br>
+<legend>Agendar</legend><br>
 <br>
 
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
@@ -233,6 +239,26 @@ do {
     </label></td>
     </tr>
   <tr>
+    <td valign="top"class="td2">Cliente</td>
+    <td colspan="3" valign="top"><label>
+      <select name="cliente" id="cliente">
+        <option value="">Selecione</option>
+        <?php
+do {  
+?>
+        <option value="<?php echo $row_cli['cliente']?>"><?php echo $row_cli['cliente']?></option>
+        <?php
+} while ($row_cli = mysql_fetch_assoc($cli));
+  $rows = mysql_num_rows($cli);
+  if($rows > 0) {
+      mysql_data_seek($cli, 0);
+	  $row_cli = mysql_fetch_assoc($cli);
+  }
+?>
+      </select>
+    </label></td>
+    </tr>
+  <tr>
    <td valign="top"class="td2"><font color="#333">Forma de pagamento</font></td>
     <td width="144" valign="top"><label>
       <select name="fpagamento" id="fpagamento">
@@ -268,8 +294,7 @@ do {
 
 <div id="tipo1" style="display:none;">
 			  <input name="valor2"  value="" class="placeholder" placeholder="Valor a ser Pago !" size="20">
-			  </div>
-</td>
+			  </div></td>
   </tr>
   <tr>
     <td valign="top"><span class="td2">Data do Vencimento</span></td>
@@ -315,4 +340,6 @@ mysql_free_result($fornecedor);
 mysql_free_result($cate);
 
 mysql_free_result($forma);
+
+mysql_free_result($cli);
 ?>

@@ -48,6 +48,7 @@
                     <li><a href="layout_contas_a_pagar.php">Contas Pagas</a></li>
                     <li><a href="layout_contas_devedor.php">Contas a Pagar</a></li>
                     <li><a href="layout_pagamentos.php">Contas a Receber</a></li>
+                    <li><a href="layout_fo_excluir.php">Lista de Fornecedores</a></li>  
                    <li><a href="layout_agendamento.php">Agendar</a></li> 
                    <li><a href="consulta_mensal.php">Relatorio</a></li>
               </ul>
@@ -57,6 +58,9 @@
             <ul>
                     <li><a href="rank.php">Lan&ccedil;amentos</a></li>
                     <li><a href="layout_grafico.php">Funcionario do M&ecirc;s</a></li>
+                     <li><a href="layout_total_lotacao.php">Receitas por Escrit&oacute;rio</a></li>
+                  <li><a href="layout_total_despesas.php">Despesas por Escrit&oacute;rio</a></li>
+                    <li><a href="layout_qd_mes.php">Quantidade de alunos</a></li>
                    
                     
                 </ul>
@@ -67,6 +71,7 @@
             <li><a>Administra&ccedil;&atilde;o</a>
             <ul>
                     <li><a href="layout_admin.php">Consultar Opera&ccedil;&otilde;es</a></li>
+                    <li><a href="layout_ed_excluir.php">Editar / Excluir Clientes</a></li>
                     <li><a href="layout_niver_dia.php">Aniversariantes do dia</a></li>
                     <li><a href="layout_niver_mes.php">Aniversariantes do M&ecirc;s</a></li>
                      <li><a href="layout_funcionario.php">Novo Funcion&aacute;rio</a></li>
@@ -76,6 +81,18 @@
             
             </li>
 
+
+   <li><a>Site</a>
+            <ul>
+                     <li><a href="../entrar.php">Site Preview</a></li>
+                     <li><a href="layout_autorizar_banner.php">Autorizar Banner</a></li>
+                    <li><a href="layout_autorizar.php">Autorizar Galeria</a></li>
+                 
+                    
+                    
+                </ul>
+            
+            </li>
            
         </ul>
 

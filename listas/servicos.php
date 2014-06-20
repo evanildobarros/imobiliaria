@@ -77,7 +77,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 }
 //-->
     </script>
-<title>Gerenciador despachante</title></head>
+<title>Gerenciador Imobiliaria</title></head>
 <body><br>
 <br>
 
@@ -91,7 +91,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
       <td><input name='id_cliente' type="hidden" size="50" id="id_cliente" value="<?php echo $row_cliente['id_cliente']; ?>" >
           <input name='cliente' type="hidden" size="50" id="cliente" value="<?php echo $row_cliente['cliente']; ?>" >
           <input name='data' type="hidden" size="50" id="data" value="<?php echo $data2; ?>" >
-         
+         <input name='id_cliente' type="hidden" size="50" id="id_cliente" value="<?php echo $_SESSION['MM_Username']; ?>" >
       <input type="hidden" name="mes" value="<?php echo $nomemes; ?>"></td>
       <td>&nbsp;</td>
     </tr>
@@ -255,8 +255,8 @@ $sql6 = "INSERT INTO movimento (id_mov, data, cliente, tipo,cat,descricao, valor
 	
 	
 	}
-	$sql9 = "INSERT INTO lc_movimento (id,tipo,dia,mes,ano,cat,cliente,descricao,valor,valor2,status,vencimento,fpagamento,m) 
-	VALUES ('',$tipo,'$d','$m','$a','$categoria','$cliente','$descricao','$val','$val2','$status','$vencimento','$pago','$mes')";
+	$sql9 = "INSERT INTO lc_movimento (id,tipo,dia,mes,ano,cat,id_cliente,cliente,descricao,valor,valor2,status,vencimento,fpagamento,m) 
+	VALUES ('',$tipo,'$d','$m','$a','$categoria','$id_cliente','$cliente','$descricao','$val','$val2','$status','$vencimento','$pago','$mes')";
 	mysql_query($sql9);
 	?>
         

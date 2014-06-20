@@ -1,60 +1,120 @@
-<!DOCTYPE html>
+<?php require_once('Connections/conexao.php'); ?>
+<?php
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
 
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+
+
+mysql_select_db($database_conexao, $conexao);
+$query_cli = "SELECT * FROM cliente WHERE autorizar ='1' ";
+$cli = mysql_query($query_cli, $conexao) or die(mysql_error());
+$row_cli = mysql_fetch_assoc($cli);
+$totalRows_cli = mysql_num_rows($cli);
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="css/site.css" type="text/css"  />
 <head>
-	<meta charset="utf-8" />
-	<title>Gerenciador Despachante</title>
-	<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	
+
+<title>Marcelo Imovel</title>
+<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+	<script type="text/javascript" src="engine1/jquery.js"></script>
 </head>
-<body>
-	<!-- IGNORE THIS -->
-	<header id="back-to-article">
-		
-		<nav class="links">
-			<img width="350" height="130" src="img/LOGO_CARRO3.png">
-			
-		</nav>
-	</header>
-	<!-- END IGNORE THIS -->
 
-	<section id="login">
-		<nav id="headers">
-			<ul>
-				<li id="tab-header-login" class="active"><a href="#">Login</a></li>
-				<li id="tab-header-register"><a href="#">Registro</a></li>
-				<li id="tab-header-reset"><a href="#">Iniciar Senha</a></li>
-			</ul>
-		</nav>
+<body style="background-color:#d7d7d7">
+<div class="topo">
+  
+  <div class="logo"><img class="img_logo" src="img/LOGO_CARRO.png" /></div>
+  <div class="texto_banner">Para vo&ccedil;&ecirc; viver melhor</div>
+  <div class="menu_topo"><img src="img/homme.png" /> &nbsp; Institucional &nbsp;&nbsp; Noticias &nbsp;&nbsp; Servi&ccedil;os &nbsp;&nbsp; Contatos</div>
 
-		<div id="tabs">
-			<div id="tab-content-login" class="tab-content">
-				<h1>Gerenciador</h1>
-				<p>Sistema desenvolvido para gerenciar e continuamente melhorar as políticas, procedimentos e processos de sua organização.  </p>
+</div>
+<div class="faixa"></div>
 
-				<form id="login-form" name="form1" method="POST" action="logon.php">
-					<ol>
-						<li>
-							<label for="username">Usuário</label>
+<div class="menu"></div>
+<div class="conteudo">
+<div class="text_menu">Menu</div>
+<div class="box_menu">&bull; Apartamento</div>
+<div class="box_menu">&bull; Casa</div>
+<div class="box_menu">&bull; Ch&aacute;cara</div>
+<div class="box_menu">&bull; Kitnet</div>
+<div class="box_menu">&bull; Loja</div>
+<div class="box_menu">&bull; Pr&eacute;dio</div>
+<div class="box_menu">&bull; Sala</div>
+<div class="box_menu">&bull; Sitio</div>
+<div class="box_menu">&bull; terreno</div>
+
+<div class="login"><br />
+
+&Agrave;rea Restrita
+<hr />
+<form id="login-form" name="form1" method="POST" action="logon.php">
+					
+						
+							<label for="username">Usu&agrave;rio</label>
 							<input type="text" name="usuario" id="usuario" placeholder="Username" value="" />
-						</li>
-						<li>
+						
+					
 							<label for="password">Senha</label>
-							<input type="password" name="senha" id="password" placeholder="Password" value="" />
-						</li>
-						<li>
+							<input type="password" name="senha" id="password" placeholder="Password" value="" /><br />
+<br />
+
+
+						
 							<input type="submit" name="button" id="button" value="Enviar" />
-						</li>
-					</ol>
-				</form>
-                
-                
-                <form id="form1" name="form1" method="POST" action="logon.php">
-                </form>
-                
-                
-		  </div>
-		</div>
-	</section>
+						
+					
+  </form>
+</div>
+
+<div class="banner_anuncio"><span style="color:#FFFFFF;"> &times;  &times; Lan&ccedil;amentos</span></div>
+<div class="banner_anuncio2">
+<div id="wowslider-container1">
+	<div class="ws_images"><ul>
+    
+ 
+      <?php do { ?>
+        <li><img width="860" height="382" src="uploads/<?php echo $row_cli['capa']; ?>" title="<?php echo $row_cli['cpf_procu']; ?>" /></li>
+        <?php } while ($row_cli = mysql_fetch_assoc($cli)); ?>
+        
+        
+        </ul></div>
+
+
+</div>
+
+</div>
+
+
+<script type="text/javascript" src="engine1/wowslider.js"></script>
+<script type="text/javascript" src="engine1/script.js"></script>
 </body>
 </html>
+<?php
+mysql_free_result($cli);
+?>
