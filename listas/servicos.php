@@ -77,7 +77,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 }
 //-->
     </script>
-<title>Gerenciador despachante</title></head>
+<title>Gerenciador Imobiliaria</title></head>
 <body><br>
 <br>
 
@@ -91,28 +91,43 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
       <td><input name='id_cliente' type="hidden" size="50" id="id_cliente" value="<?php echo $row_cliente['id_cliente']; ?>" >
           <input name='cliente' type="hidden" size="50" id="cliente" value="<?php echo $row_cliente['cliente']; ?>" >
           <input name='data' type="hidden" size="50" id="data" value="<?php echo $data2; ?>" >
-         
+         <input name='id_cliente' type="hidden" size="50" id="id_cliente" value="<?php echo $_SESSION['MM_Username']; ?>" >
       <input type="hidden" name="mes" value="<?php echo $nomemes; ?>"></td>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="7"><input type="checkbox" name="id_servico[]" value="Ve&iacute;culo Novo (1&ordm;. Registro + Licen&ccedil;a)" />
-          <label for="checkbox"><span class="span5">Ve&iacute;culo Novo (1&ordm;. Registro + Licen&ccedil;a)</span></label>
+      <td colspan="3"><input type="checkbox" name="id_servico[]" value="Avalia&ccedil;&atilde;o de Imovel" />
+          <label for="checkbox"><span class="span5">Avalia&ccedil;&atilde;o de Imovel</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="Transfer&ecirc;ncia de ve&iacute;culo" />
-          <label for="checkbox2"><span class="span5">Transfer&ecirc;ncia de ve&iacute;culo</span></label>
+          <input type="checkbox" name="id_servico[]" value="Comissões " />
+          <label for="checkbox2"><span class="span5">Comissões</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="Licenciamento de ve&iacute;culo " />
-          <label for="checkbox3"><span class="span5">Licenciamento de ve&iacute;culo</span></label>
+          <input type="checkbox" name="id_servico[]" value="Conta Poubança" />
+          <label for="checkbox3"><span class="span5">Conta Poupança</span></label>
           <br />
-          <input type="checkbox" name="id_servico[]" value="2&ordm;. Via de Licenciamento"  />
-          <label for="checkbox4"><span class="span5">2&ordm;. Via de Licenciamento</span></label>
+          <input type="checkbox" name="id_servico[]" value="Conta Corrente"  />
+          <label for="checkbox4"><span class="span5">Conta Corrente</span></label>
           <input type='hidden' name='int_id' value='<?php echo $id?>'>
           <br>
-          <input type="checkbox" name="id_servico[]" value="Registro de CNH" />
-        <span class="span5">Registro de CNH</span><br>
-        <input type="checkbox" name="id_servico[]" value="Renova&ccedil;&atilde;o de CNH" />
-    <span class="span5">Renova&ccedil;&atilde;o de CNH</span>    </tr>
+          <input type="checkbox" name="id_servico[]" value="CROT Automatizado" />
+        <span class="span5">CROT Automatizada</span><br>
+        <input type="checkbox" name="id_servico[]" value="Consignado" />
+    <span class="span5">Consignado</span>          
+      <td colspan="3" valign="top">
+      <input type="checkbox" name="id_servico[]" value="Cartão de crédito" />
+        <span class="span5">Cartão de crédito</span><br> 
+        <input type="checkbox" name="id_servico[]" value="CDC" />
+        <span class="span5">CDC</span><br>  
+        <input type="checkbox" name="id_servico[]" value="CCSBPE Automatizado" />
+        <span class="span5">CCSBPE Automatizado</span><br> 
+         <input type="checkbox" name="id_servico[]" value="CCFGTS Automatizado" />
+        <span class="span5">CCFGTS Automatizado</span><br> 
+        <input type="checkbox" name="id_servico[]" value="Pesquisas cadastrais" />
+        <span class="span5">Pesquisas cadastrais</span><br> 
+        <input type="checkbox" name="id_servico[]" value="Outros serviços" />
+        <span class="span5">Outros serviços</span><br>   
+               
+    <td>          </tr>
     <tr>
       <td colspan="8">&nbsp;    </tr>
     <tr>
@@ -124,29 +139,26 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
           <td width="185"><input name="venci" type="date" class="span5" id="venci" value="" size="15">          </tr>
     <tr>
       <td>&nbsp;    
-      <td colspan="2">      
+      <td colspan="2"><input type="hidden" name="cat" value="5">      
       <td>      
       <td>      
     <td>    </tr>
     <tr>
       <td><span class="span5">Forma de Pagamento </span>   
-      <td colspan="2"><select class="span5" name="categoria" id="categoria">
-        <option value=""><span class="span5">Selecione</span></option>
-        <?php
-do {  
+      <td colspan="2"><select name="f_pagamento">
+
+<option>Selecione</option>
+<?php
+$qr1=mysql_query("SELECT * FROM forma_pg");
+while ($row5=@mysql_fetch_array($qr1)){
+$en = $row5['desc'];
+
 ?>
-        <option value="<?php echo $row_categoria['desc']?>"><?php echo $row_categoria['desc']?></option>
-        <?php
-} while ($row_categoria = mysql_fetch_assoc($categoria));
-  $rows = mysql_num_rows($categoria);
-  if($rows > 0) {
-      mysql_data_seek($categoria, 0);
-	  $row_categoria = mysql_fetch_assoc($categoria);
-  }
-?>
-                  </select>
-              <a href="#" onClick="MM_openBrWindow('../cadastros/cat_financeiro.php','','scrollbars=yes,resizable=yes,width=450,height=160')"><img src="../img/check_green.jpg" width="30" height="30"></a>
-      <td colspan="3"><input checked type="radio" name="tipo" id="tipo" value="0">
+<option value="<?php echo $en; ?>"><?php echo $en; ?></option>
+<?php }?>
+</select>
+              <a href="#" onClick="MM_openBrWindow('../listas/cat_financeiro.php','','scrollbars=yes,resizable=yes,width=450,height=160')"><img src="../img/check_green.jpg" width="30" height="30"></a>
+      <td colspan="3"><input checked type="radio" name="tipo" id="tipo" value="1">
         <span class="span5">Receita</span>
         <input type="radio" name="tipo" id="tipo2" value="1">
         <span class="span5">Aguardando pagamento da parcela</span></td>
@@ -160,7 +172,7 @@ do {
     <td>    </tr>
     <tr>
       <td><span class="span5">Situa&ccedil;&atilde;o</span>  
-      <td colspan="7"><input class="input radius" checked type="radio" name="status" id="status" value="1">
+      <td colspan="7"><input class="input radius" checked type="radio" name="status" id="status" value="2">
         <span class="span5">Pago</span>
         <input class="input radius" type="radio" name="status" id="status" value="2">
        <span class="span5"> Em aberto </span></td>
@@ -198,7 +210,8 @@ do {
 	//Recebe o array materias
 	$data        = $_POST['data'];
 	$tipo        = $_POST['tipo'];
-	$categoria   = $_POST['categoria'];
+	$categoria   = $_POST['cat'];
+	$pago        = $_POST['f_pagamento'];
 	$descricao   = $_POST['descricao'];
 	$val         = $_POST['valor'];
 	$val2        = $_POST['valor2'];
@@ -218,7 +231,7 @@ do {
 	//Faz um foreach no array materias para percorrer os valores do array.. e os adiciona na tabela curso_professor
 	foreach($servico as $indice => $valor){
 	
-	$sql = mysql_query("INSERT INTO serv(int_id,id_cliente,data,tipo,categoria,descricao,valor,valor2,status,mes,cliente,venci,id_servico) VALUES('$id','$id_cliente','$data','$tipo','$categoria','$descricao','$val','$val2','$status','$mes','$cliente','$vencimento','$valor')");
+	$sql = mysql_query("INSERT INTO serv(int_id,id_cliente,data,tipo,cat,f_pagamento,descricao,valor,valor2,status,mes,cliente,venci,id_servico) VALUES('$id','$id_cliente','$data','$tipo','$categoria','$pago','$descricao','$val','$val2','$status','$mes','$cliente','$vencimento','$valor')");
 	
 	$sql7 = "INSERT INTO processo (id_processo, cliente, codigo, local,descricao,status, entrada,movimentacao,hora) 
 	VALUES ('', '$cliente','$id_cliente-$cod','$local','$desc','$st', '$data','$mv','$hr')";
@@ -230,23 +243,32 @@ do {
 	
 	}
 	
+$sql6 = "INSERT INTO movimento (id_mov, data, cliente, tipo,cat,descricao, valor,valor2,status, mes) 
+	VALUES ('', '$vencimento','$cliente','$tipo','$categoria','$descricao', '$val','$val2','$status', '$mes')";
+	mysql_query($sql6);
+	
+	$d = date("d");
+	$m = date("m");
+	$a = date("Y");
+	
+	
+	
+	
 	}
-	
-	
-	
+	$sql9 = "INSERT INTO lc_movimento (id,tipo,dia,mes,ano,cat,id_cliente,cliente,descricao,valor,valor2,status,vencimento,fpagamento,m) 
+	VALUES ('',$tipo,'$d','$m','$a','$categoria','$id_cliente','$cliente','$descricao','$val','$val2','$status','$vencimento','$pago','$mes')";
+	mysql_query($sql9);
 	?>
-	 
- 
-     
-     
-	    <?php 
-	
-	$op="Cadastro Um Novo Serviço !";
-	$sql5 = "INSERT INTO log (cod, usuario, nome, data, hora, op, ip) VALUES ('', '$tipo', '$_SESSION[usuario]', '$_SESSION[data]', '$msghora', '$op', '$_SERVER[REMOTE_ADDR]')";
-	mysql_query($sql5);
-	?>
-	    <br>
-        <br>
+        
+        <?php 
+        
+        $op="Cadastro Um Novo Serviço !";
+        $sql5 = "INSERT INTO log 
+		(cod, usuario, nome, data, hora, op, ip) VALUES ('', '$tipo', 
+		'$_SESSION[usuario]', '$_SESSION[data]', '$msghora', '$op', '$_SERVER[REMOTE_ADDR]')";
+        mysql_query($sql5);
+        ?>
+        
     
     
   
@@ -266,10 +288,4 @@ do {
 	@mysql_free_result($cliente);
 
 mysql_free_result($categoria);
-	?>
-<?php	
-$sql6 = "INSERT INTO movimento (id_mov, data, cliente, tipo,categoria,descricao, valor,valor2,status, mes) 
-	VALUES ('', '$vencimento','$cliente','$tipo','$categoria','$descricao', '$val','$val2','$status', '$mes')";
-	mysql_query($sql6);
-	
 	?>

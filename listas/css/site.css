@@ -1,0 +1,236 @@
+@charset "utf-8";
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background:url(../img/index.jpg);
+}
+
+.topo{
+width:100%;
+height:100px;
+background:#1A739D;
+}
+
+.faixa{
+width:100%;
+height:6px;
+background:#CCCCCC;
+}
+
+.menu{
+width:100%;
+height:45px;
+background:#F3F3F3;
+-webkit-box-shadow: -2px 2px 5px 0px rgba(23, 50, 50, 0.35);
+-moz-box-shadow:    -2px 2px 5px 0px rgba(23, 50, 50, 0.35);
+box-shadow:         -2px 2px 5px 0px rgba(23, 50, 50, 0.35);
+}
+
+.logo{
+width:100px;
+height:50px;
+margin:0px 0px 0px 150px;
+}
+
+.img_logo{
+width:180px;
+height:80px;
+padding:10px;
+
+}
+
+.texto_banner{
+width:600px;
+height:100px;
+margin:-25px 0px 0px 370px;
+font-family:"Century Gothic";
+font-size:36px;
+color:#FFFFFF;
+}
+
+.menu_topo{
+width:400px;
+height:100px;
+margin:-80px 0px 0px 870px;
+font-family:"Century Gothic";
+font-size:14px;
+color:#FFFFFF;
+}
+
+.conteudo{
+padding:10px;
+background:#FFFFFF;
+margin: 20px auto;
+width:80%;
+height:1300px;
+z-index:-100;
+-webkit-box-shadow: 0px 0px 4px 0px rgba(23, 50, 50, 0.35);
+-moz-box-shadow:    0px 0px 4px 0px rgba(23, 50, 50, 0.35);
+box-shadow:         0px 0px 4px 0px rgba(23, 50, 50, 0.35);
+}
+
+.text_menu{
+
+padding:10px;
+width:200px;
+min-height:0px;
+background:#ddd;
+margin:20x 0px 0px 20px;
+font-family:"Century Gothic";
+font-size:22px;
+}
+
+
+.box_menu{
+padding:10px;
+width:200px;
+min-height:0px;
+background:#F3F3F3;
+margin:20x 0px 0px 20px;
+font-family:"Century Gothic";
+font-size:16px;
+border-bottom:1px dotted #666666;
+color:#666666;
+}
+
+
+.login{
+width:200px;
+padding:10px;
+height:200px;
+background:#fff;
+margin:920x 0px 0px 20px;
+font-family:"Century Gothic";
+font-size:16px;
+
+}
+
+.box_menu:hover{
+padding:10px;
+width:200px;
+min-height:0px;
+background:#EBEBEB;
+margin:20x 0px 0px 20px;
+font-family:"Century Gothic";
+font-size:16px;
+border-bottom:1px dotted #666666;
+cursor:pointer;
+text-decoration:none;
+color:#0066FF;
+}
+
+.banner_anuncio{
+float:left;
+background:#00a9ff;
+width:833px;
+min-height:0px;
+margin:-654px 0px 0px 220px;
+padding:14px;
+font-family:"Century Gothic";
+font-size:17px;
+}
+
+.banner_anuncio2{
+float:left;
+background:#33CCFF;
+width:860px;
+height:382px;
+margin:-611px 0px 0px 220px;
+font-family:"Century Gothic";
+font-size:17px;
+
+}
+
+.banner_anuncio3{
+padding:30px;
+float:left;
+background:#CC3300;
+
+width:800px;
+height:500px;
+margin:0px 0px 0px 0px;
+font-family:"Century Gothic";
+font-size:17px;
+border-left:1px dashed #999999;
+
+}
+
+input{
+padding:5px;
+width:180px;
+outline:none;
+
+}
+
+.bts{
+width:195px;
+border:none;
+cursor:pointer;
+border:1px solid  #CCCCCC;
+}
+
+.placeholder{
+color:#003366;
+}
+
+.cont{
+padding:20px;
+width:800px;
+min-height:0px;
+margin:auto
+}
+
+.consulta{	
+margin:auto;
+width:600px;
+min-height:0px;
+}
+
+.cont_foto{
+padding:7px;
+background:#EBEBEB;
+border:1px solid #e1e1e1;
+-webkit-box-shadow: 1px 0px 1px 0px rgba(50, 50, 50, 0.55);
+-moz-box-shadow:    1px 0px 1px 0px rgba(50, 50, 50, 0.55);
+box-shadow:         1px 0px 1px 0px rgba(50, 50, 50, 0.55);
+
+}
+
+.foto{
+padding:6px;
+}
+
+
+
+
+.infor{
+padding:15px;
+color:#666666;
+font-weight:bolder;
+margin:0px 0px 0px -13px;
+
+}
+
+.infor2{
+padding:22px;
+font-size:18px;
+color:#666666;
+margin:0px 0px 0px -20px;
+
+}
+
+.infor3{
+padding:12px;
+color:#0033CC;
+font-weight:bolder;
+margin:0px 0px 0px -20px;
+
+}
+.infor4{
+padding:12px;
+color:#333;
+margin:0px 0px 0px -30px;
+
+}

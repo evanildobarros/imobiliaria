@@ -279,7 +279,7 @@ $cpf = $row_cliente['cpf_titular'];
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Gerenciador Despachante</title>
+<title>Gerenciador Imobiliaria</title>
 <style type="text/css">
 <!--
 body {
@@ -338,7 +338,7 @@ body {
 //Agora um exemplo pr&aacute;tico
      $valor = number_format($val,2,",",".");
     
-      echo "<font size=\"5\"> R$</strong> "."<font size=\"5\">".$valor."</font>"; 
+      echo $valor; 
 	
 ?>
     </strong></div></td>

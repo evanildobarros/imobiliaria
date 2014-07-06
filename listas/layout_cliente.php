@@ -61,7 +61,7 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" href="css/layout.css" type="text/css">
 	<link rel="stylesheet" href="css/menu_horizontal.css" type="text/css">
-	<title>Gerenciador Despachante</title>
+	<title>Gerenciador Imobiliario</title>
 	</head>
 	
 	<body>
@@ -80,7 +80,10 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	</div>
 	<div class="conteudo">
      <?php include('cliente2.php');  ?>
-    </div>
+    </div><br />
+<br />
+<br />
+
     
     
 	<div class="rodape" align="center"><span class="span"> Mhs Soluções Web - Endereço: Rua 03 qd.05 Casa 36  Cohatrac IV<br>

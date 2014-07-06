@@ -61,13 +61,13 @@ $nomediadasemana = $diasdasemana[$diadasemana];
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<link rel="stylesheet" href="css/layout.css" type="text/css">
 	<link rel="stylesheet" href="css/menu_horizontal.css" type="text/css">
-	<title>Gerenciador Despachante</title>
+	<title>Gerenciador Imobiliaria</title>
 	</head>
 	
 	<body>
 	<div class="banner">
 	
-	<div class="logo"><img width="400" height="60" src="../img/LOGO_CARRO.png"></div>
+	<div class="logo"><img width="200" height="80" src="../img/LOGO_CARRO.png"></div>
 	<div class="titulo">
 	<span class="span1"> Hoje é <?php echo "$nomediadasemana, $dia de $nomemes de $ano";?><br>
 	Usuário: <span class="span2"><?php echo $_SESSION['MM_Username']; ?></span><br>

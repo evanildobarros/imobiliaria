@@ -44,7 +44,7 @@ $totalRows_doc = mysql_num_rows($doc);
     <link rel="stylesheet" href="../css/paginacao.css" type="text/css" />
     <link rel="stylesheet" href="../css/layout.css" type="text/css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-	<title>Gerenciador Despachante</title>
+	<title>Gerenciador Imobiliario</title>
 	</head>
 	
 	<body><br>
@@ -54,7 +54,7 @@ $totalRows_doc = mysql_num_rows($doc);
 <br>
 
      <?php do { ?>
-              <a href="exibir_doc.php?id_doc=<?php echo $row_doc['id_doc']; ?>"><img class="img" src="../uploads/<?php echo $row_doc['img']; ?>" 
+              <a href="exibir_doc.php?id_cliente=<?php echo $row_doc['id_cliente']; ?>"><img class="img" src="../uploads/<?php echo $row_doc['img']; ?>" 
               width="160px" height="100px" /></a>
             <?php } while ($row_doc = mysql_fetch_assoc($doc)); ?>
     

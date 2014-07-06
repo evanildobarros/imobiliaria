@@ -14,13 +14,13 @@
 <table width="624" border="0" align="center">
 
   <tr>
-    <td colspan="2">&nbsp;</td>
+    <td colspan="2"><span class="span6">ESTAT&Iacute;STICA RELACIONADA AO FUNCION&aacute;RIO DO M&ecirc;S</span></td>
   </tr>
   <?php
 require_once('../Connections/conexao.php');
 
 $sql1 = @mysql_query("SELECT COUNT( * ) AS total1 ,usuario FROM acesso AS ace, cliente AS cli WHERE ace.usuario = cli.login GROUP BY cli.login");
-$sql2 = @mysql_query("SELECT COUNT(*) as total2 FROM cliente");
+$sql2 = @mysql_query("SELECT COUNT( * ) as total2 FROM cliente");
 
 $res = (@mysql_fetch_array($sql2));
 
@@ -44,7 +44,7 @@ $cor = ($cont%2 == 0)? "#EDEDED":"#F9F9F9";
     <td colspan="2">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="2"><span class="span6">ESTAT&Iacute;STICA RELACIONADA AO FUNCION&aacute;RIO DO M&ecirc;S</span></td>
+    <td colspan="2">&nbsp;</td>
   </tr>
 </table>
 

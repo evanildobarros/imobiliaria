@@ -1,4 +1,4 @@
-<?php
+<?php require_once('../Connections/conexao.php'); ?><?php
 //MX Widgets3 include
 
  
@@ -37,11 +37,11 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 }
 
 $colname_exibir33 = "-1";
-if (isset($_GET['id_doc'])) {
-  $colname_exibir33 = $_GET['id_doc'];
+if (isset($_GET['id_cliente'])) {
+  $colname_exibir33 = $_GET['id_cliente'];
 }
 mysql_select_db($database_conexao, $conexao);
-$query_exibir33 = sprintf("SELECT * FROM documentacao WHERE id_doc = %s", GetSQLValueString($colname_exibir33, "int"));
+$query_exibir33 = sprintf("SELECT * FROM documentacao WHERE id_cliente = %s", GetSQLValueString($colname_exibir33, "int"));
 $exibir33 = mysql_query($query_exibir33, $conexao) or die(mysql_error());
 $row_exibir33 = mysql_fetch_assoc($exibir33);
 $totalRows_exibir33 = mysql_num_rows($exibir33);
@@ -51,7 +51,7 @@ $totalRows_exibir33 = mysql_num_rows($exibir33);
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Exibir</title>
+<title>Gerenciador Imobilario</title>
 <script type="text/javascript">
 <!--
 function MM_callJS(jsStr) { //v2.0

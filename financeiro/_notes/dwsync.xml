@@ -15,4 +15,15 @@
 <file name="entrar_conta_devedor.php" server="C:/wamp/www/despachante_atualizado/" local="130441357096950853" remote="130441357090000000" />
 <file name="listas_despesas.php" server="C:/wamp/www/despachante_atualizado/" local="130441369134059336" remote="130441369130000000" />
 <file name="balaco_despesas.php" server="C:/wamp/www/despachante_atualizado/" local="130441397718724285" remote="130441397710000000" />
+<file name="contas_pagas.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130466589720000000" remote="130466589720000000" />
+<file name="contas_a_pagar.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130466636140000000" remote="130466636140000000" />
+<file name="layout_c_a_pagar.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130466633840000000" remote="130466633840000000" />
+<file name="baixar_pagamento.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="balaco_despesas.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="balaco_financeiro.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="contas_receber.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="conta_devedor.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="entrar_conta_devedor.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
+<file name="entrar_conta_receber.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786920000000" remote="130464786920000000" />
+<file name="listas_despesas.php" server="C:/wamp/www/Marcelo_Imovel_des/" local="130464786940000000" remote="130464786940000000" />
 </dwsync>

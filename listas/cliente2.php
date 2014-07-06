@@ -20,6 +20,41 @@ $formValidation = new tNG_FormValidation();
 $tNGs->prepareValidation($formValidation);
 // End trigger
 
+if (!function_exists("GetSQLValueString")) {
+function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+{
+  $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+
+  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
+
+  switch ($theType) {
+    case "text":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;    
+    case "long":
+    case "int":
+      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+      break;
+    case "double":
+      $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+      break;
+    case "date":
+      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+      break;
+    case "defined":
+      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+      break;
+  }
+  return $theValue;
+}
+}
+
+mysql_select_db($database_conexao, $conexao);
+$query_municipio = "SELECT * FROM municipio";
+$municipio = mysql_query($query_municipio, $conexao) or die(mysql_error());
+$row_municipio = mysql_fetch_assoc($municipio);
+$totalRows_municipio = mysql_num_rows($municipio);
+
 //start Trigger_ImageUpload trigger
 //remove this line if you want to edit the code by hand 
 function Trigger_ImageUpload(&$tNG) {
@@ -61,6 +96,7 @@ $ins_cliente->addColumn("email", "STRING_TYPE", "POST", "email");
 $ins_cliente->addColumn("status", "STRING_TYPE", "POST", "status");
 $ins_cliente->addColumn("status2", "STRING_TYPE", "POST", "status2");
 $ins_cliente->addColumn("capa", "FILE_TYPE", "FILES", "capa");
+$ins_cliente->addColumn("autorizar", "STRING_TYPE", "POST", "autorizar");
 $ins_cliente->setPrimaryKey("id_cliente", "NUMERIC_TYPE");
 
 // Execute all the registered transactions
@@ -98,6 +134,7 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
 </script>
 
 
+
 </head>
 
 <body>
@@ -113,13 +150,17 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
       <td colspan="2" class="KT_th"><label for="data"></label>        <input type="hidden" name="data" id="data" value="<?php echo date("Y-m-d"); ?>" size="32" />
         <label for="login"></label>        <input type="hidden" name="login" id="login" value="<?php echo $_SESSION['MM_Username']; ?>" size="32" />
         <input type="hidden" name="status" id="status" value="Aguardando...." size="32" />
+        
         <input type="hidden" name="status2" id="status2" value="Ligar para o cliente" size="32" /></td>
       </tr>
     
     <tr>
       <td class="KT_th"><label for="cliente">Cliente:</label></td>
       <td><input type="text" name="cliente" id="cliente" value="<?php echo KT_escapeAttribute($row_rscliente['cliente']); ?>" size="32" />
-          <?php echo $tNGs->displayFieldHint("cliente");?> <?php echo $tNGs->displayFieldError("cliente", "cliente"); ?> </td>
+          <?php echo $tNGs->displayFieldHint("cliente");?> <?php echo $tNGs->displayFieldError("cliente", "cliente"); ?>
+          
+          <input type="hidden" name="autorizar" id="cliente" value="2" size="32" />
+          <?php echo $tNGs->displayFieldHint("autorizar");?> <?php echo $tNGs->displayFieldError("autorizar", "autorizar"); ?> </td>
     </tr>
     
     <tr>
@@ -133,12 +174,27 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
           <?php echo $tNGs->displayFieldHint("bairro");?> <?php echo $tNGs->displayFieldError("cliente", "bairro"); ?> </td>
     </tr>
     <tr>
-      <td class="KT_th"><label for="municipio">Municipio:</label></td>
-      <td><input type="text" name="municipio" id="municipio" value="<?php echo KT_escapeAttribute($row_rscliente['municipio']); ?>" size="32" />
-          <?php echo $tNGs->displayFieldHint("municipio");?> <?php echo $tNGs->displayFieldError("cliente", "municipio"); ?> </td>
+      <td class="KT_th"><label for="">Municipio:</label></td>
+      <td><label>
+        <select name="municipio" id="municipio">
+          <?php
+do {  
+?>
+          <option value="<?php echo $row_municipio['municipio']?>"><?php echo $row_municipio['municipio']?></option>
+          <?php
+} while ($row_municipio = mysql_fetch_assoc($municipio));
+  $rows = mysql_num_rows($municipio);
+  if($rows > 0) {
+      mysql_data_seek($municipio, 0);
+	  $row_municipio = mysql_fetch_assoc($municipio);
+  }
+?>
+        </select>
+      </label>
+        <?php echo $tNGs->displayFieldHint("municipio");?> <?php echo $tNGs->displayFieldError("cliente", "municipio"); ?> </td>
     </tr>
     <tr>
-      <td class="KT_th"><label for="local">Local:</label></td>
+      <td class="KT_th"><label for="local">Ponto de Referencia:</label></td>
       <td><input type="text" name="local" id="local" value="<?php echo KT_escapeAttribute($row_rscliente['local']); ?>" size="32" />
           <?php echo $tNGs->displayFieldHint("local");?> <?php echo $tNGs->displayFieldError("cliente", "local"); ?> </td>
     </tr>
@@ -167,7 +223,7 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
     </tr>
     <tr>
       <td class="KT_th"><label for="telefone">Telefone:</label></td>
-      <td><input name="telefone" id="telefone" value="<?php echo KT_escapeAttribute($row_rscliente['telefone']); ?>" size="32" wdg:subtype="MaskedInput" wdg:mask="(99) 999 - 9999" wdg:restricttomask="no" wdg:type="widget" />
+      <td><input name="telefone" id="telefone" value="<?php echo KT_escapeAttribute($row_rscliente['telefone']); ?>" size="32" wdg:subtype="MaskedInput" wdg:mask="(99) 9999 - 9999" wdg:restricttomask="no" wdg:type="widget" />
           <?php echo $tNGs->displayFieldHint("telefone");?> <?php echo $tNGs->displayFieldError("cliente", "telefone"); ?> </td>
     </tr>
     <tr>
@@ -182,6 +238,10 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
     <tr>
       <td class="KT_th">&nbsp;</td>
       <td>Somente se for cadastrar uma galeria de imagem</td>
+    </tr>
+    <tr>
+      <td class="KT_th">Descricao do empreendimento:</td>
+      <td><input name="cpf_procu" id="cpf_procu"  value="" size="50"  /></td>
     </tr>
     <tr>
       <td class="KT_th"><label for="capa">Capa da galeria:</label></td>
@@ -199,3 +259,6 @@ $totalRows_rscliente = mysql_num_rows($rscliente);
 
 </body>
 </html>
+<?php
+mysql_free_result($municipio);
+?>

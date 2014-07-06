@@ -156,7 +156,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 <form action="<?php echo $editFormAction; ?>" method="post" name="form1" id="form1">
   <table width="649" align="center">
     <tr valign="baseline">
-      <td width="283" colspan="2" align="right" nowrap="nowrap" background="img/sair.jpg"><div align="center"><br />
+      <td width="283" colspan="2" align="right" nowrap="nowrap" background="img/sair2.gif"><div align="center"><br />
           <br />
           <br />
           <br />

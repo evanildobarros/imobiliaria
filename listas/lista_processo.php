@@ -149,7 +149,7 @@
             onclick="MM_openBrWindow('cliente_contatos.php?id_cliente=<?php echo $resultado['id_cliente']; ?>','','scrollbars=yes,resizable=yes,width=300,height=200')">
 			<?php echo $resultado['status2']; ?></a></span></td>
 			<td width="82" valign="top" class="td3"><div align="left">
-          <a href="#" class="span11" onclick="MM_openBrWindow('movimentacao.php?cliente=<?php echo $resultado['cliente']; ?>','','scrollbars=yes,resizable=yes,width=500,height=300')">movimetar</a></div></td>
+          <a href="#" class="span11" onclick="MM_openBrWindow('movimentacao.php?cliente=<?php echo $resultado['cliente']; ?>','','scrollbars=yes,resizable=yes,width=500,height=300')">movimentar</a></div></td>
 			<td width="83" valign="top" class="td3"><div align="left"> <a class="span11" href="lista_detalhes.php?cliente=<?php echo $resultado['cliente'];  ?>">detalhes</a></div></td>
 		</tr>
 			<tr><?php $cont ++; }?>

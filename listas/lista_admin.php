@@ -39,7 +39,7 @@ function CheckAll() {
 </script>
 			<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
             
-			<title>Gerenciador Auto Escola</title>
+			<title>Gerenciador Imobiiario</title>
 			
 			</head>
 			
@@ -50,8 +50,8 @@ function CheckAll() {
 			{
 			if($_POST["chkDel"][$i] != "")
 			{
-			$strSQL = "DELETE FROM log";
-			$strSQL .="WHERE cod = '".$_POST["chkDel"][$i]."' ";
+			$strSQL = "DELETE FROM GLAERIA";
+			$strSQL .="WHERE ID = '".$_POST["chkDel"][$i]."' ";
 			$objQuery = mysql_query($strSQL);
 			}
 			}
@@ -116,7 +116,7 @@ function data_extenso(){
 			<label>
 			<input class="bt2" type="submit" name="button" id="button" value="Pesquisar">
 			</label>
-			&nbsp; &nbsp; &nbsp;<span class="span7">a&Ccedil;&otilde;ES REALIZADOS PELOS US&Aacute;RIOS</span>
+			&nbsp; &nbsp; &nbsp;Autorizar publica&ccedil;&atilde;o da galeria de imagens
 			</form>
 			</td>
 			</tr>
@@ -129,16 +129,11 @@ function data_extenso(){
 			
 	  
 			<tr>
-			<td width="129" valign="baseline">
+			<td colspan="7" valign="baseline">
 			 
 			<input name="selall" id="check" type="checkbox" value="" onclick="CheckAll()" />&nbsp;&nbsp;
 		
-			<input class="bt5" type="submit" name="button2" id="button2" value="Deletar" />			</td>
-			<td width="232" valign="top" class="td" >&nbsp;</td>
-			<td width="228"  valign="top" class="td" ><br /></td>
-			<td width="131"  valign="top" class="td"><br /></td>
-			<td colspan="2" valign="top" class="td"><br />			
-			  <br />			  <br /></td>
+			<input class="bt5" type="submit" name="button2" id="button2" value="Deletar" /></td>
 			</tr>
 			<?php
 			
@@ -168,7 +163,11 @@ function data_extenso(){
 			else
 			$filtro1 = $_REQUEST['filtro1'];
 			
-			$sql = "SELECT * from log WHERE usuario like '".$filtro."%' ORDER BY cod DESC LIMIT $inicio, $qnt";
+			$sql = "SELECT  * FROM
+                           IMOVEL AS IM,
+                           GALERIA AS GL
+                           WHERE
+                           IM.ID_CLIENTE = GL.ID_CLIENTE AND IM.PERFIL_IMOVEL like '".$filtro."%' ";
 			
 			$rs  = mysql_query($sql);
 			
@@ -184,14 +183,14 @@ function data_extenso(){
 			$cor = ($cont%2 == 0)? "#EDEDED":"ffffff";
 			?>
 			<tr bgcolor="<?php echo $cor ; ?>">
-			<td valign="top"><label>
-			<input type="checkbox" name="chkDel[]" value="<?php echo $resultado["cod"];?>">
-			</label></td>
-			<td valign="top" class="td3"><span class="span6"><?php echo $resultado['usuario']; ?></span></td>
+			<td width="350" valign="top"><label>
+			<input type="checkbox" name="chkDel[]" value="<?php echo $resultado["INT_ID"];?>">
+			<span class="td3"><span class="span6"><?php echo $resultado['img']; ?></span></span></label></td>
+			<td colspan="2" valign="top" class="td3"><span class="span6"><?php echo $resultado['perfil_imovel']; ?></span></td>
 			
-			<td class="td3" valign="top"><span class="span6"><?php echo $resultado['op']; ?></span></td>
-			<td valign="top" class="td3"><span class="span6"><?php echo $resultado['hora']; ?></span></td>
-			<td width="141" valign="top" class="td3"><span class="span6"><?php echo $resultado['ip']; ?></span></td>
+			<td width="122" valign="top" class="td3"><span class="span6"><?php echo $resultado['email']; ?></span></td>
+			<td width="196" valign="top" class="td3"><span class="span6"><?php echo $resultado['telefone']; ?></span></td>
+			<td width="63" valign="top" class="td3">Autorizar</td>
 			</tr>
 			<tr><?php $cont ++; }?>
 			<?php
@@ -205,7 +204,7 @@ function data_extenso(){
 			
 			$max_links = 3;
 			?>
-			<td colspan="5" align="center" valign="top"><br />
+			<td colspan="6" align="center" valign="top"> <br />
 			
 			<?php
 			

@@ -1,23 +1,36 @@
-<?php require_once('../Connections/conexao.php'); ?>
+<?php require_once('Connections/conexao.php'); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Gerenciador Imobiliaria</title>
-    <link rel="stylesheet" href="css/layout.css" type="text/css">
-	<link rel="stylesheet" href="css/menu_horizontal.css" type="text/css">
+<title>Gerenciador Imobiliario</title>
+    <link rel="stylesheet" href="../css/site.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/paginacao.css" />
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="css/style.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
-            <body>
-            <table  width="800" height="500" align="center">
-            <form name="form2" method="post" action="vitrine.php">
+<body>
+       
+    <div class="cont">
+    
+     <div class="conteiner-fluid">
+            <div align="center" class="consulta"><form name="form2" method="post" action="index.php">
 			
-			<input class="input"  type="text" name="filtro" id="filtro">
-	
-			<input class="bt2" type="submit" name="button" id="button" value="Pesquisar">
+			<div class="input-append">
+  <input class="span2" id="appendedInputButton" type="text">
+  <button class="btn" type="button">Pesquisar!</button>
+</div></div>
 		
 			</form>
-            <tr>
+           <div class="row-fluid">
+            
             <?php 
             
 
@@ -31,7 +44,7 @@
 			
 			
 			
-			$qnt = 9;
+			$qnt = 12;
 			$inicio = ($p*$qnt) - $qnt;
 			
 			if($_REQUEST['filtro'] == ' ' )
@@ -43,8 +56,8 @@
 			$filtro1 = '';
 			else
 			$filtro1 = $_REQUEST['filtro1'];
-            $loop = 3;
-            $sql = "SELECT DISTINCT id, img from galeria WHERE img like '".$filtro."%' ORDER BY id DESC LIMIT $inicio, $qnt";
+            $loop = 6;
+            $sql = "SELECT * from cliente as cli, imovel as im WHERE cli.id_cliente = im.id_cliente AND im.autorizar='1'  AND im.municipio like '".$filtro."%' ORDER BY cli.id_cliente DESC LIMIT $inicio, $qnt";
 			$resultado = @mysql_num_rows($sql);
             $rg   = mysql_query($sql);
             
@@ -52,21 +65,52 @@
 
             while($result = @mysql_fetch_array($rg)){
 
-            $img = $result['img'];
-			$lc =  $result['id'];
+            $img       = $result['capa'];
+			$id        =  $result['id_cliente'];
+			$municipio = $result['municipio'];
+			$vl        = $result['valor'];
+			$valor3 = number_format($vl,2,",",".");
+			$perfil    = $result['perfil_imovel'];
 
             if ($i < $loop){
-            echo "<td align=\"center\"><img width=\"100\" height=\"100\" src=\"../uploads/$img \" /><br /><span class=\"span\">$lc</span></td>";
+            echo "<div class=\"span2\" align=\"center\">
+			      <a href=\"listas/Caracteristica_imovel2.php?id_cliente=$id\" >
+			      
+				  <div class=\"td_img\">
+			      <img class=\"foto\"  width=\"220\" height=\"100\" src=\"uploads/$img \" /><br />
+					  
+					  <span class=\"infor2\"><i class=\"icon-map-marker\"></i> $municipio</span><br />
+					  <span class=\"infor4\"> $perfil</span><br />
+                      <span class=\"infor3\"> R$ $valor3 </span></a>
+					  
+			     </div></div>";
+			 
+			 
             }elseif($i = $loop){
-            echo "<td align=\"center\"><img width=\"100\" height=\"100\" src=\"../uploads/$img \" /><br /><span class=\"span\">$lc</span></td></tr><tr>";
+            echo "<div class=\"span2\" align=\"center\"><a href=\"listas/Caracteristica_imovel2.php?id_cliente=$id\" >
+			     
+				  <div class=\"td_img\">
+			         <img class=\"foto\" width=\"220\" height=\"100\" src=\"uploads/$img \" /><br />
+		         
+				 <span class=\"infor2\"><i class=\"icon-map-marker\"></i> $municipio</span><br />
+		         <span class=\"infor4\"> $perfil</span><br />
+                 <span class=\"infor3\">R$ $valor3</span></a>
+			
+			
+			</div>
+			</div>
+			
+			</div>
+			<div>";
+			
             $i = 0;
             }
             $i ++;
             } ?>
-            </tr>
-            </table>
+            </div>
+            </div>
             <?php
-			$sql_select_all = "SELECT * from galeria";
+			$sql_select_all = "SELECT * from cliente";
 			
 			$sql_query_all = @mysql_query($sql_select_all);
 			
@@ -77,12 +121,10 @@
 			$max_links = 5;
 			?>
             
-            <table  align="center" width="800">
-            <tr>
-            <td align="center">
+           
             <?php
 			
-			echo "<a href='vitrine.php?p=1' target='_self'><span class=\"\">&laquo; Anterior</span></a> ";
+			echo "<a class=\"pagination\" href='index.php?p=1' target='_self'><span class=\"pagination\">&laquo; Anterior</span></a> ";
 			
 			for($i = $p-$max_links; $i <= $p-1; $i++) {
 			
@@ -90,11 +132,11 @@
 			
 			} else {
 			
-			echo "<a  href='vitrine.php?p=".$i."' target='_self'>".$i."</a> ";
+			echo "<a class=\"pagination\" href='index.php?p=".$i."' target='_self'>".$i."</a> ";
 			}
 			}
 			
-			echo $p;
+			echo "<span class=\"pagination\"> " .$p." ". "</span>";
 			
 			for($i = $p+1; $i <= $p+$max_links; $i++) {
 			
@@ -106,15 +148,16 @@
 			else
 			{
 			
-			echo "<a href='vitrine.php?p=".$i."' target='_self'>".$i."</a> ";
+			echo "<a class=\"pagination\" href='index.php?p=".$i."' target='_self'>".$i."</a> ";
 			}
 			}
 			
-			echo "<a href='vitrine.php?p= " .$pags."' target='_self'><span class=\"\">Pr&oacute;xima &raquo;</span></a> ";
+			echo "<a href='index.php?p= " .$pags."' target='_self'><span class=\"pagination\">Pr&oacute;xima &raquo;</span></a> ";
 			
 			?>
-            </td>
-            </tr>
-            </table>
+        
+    
+    </div>
+           
 </body>
 </html>

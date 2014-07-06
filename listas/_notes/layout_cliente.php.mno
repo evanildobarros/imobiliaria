@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <info>
 	<infoitem key="UD_muni" value="name:id;datatype:int,name:municipio;datatype:string" />
+	<infoitem key="UD_municipio" value="name:id;datatype:int,name:municipio;datatype:string" />
 </info>

@@ -1,0 +1,1386 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.0
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tempo de Geração: Jun 10, 2014 as 12:36 AM
+-- Versão do Servidor: 5.0.45
+-- Versão do PHP: 5.2.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Banco de Dados: `mi`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `acesso`
+--
+
+CREATE TABLE `acesso` (
+  `cod` int(3) unsigned NOT NULL auto_increment,
+  `usuario` varchar(100) default NULL,
+  `senha` varchar(100) default NULL,
+  `endereco` varchar(255) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `nome` varchar(100) default NULL,
+  `email` varchar(200) default NULL,
+  `telefone` varchar(100) default NULL,
+  `chave` tinyint(1) default NULL,
+  `nascimento` varchar(255) default NULL,
+  `rg` varchar(255) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `titulo` varchar(255) default NULL,
+  `admissao` varchar(255) default NULL,
+  `pis` varchar(255) default NULL,
+  `ctps` varchar(255) default NULL,
+  `dependente` varchar(255) default NULL,
+  `funcao` varchar(255) default NULL,
+  `remuneracao` varchar(255) default NULL,
+  `filiacao` varchar(255) default NULL,
+  `filial` varchar(255) default NULL,
+  PRIMARY KEY  (`cod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Extraindo dados da tabela `acesso`
+--
+
+INSERT INTO `acesso` (`cod`, `usuario`, `senha`, `endereco`, `bairro`, `nome`, `email`, `telefone`, `chave`, `nascimento`, `rg`, `cpf`, `titulo`, `admissao`, `pis`, `ctps`, `dependente`, `funcao`, `remuneracao`, `filiacao`, `filial`) VALUES
+(1, 'admin', 'admin', '', '', 'Administrador', 'xyz@xyz.com', '11111', 0, '2014-03-14', '', '', '', '', '', '', '', '', '', '', ''),
+(2, 'Eneylton', '123', '', '', 'Eneylton', 'eneylton@hotmail.com', '98 8800 3198', 1, '2014-03-14', '', '', '', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `aviso`
+--
+
+CREATE TABLE `aviso` (
+  `id_aviso` int(11) NOT NULL auto_increment,
+  `aviso` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_aviso`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `aviso`
+--
+
+INSERT INTO `aviso` (`id_aviso`, `aviso`) VALUES
+(1, 'Ligar para o cliente'),
+(2, 'avisado'),
+(3, 'não atendi'),
+(4, 'fora de area '),
+(5, 'caixa postal'),
+(6, 'viajando'),
+(7, 'enviou mensagem'),
+(8, 'enviou email');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `banner`
+--
+
+CREATE TABLE `banner` (
+  `id_banner` int(11) NOT NULL auto_increment,
+  `titulo` varchar(255) default NULL,
+  `descricao` varchar(255) default NULL,
+  `img` varchar(255) default NULL,
+  `autorizar` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_banner`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `banner`
+--
+
+INSERT INTO `banner` (`id_banner`, `titulo`, `descricao`, `img`, `autorizar`) VALUES
+(9, 'Exelente imovel ', 'FotoFotoFotoFotoFotoFotoFotoFoto', '69314_EN.jpeg', '2'),
+(10, 'condomino Novva Aliaca', 'uploads Confira o Seguro ImobiliÃ¡ria da Porto Seguro: vÃ¡rios serviÃ§os e benefÃ­cio', 'Untitled-3.jpg', '1'),
+(8, 'Exelente imovel ', 'Confira o Seguro ImobiliÃ¡ria da Porto Seguro: vÃ¡rios serviÃ§os e benefÃ­cios para vocÃª e ', '1234437_621140657918910_498667871_n.jpg', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `Categoria` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`id_cat`, `Categoria`) VALUES
+(1, 'Cart&atilde;o de Credito'),
+(2, 'Pagamento &aacute; vista'),
+(3, 'Nota promiss&oacute;ria');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria_financeiro`
+--
+
+CREATE TABLE `categoria_financeiro` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `categoria_financeiro`
+--
+
+INSERT INTO `categoria_financeiro` (`id_cat`, `desc`) VALUES
+(1, 'Pagamento á Vista'),
+(2, 'Cartão de Crédito'),
+(3, 'Nota Promissória'),
+(4, 'Nota Avulsa');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cat_veiculo`
+--
+
+CREATE TABLE `cat_veiculo` (
+  `id_cat` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_cat`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `cat_veiculo`
+--
+
+INSERT INTO `cat_veiculo` (`id_cat`, `desc`) VALUES
+(1, 'particular'),
+(2, 'aluguel'),
+(3, 'amaprendizagem'),
+(4, 'oficial');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `chave`
+--
+
+CREATE TABLE `chave` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `chave`
+--
+
+INSERT INTO `chave` (`id`, `desc`) VALUES
+(0, 'Administrador'),
+(1, 'Atendente');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cliente`
+--
+
+CREATE TABLE `cliente` (
+  `id_cliente` int(11) NOT NULL auto_increment,
+  `data` varchar(255) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `apelido` varchar(255) default NULL,
+  `endereco` varchar(255) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `municipio` varchar(255) NOT NULL,
+  `local` varchar(255) default NULL,
+  `cpf_titular` varchar(255) default NULL,
+  `cnpj` varchar(255) default NULL,
+  `cpf_procu` varchar(255) default NULL,
+  `procuracao` varchar(255) default NULL,
+  `aniversario` varchar(255) default NULL,
+  `telefone` varchar(255) default NULL,
+  `email` varchar(255) default NULL,
+  `status` varchar(255) NOT NULL,
+  `status2` varchar(255) NOT NULL,
+  `capa` varchar(255) default NULL,
+  PRIMARY KEY  (`id_cliente`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=548 ;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cliente_externo`
+--
+
+CREATE TABLE `cliente_externo` (
+  `id_externo` int(11) NOT NULL auto_increment,
+  `nome` varchar(255) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `estado` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `tipo_imovel` varchar(255) NOT NULL,
+  `dormitorio` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `area_contruida` varchar(255) NOT NULL,
+  `area_privativa` varchar(255) NOT NULL,
+  `especificacoes` varchar(255) NOT NULL,
+  `autorizar` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_externo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `cliente_externo`
+--
+
+INSERT INTO `cliente_externo` (`id_externo`, `nome`, `endereco`, `bairro`, `estado`, `telefone`, `email`, `tipo_imovel`, `dormitorio`, `valor`, `area_contruida`, `area_privativa`, `especificacoes`, `autorizar`) VALUES
+(1, 'Eneylton teste', 'rua 13', 'cOHAFUMA', 'MA', '(99)0099-009', 'eneylton@hotmail.com', 'Apartamento', '7', '300.000.00', '678', '234', 'ook', ''),
+(2, 'Eneylton teste', 'rua 13', 'cOHAFUMA', 'MA', '(99)0099-009', 'eneylton@hotmail.com', 'Apartamento', '7', '300.000.00', '678', '234', 'ook', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `combustivel`
+--
+
+CREATE TABLE `combustivel` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Extraindo dados da tabela `combustivel`
+--
+
+INSERT INTO `combustivel` (`id`, `desc`) VALUES
+(1, 'Diesel'),
+(2, 'Etanol'),
+(3, 'Alcool'),
+(4, 'Gasolina'),
+(5, 'Alcool / Gasolina'),
+(6, 'G&aacute;s');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cor`
+--
+
+CREATE TABLE `cor` (
+  `id` int(11) NOT NULL auto_increment,
+  `cor` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Extraindo dados da tabela `cor`
+--
+
+INSERT INTO `cor` (`id`, `cor`) VALUES
+(1, 'Branco'),
+(2, 'Azul'),
+(3, 'Vermelho'),
+(4, 'Amarelo'),
+(5, 'Verde'),
+(6, 'Cinza'),
+(7, 'Roxo'),
+(8, 'Laranja'),
+(9, 'Preto');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `documentacao`
+--
+
+CREATE TABLE `documentacao` (
+  `id_doc` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_doc`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=168 ;
+
+--
+-- Extraindo dados da tabela `documentacao`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `id_entrega` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `placa` varchar(255) default NULL,
+  `renavam` varchar(255) default NULL,
+  `data` varchar(233) NOT NULL,
+  `hora` varchar(233) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_entrega`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=230 ;
+
+--
+-- Extraindo dados da tabela `entrega`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `especie`
+--
+
+CREATE TABLE `especie` (
+  `id_especie` int(11) NOT NULL auto_increment,
+  `especie` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_especie`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `especie`
+--
+
+INSERT INTO `especie` (`id_especie`, `especie`) VALUES
+(1, 'ciclomotor'),
+(2, 'motoneta'),
+(3, 'triciculo'),
+(4, 'quadriciculo'),
+(5, 'automovel'),
+(6, 'reboque / semi-reboque'),
+(7, 'utilitario'),
+(8, 'caminhão'),
+(9, 'caminhão - trator'),
+(10, 'trator');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `filial`
+--
+
+CREATE TABLE `filial` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `filial`
+--
+
+INSERT INTO `filial` (`id`, `desc`) VALUES
+(1, 'S&atilde;o lu&iacute;s'),
+(2, 'S&atilde;o jose de Ribamar');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `forma_pg`
+--
+
+CREATE TABLE `forma_pg` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `forma_pg`
+--
+
+INSERT INTO `forma_pg` (`id`, `desc`) VALUES
+(8, 'Nota promissória'),
+(7, 'Cheque'),
+(6, 'Cartão'),
+(5, 'Dinheiro'),
+(9, 'Transferencia Bancaria'),
+(10, 'Boleto');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `fornecedor`
+--
+
+CREATE TABLE `fornecedor` (
+  `id_fornecedor` int(11) NOT NULL auto_increment,
+  `cnpj` varchar(255) NOT NULL,
+  `razao` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_fornecedor`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `fornecedor`
+--
+
+INSERT INTO `fornecedor` (`id_fornecedor`, `cnpj`, `razao`, `nome`, `telefone`, `email`) VALUES
+(1, '9985622222388-99', 'MHS SOLUÇOES WEB', 'MHS INFORMATICA', '', ''),
+(2, '56221553322', 'Compania de agua e esgoto do maranhao', 'CAEMA', '', ''),
+(3, '8998889898998', 'Compania Energetica do maranhao', 'CEMAR', '', ''),
+(4, '89.898.899 / 8888 - 98', 'BoB''s', 'Restaurante coco bambu', '(98) 9098 - 7776', 'bambu@gmail.com'),
+(5, '72.349.076 / 5456 - 78', 'bom apedite', 'Lanchonete bom preco', '(98) 7654 - 3456', 'bambu@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `funcionario`
+--
+
+CREATE TABLE `funcionario` (
+  `id_funcionario` int(11) NOT NULL auto_increment,
+  `nome` varchar(255) NOT NULL,
+  `data_nascimento` varchar(255) NOT NULL,
+  `rg` varchar(255) NOT NULL,
+  `cpf` varchar(255) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `pis` varchar(255) NOT NULL,
+  `ctps` varchar(255) NOT NULL,
+  `filiacao` varchar(255) NOT NULL,
+  `naturalidade` varchar(255) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `dependente` varchar(255) NOT NULL,
+  `data_admissao` varchar(255) NOT NULL,
+  `funcao` varchar(255) NOT NULL,
+  `remuneracao` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_funcionario`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `funcionario`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `galeria`
+--
+
+CREATE TABLE `galeria` (
+  `id` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+
+--
+-- Extraindo dados da tabela `galeria`
+--
+
+INSERT INTO `galeria` (`id`, `id_cliente`, `img`) VALUES
+(25, 526, '010614-20140302_115707.jpg'),
+(24, 526, '010614-69314_EN.jpeg'),
+(23, 526, '010614-3bf12431fe82998a16a02caeeb02c4c5.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `garagem`
+--
+
+CREATE TABLE `garagem` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `garagem`
+--
+
+INSERT INTO `garagem` (`id`, `desc`) VALUES
+(1, 'Não há'),
+(2, 'Coberta'),
+(3, 'Descoberta'),
+(4, 'Coberta / Descoberta');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `imovel`
+--
+
+CREATE TABLE `imovel` (
+  `int_id` int(11) NOT NULL auto_increment,
+  `id_cliente` varchar(255) NOT NULL,
+  `id_servico` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `municipio` varchar(255) NOT NULL,
+  `estado` varchar(255) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `negocio` varchar(255) NOT NULL,
+  `perfil_imovel` varchar(255) NOT NULL,
+  `padrao_imovel` varchar(255) NOT NULL,
+  `a_construida` varchar(255) NOT NULL,
+  `valor_condominio` varchar(255) NOT NULL,
+  `financiamento` varchar(255) NOT NULL,
+  `dormitorio` varchar(255) NOT NULL,
+  `suites` varchar(255) NOT NULL,
+  `garagem` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `data_fim` date NOT NULL,
+  `autorizar` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY  (`int_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
+
+--
+-- Extraindo dados da tabela `imovel`
+--
+
+INSERT INTO `imovel` (`int_id`, `id_cliente`, `id_servico`, `telefone`, `email`, `municipio`, `estado`, `endereco`, `bairro`, `negocio`, `perfil_imovel`, `padrao_imovel`, `a_construida`, `valor_condominio`, `financiamento`, `dormitorio`, `suites`, `garagem`, `valor`, `data_fim`, `autorizar`, `img`) VALUES
+(67, '538', '8', '98099099000', 'eneylton@hotmail.com', 'São José de Ribamar', 'Ma', 'maiobão', 'cohatrac iv', 'Aluguel / Venda', 'Apartamento', 'Alto', '567', '700', 'Sim', '3', '6', 'Coberta', '8', '2014-06-30', '2', ''),
+(66, '526', '8', '(99)0099-009', 'eneylton@hotmail.com', 'São José de Ribamar', 'Ma', 'rua 13', 'cOHAFUMA', 'Aluguel / Venda', 'Apartamento', 'Luxo', '6780', '789', 'Sim', '7', '6', 'Coberta / Descoberta', '8', '2014-06-19', '2', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `lc_cat`
+--
+
+CREATE TABLE `lc_cat` (
+  `id` int(11) NOT NULL auto_increment,
+  `nome` varchar(255) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `lc_cat`
+--
+
+INSERT INTO `lc_cat` (`id`, `nome`) VALUES
+(2, 'Pagamento de Funcionario'),
+(3, 'Conta de água'),
+(4, 'Conta de Luz'),
+(5, 'Cliente'),
+(6, 'Sistema'),
+(7, 'Material');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `lc_movimento`
+--
+
+CREATE TABLE `lc_movimento` (
+  `id` int(11) NOT NULL auto_increment,
+  `tipo` int(11) default NULL,
+  `dia` int(11) default NULL,
+  `mes` int(11) default NULL,
+  `ano` int(11) default NULL,
+  `cat` int(11) default NULL,
+  `cliente` varchar(255) NOT NULL,
+  `descricao` varchar(255) default NULL,
+  `valor` float default NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `vencimento` varchar(255) NOT NULL,
+  `fpagamento` varchar(255) NOT NULL,
+  `m` varchar(255) NOT NULL,
+  `fornecedor` varchar(255) NOT NULL,
+  `nota` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+
+--
+-- Extraindo dados da tabela `lc_movimento`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `log`
+--
+
+CREATE TABLE `log` (
+  `cod` int(100) unsigned NOT NULL auto_increment,
+  `usuario` varchar(200) default '0',
+  `data` varchar(100) default '0',
+  `hora` varchar(100) default '0',
+  `op` varchar(200) default '0',
+  `ip` varchar(50) default '0',
+  PRIMARY KEY  (`cod`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1088 ;
+
+--
+-- Extraindo dados da tabela `log`
+--
+
+INSERT INTO `log` (`cod`, `usuario`, `data`, `hora`, `op`, `ip`) VALUES
+(925, 'admin', '2014-04-29', '20:29', 'Entrou no sistema !', '127.0.0.1'),
+(926, 'admin', '2014-04-29', '20:32', 'Saiu do sistema !', '127.0.0.1'),
+(927, 'admin', '2014-04-29', '20:35', 'Entrou no sistema !', '127.0.0.1'),
+(928, 'admin', '2014-04-29', '20:36', 'Entrou no sistema !', '127.0.0.1'),
+(929, 'admin', '2014-04-29', '20:36', 'Entrou no sistema !', '127.0.0.1'),
+(930, 'admin', '2014-04-29', '20:37', 'Entrou no sistema !', '127.0.0.1'),
+(931, 'admin', '2014-04-29', '20:48', 'Entrou no sistema !', '127.0.0.1'),
+(932, 'admin', '2014-04-29', '21:39', 'Entrou no sistema !', '127.0.0.1'),
+(933, 'admin', '2014-04-29', '22:09', 'Entrou no sistema !', '127.0.0.1'),
+(934, 'admin', '2014-04-30', '00:38', 'Entrou no sistema !', '127.0.0.1'),
+(935, 'admin', '2014-04-30', '00:56', 'Entrou no sistema !', '127.0.0.1'),
+(936, 'admin', '2014-04-30', '20:05', 'Entrou no sistema !', '127.0.0.1'),
+(937, 'admin', '2014-05-01', '09:20', 'Entrou no sistema !', '127.0.0.1'),
+(938, 'admin', '2014-05-01', '09:39', 'Entrou no sistema !', '127.0.0.1'),
+(939, 'admin', '2014-05-01', '11:02', 'Entrou no sistema !', '127.0.0.1'),
+(940, 'admin', '2014-05-01', '11:43', 'Entrou no sistema !', '127.0.0.1'),
+(941, 'admin', '2014-05-01', '12:00', 'Entrou no sistema !', '127.0.0.1'),
+(942, 'admin', '2014-05-01', '13:12', 'Entrou no sistema !', '127.0.0.1'),
+(943, 'admin', '2014-05-01', '15:48', 'Entrou no sistema !', '127.0.0.1'),
+(944, 'admin', '2014-05-01', '18:15', 'Entrou no sistema !', '127.0.0.1'),
+(945, 'admin', '2014-05-01', '18:27', 'Entrou no sistema !', '127.0.0.1'),
+(946, 'admin', '2014-05-01', '18:34', 'Entrou no sistema !', '127.0.0.1'),
+(947, 'admin', '2014-05-01', '18:37', 'Entrou no sistema !', '127.0.0.1'),
+(948, 'admin', '2014-05-01', '18:41', 'Entrou no sistema !', '127.0.0.1'),
+(949, 'admin', '2014-05-01', '19:07', 'Entrou no sistema !', '127.0.0.1'),
+(950, 'admin', '2014-05-01', '19:09', 'Entrou no sistema !', '127.0.0.1'),
+(951, 'admin', '2014-05-01', '19:13', 'Entrou no sistema !', '127.0.0.1'),
+(952, 'admin', '2014-05-01', '19:15', 'Saiu do sistema !', '127.0.0.1'),
+(953, 'admin', '2014-05-01', '19:32', 'Entrou no sistema !', '127.0.0.1'),
+(954, 'admin', '2014-05-01', '20:59', 'Entrou no sistema !', '127.0.0.1'),
+(955, 'admin', '2014-05-01', '21:22', 'Entrou no sistema !', '127.0.0.1'),
+(956, 'admin', '2014-05-01', '21:31', 'Saiu do sistema !', '127.0.0.1'),
+(957, 'admin', '2014-05-01', '21:31', 'Entrou no sistema !', '127.0.0.1'),
+(958, 'admin', '2014-05-01', '21:35', 'Entrou no sistema !', '127.0.0.1'),
+(959, 'admin', '2014-05-01', '21:37', 'Entrou no sistema !', '127.0.0.1'),
+(960, 'admin', '2014-05-01', '22:45', 'Entrou no sistema !', '127.0.0.1'),
+(961, 'admin', '2014-05-01', '22:55', 'Saiu do sistema !', '127.0.0.1'),
+(962, 'admin', '2014-05-01', '22:55', 'Entrou no sistema !', '127.0.0.1'),
+(963, 'admin', '2014-05-01', '23:50', 'Entrou no sistema !', '127.0.0.1'),
+(964, 'admin', '2014-05-03', '10:00', 'Entrou no sistema !', '127.0.0.1'),
+(965, 'admin', '2014-05-03', '10:40', 'Saiu do sistema !', '127.0.0.1'),
+(966, 'Admin', '2014-05-03', '10:41', 'Entrou no sistema !', '127.0.0.1'),
+(967, 'Admin', '2014-05-03', '10:41', 'Saiu do sistema !', '127.0.0.1'),
+(968, 'Eneylton', '2014-05-03', '10:41', 'Entrou no sistema !', '127.0.0.1'),
+(969, 'Eneylton', '2014-05-03', '10:41', 'Saiu do sistema !', '127.0.0.1'),
+(970, 'admin', '2014-05-03', '10:42', 'Entrou no sistema !', '127.0.0.1'),
+(971, 'admin', '2014-05-03', '12:21', 'Entrou no sistema !', '127.0.0.1'),
+(972, 'admin', '2014-05-03', '14:45', 'Entrou no sistema !', '127.0.0.1'),
+(973, 'admin', '2014-05-03', '16:23', 'Entrou no sistema !', '127.0.0.1'),
+(974, 'admin', '2014-05-03', '16:53', 'Entrou no sistema !', '127.0.0.1'),
+(975, 'Eneylton', '2014-05-03', '18:04', 'Entrou no sistema !', '127.0.0.1'),
+(976, 'Eneylton', '2014-05-03', '18:04', 'Saiu do sistema !', '127.0.0.1'),
+(977, 'admin', '2014-05-03', '18:04', 'Entrou no sistema !', '127.0.0.1'),
+(978, 'admin', '2014-05-03', '18:05', 'Entrou no sistema !', '127.0.0.1'),
+(979, 'admin', '2014-05-03', '18:35', 'Entrou no sistema !', '127.0.0.1'),
+(980, 'admin', '2014-05-03', '18:36', 'Entrou no sistema !', '127.0.0.1'),
+(981, 'admin', '2014-05-03', '18:37', 'Entrou no sistema !', '127.0.0.1'),
+(982, 'admin', '2014-05-03', '18:37', 'Entrou no sistema !', '127.0.0.1'),
+(983, 'admin', '2014-05-03', '18:37', 'Entrou no sistema !', '127.0.0.1'),
+(984, 'admin', '2014-05-03', '18:38', 'Entrou no sistema !', '127.0.0.1'),
+(985, 'admin', '2014-05-03', '18:40', 'Entrou no sistema !', '127.0.0.1'),
+(986, 'admin', '2014-05-03', '18:43', 'Entrou no sistema !', '127.0.0.1'),
+(987, 'admin', '2014-05-03', '18:50', 'Entrou no sistema !', '127.0.0.1'),
+(988, 'admin', '2014-05-03', '18:52', 'Entrou no sistema !', '127.0.0.1'),
+(989, 'admin', '2014-05-03', '18:53', 'Entrou no sistema !', '127.0.0.1'),
+(990, 'admin', '2014-05-03', '18:54', 'Entrou no sistema !', '127.0.0.1'),
+(991, 'admin', '2014-05-03', '19:04', 'Entrou no sistema !', '127.0.0.1'),
+(992, 'admin', '2014-05-03', '19:18', 'Entrou no sistema !', '127.0.0.1'),
+(993, 'admin', '2014-05-03', '19:19', 'Saiu do sistema !', '127.0.0.1'),
+(994, 'admin', '2014-05-03', '19:20', 'Saiu do sistema !', '127.0.0.1'),
+(995, 'admin', '2014-05-03', '19:20', 'Entrou no sistema !', '127.0.0.1'),
+(996, 'admin', '2014-05-03', '19:25', 'Saiu do sistema !', '127.0.0.1'),
+(997, 'admin', '2014-05-03', '19:27', 'Entrou no sistema !', '127.0.0.1'),
+(998, 'admin', '2014-05-03', '19:28', 'Saiu do sistema !', '127.0.0.1'),
+(999, 'admin', '2014-05-03', '19:29', 'Entrou no sistema !', '127.0.0.1'),
+(1000, 'admin', '2014-05-03', '19:29', 'Saiu do sistema !', '127.0.0.1'),
+(1001, 'admin', '2014-05-04', '11:27', 'Entrou no sistema !', '127.0.0.1'),
+(1002, 'admin', '2014-05-04', '11:59', 'Entrou no sistema !', '127.0.0.1'),
+(1003, 'admin', '2014-05-07', '12:40', 'Entrou no sistema !', '127.0.0.1'),
+(1004, 'admin', '2014-05-07', '12:41', 'Entrou no sistema !', '127.0.0.1'),
+(1005, 'admin', '2014-05-07', '12:46', 'Entrou no sistema !', '127.0.0.1'),
+(1006, 'admin', '2014-05-07', '12:46', 'Entrou no sistema !', '127.0.0.1'),
+(1007, '', '2014-05-09', '12:02', 'Entrou no sistema !', '127.0.0.1'),
+(1008, 'admin', '2014-05-09', '12:03', 'Entrou no sistema !', '127.0.0.1'),
+(1009, 'admin', '2014-05-09', '12:04', 'Entrou no sistema !', '127.0.0.1'),
+(1010, 'admin', '2014-05-09', '12:04', 'Saiu do sistema !', '127.0.0.1'),
+(1011, 'admin', '2014-05-09', '12:05', 'Entrou no sistema !', '127.0.0.1'),
+(1012, 'admin', '2014-05-09', '12:07', 'Entrou no sistema !', '127.0.0.1'),
+(1013, 'admin', '2014-05-09', '12:08', 'Entrou no sistema !', '127.0.0.1'),
+(1014, 'admin', '2014-05-09', '15:22', 'Entrou no sistema !', '127.0.0.1'),
+(1015, 'admin', '2014-05-09', '16:25', 'Entrou no sistema !', '127.0.0.1'),
+(1016, 'admin', '2014-05-09', '16:34', 'Entrou no sistema !', '127.0.0.1'),
+(1017, 'admin', '2014-05-09', '16:37', 'Entrou no sistema !', '127.0.0.1'),
+(1018, 'admin', '2014-05-09', '17:02', 'Entrou no sistema !', '127.0.0.1'),
+(1019, 'admin', '2014-05-09', '17:04', 'Entrou no sistema !', '127.0.0.1'),
+(1020, 'admin', '2014-05-09', '17:54', 'Entrou no sistema !', '127.0.0.1'),
+(1021, 'admin', '2014-05-09', '17:56', 'Entrou no sistema !', '127.0.0.1'),
+(1022, 'admin', '2014-05-09', '19:10', 'Entrou no sistema !', '127.0.0.1'),
+(1023, 'admin', '2014-05-29', '22:51', 'Entrou no sistema !', '127.0.0.1'),
+(1024, 'admin', '2014-05-29', '23:21', 'Entrou no sistema !', '127.0.0.1'),
+(1025, 'admin', '2014-05-31', '17:44', 'Entrou no sistema !', '127.0.0.1'),
+(1026, 'admin', '2014-05-31', '17:48', 'Entrou no sistema !', '127.0.0.1'),
+(1027, 'admin', '2014-06-01', '10:12', 'Entrou no sistema !', '127.0.0.1'),
+(1028, 'admin', '2014-06-01', '10:12', 'Saiu do sistema !', '127.0.0.1'),
+(1029, 'admin', '2014-06-01', '10:15', 'Entrou no sistema !', '127.0.0.1'),
+(1030, 'admin', '2014-06-01', '10:15', 'Saiu do sistema !', '127.0.0.1'),
+(1031, 'admin', '2014-06-01', '14:15', 'Entrou no sistema !', '127.0.0.1'),
+(1032, 'admin', '2014-06-01', '14:38', 'Entrou no sistema !', '127.0.0.1'),
+(1033, 'admin', '2014-06-01', '18:04', 'Entrou no sistema !', '127.0.0.1'),
+(1034, 'admin', '2014-06-01', '20:29', 'Entrou no sistema !', '127.0.0.1'),
+(1035, 'admin', '2014-06-01', '21:33', 'Entrou no sistema !', '127.0.0.1'),
+(1036, 'admin', '2014-06-01', '22:31', 'Entrou no sistema !', '127.0.0.1'),
+(1037, 'admin', '2014-06-01', '23:13', 'Entrou no sistema !', '127.0.0.1'),
+(1038, 'admin', '2014-06-02', '00:42', 'Entrou no sistema !', '127.0.0.1'),
+(1039, 'admin', '2014-06-02', '00:43', 'Entrou no sistema !', '127.0.0.1'),
+(1040, 'admin', '2014-06-02', '01:14', 'Entrou no sistema !', '127.0.0.1'),
+(1041, 'admin', '2014-06-02', '09:30', 'Entrou no sistema !', '127.0.0.1'),
+(1042, 'admin', '2014-06-04', '20:48', 'Entrou no sistema !', '127.0.0.1'),
+(1043, 'admin', '2014-06-04', '21:09', 'Entrou no sistema !', '127.0.0.1'),
+(1044, 'admin', '2014-06-04', '21:17', 'Entrou no sistema !', '127.0.0.1'),
+(1045, 'admin', '2014-06-04', '21:21', 'Entrou no sistema !', '127.0.0.1'),
+(1046, 'admin', '2014-06-04', '21:27', 'Entrou no sistema !', '127.0.0.1'),
+(1047, 'admin', '2014-06-04', '21:28', 'Entrou no sistema !', '127.0.0.1'),
+(1048, 'admin', '2014-06-04', '22:44', 'Entrou no sistema !', '127.0.0.1'),
+(1049, 'admin', '2014-06-05', '08:48', 'Entrou no sistema !', '127.0.0.1'),
+(1050, 'admin', '2014-06-05', '08:53', 'Entrou no sistema !', '127.0.0.1'),
+(1051, 'admin', '2014-06-05', '08:58', 'Entrou no sistema !', '127.0.0.1'),
+(1052, 'admin', '2014-06-05', '08:58', 'Entrou no sistema !', '127.0.0.1'),
+(1053, 'admin', '2014-06-05', '09:38', 'Entrou no sistema !', '127.0.0.1'),
+(1054, 'admin', '2014-06-05', '09:39', 'Entrou no sistema !', '127.0.0.1'),
+(1055, 'admin', '2014-06-05', '10:25', 'Entrou no sistema !', '127.0.0.1'),
+(1056, 'admin', '2014-06-05', '11:02', 'Entrou no sistema !', '127.0.0.1'),
+(1057, 'admin', '2014-06-05', '18:59', 'Entrou no sistema !', '127.0.0.1'),
+(1058, 'admin', '2014-06-05', '19:08', 'Entrou no sistema !', '127.0.0.1'),
+(1059, 'admin', '2014-06-06', '19:41', 'Entrou no sistema !', '127.0.0.1'),
+(1060, 'admin', '2014-06-06', '23:02', 'Saiu do sistema !', '127.0.0.1'),
+(1061, 'admin', '2014-06-06', '23:02', 'Entrou no sistema !', '127.0.0.1'),
+(1062, 'admin', '2014-06-07', '00:03', 'Entrou no sistema !', '127.0.0.1'),
+(1063, 'admin', '2014-06-07', '00:12', 'Saiu do sistema !', '127.0.0.1'),
+(1064, 'admin', '2014-06-07', '00:12', 'Entrou no sistema !', '127.0.0.1'),
+(1065, 'admin', '2014-06-07', '13:42', 'Entrou no sistema !', '127.0.0.1'),
+(1066, 'admin', '2014-06-08', '02:05', 'Entrou no sistema !', '127.0.0.1'),
+(1067, 'ADMIN', '2014-06-08', '08:53', 'Entrou no sistema !', '127.0.0.1'),
+(1068, 'admin', '2014-06-08', '08:55', 'Entrou no sistema !', '127.0.0.1'),
+(1069, 'admin', '2014-06-08', '08:56', 'Saiu do sistema !', '127.0.0.1'),
+(1070, 'admin', '2014-06-08', '08:57', 'Entrou no sistema !', '127.0.0.1'),
+(1071, 'admin', '2014-06-08', '09:00', 'Saiu do sistema !', '127.0.0.1'),
+(1072, 'admin', '2014-06-08', '09:00', 'Entrou no sistema !', '127.0.0.1'),
+(1073, 'admin', '2014-06-08', '11:39', 'Entrou no sistema !', '127.0.0.1'),
+(1074, 'admin', '2014-06-08', '11:44', 'Entrou no sistema !', '127.0.0.1'),
+(1075, 'admin', '2014-06-08', '19:26', 'Entrou no sistema !', '127.0.0.1'),
+(1076, 'admin', '2014-06-08', '20:34', 'Entrou no sistema !', '127.0.0.1'),
+(1077, 'admin', '2014-06-08', '22:13', 'Entrou no sistema !', '127.0.0.1'),
+(1078, 'admin', '2014-06-08', '23:49', 'Entrou no sistema !', '127.0.0.1'),
+(1079, 'admin', '2014-06-08', '23:57', 'Entrou no sistema !', '127.0.0.1'),
+(1080, 'admin', '2014-06-09', '00:38', 'Saiu do sistema !', '127.0.0.1'),
+(1081, 'admin', '2014-06-09', '00:38', 'Entrou no sistema !', '127.0.0.1'),
+(1082, 'admin', '2014-06-09', '19:17', 'Entrou no sistema !', '127.0.0.1'),
+(1083, 'admin', '2014-06-09', '20:23', 'Entrou no sistema !', '127.0.0.1'),
+(1084, 'admin', '2014-06-09', '22:20', 'Entrou no sistema !', '127.0.0.1'),
+(1085, '', '2014-06-09', '23:39', 'Entrou no sistema !', '127.0.0.1'),
+(1086, 'admin', '2014-06-09', '23:39', 'Entrou no sistema !', '127.0.0.1'),
+(1087, 'ADMIN', '2014-06-09', '23:54', 'Entrou no sistema !', '127.0.0.1');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `marca_modelo`
+--
+
+CREATE TABLE `marca_modelo` (
+  `id` int(11) NOT NULL auto_increment,
+  `descri` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Extraindo dados da tabela `marca_modelo`
+--
+
+INSERT INTO `marca_modelo` (`id`, `descri`) VALUES
+(1, 'Ford Fista 1.0'),
+(2, 'Volkswagen Gol 1.0'),
+(3, 'Chevrolet Cruzer'),
+(4, 'Ford Ranger'),
+(5, 'Honda Acord 2.0'),
+(6, 'chevrolett Prisma 1.6'),
+(7, 'Honda accord 2.6');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `meses`
+--
+
+CREATE TABLE `meses` (
+  `id_mes` int(11) NOT NULL auto_increment,
+  `descricao` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_mes`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+--
+-- Extraindo dados da tabela `meses`
+--
+
+INSERT INTO `meses` (`id_mes`, `descricao`) VALUES
+(1, 'JANEIRO'),
+(2, 'FEVEREIRO'),
+(3, 'MARÇO'),
+(4, 'ABRIL'),
+(5, 'MAIO'),
+(6, 'JUNHO'),
+(7, 'JULHO'),
+(8, 'AGOSTO'),
+(9, 'SETEMBRO'),
+(10, 'OUTUBRO'),
+(11, 'NOVEMBRO'),
+(12, 'DEZEMBRO');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `movimento`
+--
+
+CREATE TABLE `movimento` (
+  `id_mov` int(11) NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `servico` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  `fornecedor` varchar(255) default NULL,
+  PRIMARY KEY  (`id_mov`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=644 ;
+
+--
+-- Extraindo dados da tabela `movimento`
+--
+
+INSERT INTO `movimento` (`id_mov`, `id_cliente`, `data`, `cliente`, `servico`, `tipo`, `categoria`, `descricao`, `valor`, `valor2`, `status`, `mes`, `fornecedor`) VALUES
+(634, 0, '', 'Resource id #6', '', '', 'Resource id #7', '', '', '', '', '6', NULL),
+(635, 0, '2014-06-05', 'maria jose  de silva', '', '1', 'Pagamento á Vista', 'matriculado', '', '800', '2', 'Junho', NULL),
+(636, 0, '', 'Resource id #6', '', '', 'Resource id #7', '', '', '', '', '6', NULL),
+(633, 0, '2014-06-12', 'teste 8000', '', '0', 'Pagamento á Vista', 'oojoj', '900', '900', '1', 'Junho', NULL),
+(632, 0, '', 'Resource id #6', '', '', 'Resource id #7', '', '', '', '', '6', NULL),
+(631, 0, '2014-06-05', 'maria menfis', '', '1', 'Pagamento á Vista', 'oook', '', '900', '2', 'Junho', NULL),
+(628, 0, '2014-06-05', 'Eneylton de jesus c barros', '', '0', 'Cartão de Crédito', 'oook', '500', '500', '1', 'Junho', NULL),
+(629, 0, '2014-06-12', 'ok', '', '0', 'Cartão de Crédito', 'ook', '790', '700', '1', 'Junho', NULL),
+(630, 0, '', 'Resource id #6', '', '', 'Resource id #7', '', '', '', '', '6', NULL),
+(637, 0, '2014-06-12', 'guugugug', '', '1', 'Cartão de Crédito', 'ook', '', '800', '2', 'Junho', NULL),
+(638, 0, '2014-06-05', 'teste Cadastro', '', '0', 'Pagamento á Vista', 'matriculasdo', '900', '', '1', 'Junho', NULL),
+(639, 0, '2014-06-05', 'teste Cadastro', '', '0', 'Pagamento á Vista', 'matriculasdo', '900', '', '1', 'Junho', NULL),
+(640, 0, '2014-06-05', 'teste Cadastro', '', '0', 'Pagamento á Vista', 'matriculasdo', '900', '', '1', 'Junho', NULL),
+(641, 0, '2014-06-05', 'teste Cadastro', '', '1', 'Pagamento á Vista', 'matriculasdo', '900', '', '2', 'Junho', NULL),
+(642, 0, '2014-06-05', 'teste Cadastro', '', '1', 'Pagamento á Vista', 'matriculasdo', '900', '', '2', 'Junho', NULL),
+(643, 0, '2014-06-07', 'overholling', '', '1', 'Pagamento á Vista', 'cliente cadastrado com sucrsso', '1800', '', '2', 'Junho', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `municipio`
+--
+
+CREATE TABLE `municipio` (
+  `id` int(11) NOT NULL auto_increment,
+  `municipio` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Extraindo dados da tabela `municipio`
+--
+
+INSERT INTO `municipio` (`id`, `municipio`) VALUES
+(1, 'São Luis'),
+(2, 'São José de Ribamar');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `negocio`
+--
+
+CREATE TABLE `negocio` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `negocio`
+--
+
+INSERT INTO `negocio` (`id`, `desc`) VALUES
+(1, 'Aluquel'),
+(2, 'Venda'),
+(3, 'Aluguel / Venda');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `nota`
+--
+
+CREATE TABLE `nota` (
+  `int_id` int(10) unsigned NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `id_servico` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `categoria` varchar(255) NOT NULL,
+  `forma_pag` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `venci` varchar(255) NOT NULL,
+  PRIMARY KEY  (`int_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `nota`
+--
+
+INSERT INTO `nota` (`int_id`, `id_cliente`, `id_servico`, `data`, `tipo`, `categoria`, `forma_pag`, `descricao`, `valor`, `valor2`, `status`, `mes`, `cliente`, `venci`) VALUES
+(1, 0, 'Empresa', '24/03/2014', '1', 'Pagamento de Funcionario', 'Pagamento á Vista', 'Pagamento de salário', '750', '', '1', 'Março', 'Jose de ribamar', '24/03/2014'),
+(2, 0, 'Empresa', '03/04/2014', '1', 'Combustivel', 'Pagamento á Vista', 'abastecimento do veiculo', '800', '', '1', 'Abril', 'Eneylton Barros', '03/04/2014');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `online`
+--
+
+CREATE TABLE `online` (
+  `id` int(11) NOT NULL auto_increment,
+  `entrada` varchar(100) NOT NULL default '',
+  `ip` varchar(200) NOT NULL default '',
+  `ult_click` varchar(100) NOT NULL default '',
+  `sessao` varchar(200) NOT NULL default '',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `online`
+--
+
+INSERT INTO `online` (`id`, `entrada`, `ip`, `ult_click`, `sessao`) VALUES
+(3, '1399650842', '127.0.0.1', '1399650862', 'c05016f48a356750a6b6c480c9ca7880');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `padrao`
+--
+
+CREATE TABLE `padrao` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `padrao`
+--
+
+INSERT INTO `padrao` (`id`, `desc`) VALUES
+(1, 'Alto'),
+(2, 'Simples'),
+(3, 'M&eacute;dio'),
+(4, 'Luxo');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `painel`
+--
+
+CREATE TABLE `painel` (
+  `id_painel` int(11) NOT NULL auto_increment,
+  `id_cliente` varchar(255) NOT NULL,
+  `negocio` varchar(255) NOT NULL,
+  `perfil_imovel` varchar(255) NOT NULL,
+  `municipio` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_painel`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `painel`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `processo`
+--
+
+CREATE TABLE `processo` (
+  `id_processo` int(11) NOT NULL auto_increment,
+  `cliente` varchar(255) NOT NULL,
+  `codigo` varchar(255) NOT NULL,
+  `local` varchar(255) default NULL,
+  `descricao` varchar(255) default NULL,
+  `status` varchar(255) default NULL,
+  `entrada` varchar(255) default NULL,
+  `movimentacao` varchar(255) default NULL,
+  `hora` varchar(255) default NULL,
+  PRIMARY KEY  (`id_processo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=466 ;
+
+--
+-- Extraindo dados da tabela `processo`
+--
+
+INSERT INTO `processo` (`id_processo`, `cliente`, `codigo`, `local`, `descricao`, `status`, `entrada`, `movimentacao`, `hora`) VALUES
+(407, 'teste Cadastro', '537-05', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-05', 'Aquardando...', '19:19'),
+(408, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '19:48'),
+(409, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '19:48'),
+(410, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:18'),
+(411, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:18'),
+(412, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:22'),
+(413, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:22'),
+(414, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:28'),
+(415, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:28'),
+(416, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:33'),
+(417, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:33'),
+(418, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:34'),
+(419, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:34'),
+(420, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:35'),
+(421, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:35'),
+(422, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:36'),
+(423, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:36'),
+(424, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:37'),
+(425, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:37'),
+(426, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:40'),
+(427, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:40'),
+(428, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:42'),
+(429, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:42'),
+(430, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:44'),
+(431, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '20:44'),
+(432, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:06'),
+(433, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:06'),
+(434, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:08'),
+(435, 'overholling', '538-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:08'),
+(436, 'teste Cadastro', '537-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:09'),
+(437, 'teste Cadastro', '537-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '21:09'),
+(438, 'Cliente Teste', '539-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '23:30'),
+(439, 'Cliente Teste', '539-06', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-06', 'Aquardando...', '23:30'),
+(440, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:08'),
+(441, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:08'),
+(442, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:09'),
+(443, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:09'),
+(444, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:11'),
+(445, 'Cliente Teste', '540-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:11'),
+(446, 'Cliente Teste', '541-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:13'),
+(447, 'Cliente Teste', '541-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:13'),
+(448, 'Cliente Teste', '541-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:18'),
+(449, 'Cliente Teste', '541-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '00:18'),
+(450, 'benedito prazeres', '542-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '13:44'),
+(451, 'benedito prazeres', '542-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '13:44'),
+(452, 'benedito prazeres', '542-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '13:45'),
+(453, 'benedito prazeres', '542-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '13:45'),
+(454, 'banedito prazeres', '543-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '14:19'),
+(455, 'banedito prazeres', '543-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '14:19'),
+(456, 'teste1', '544-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '21:57'),
+(457, 'teste1', '544-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '21:57'),
+(458, 'teste1', '544-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '23:01'),
+(459, 'teste1', '544-07', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-07', 'Aquardando...', '23:01'),
+(460, 'testeb23', '545-08', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-08', 'Aquardando...', '01:30'),
+(461, 'testeb23', '545-08', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-08', 'Aquardando...', '01:30'),
+(462, 'test45', '546-08', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-08', 'Aquardando...', '01:49'),
+(463, 'test45', '546-08', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-08', 'Aquardando...', '01:49'),
+(464, 'cliente teste', '547-09', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-09', 'Aquardando...', '19:19'),
+(465, 'cliente teste', '547-09', 'Escritorio', 'Nenhuma descri&ccedil;&atilde;o no momento', '1', '2014-06-09', 'Aquardando...', '19:19');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `serv`
+--
+
+CREATE TABLE `serv` (
+  `int_id` int(10) unsigned NOT NULL auto_increment,
+  `id_cliente` int(11) NOT NULL,
+  `id_servico` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `cat` varchar(255) NOT NULL,
+  `f_pagamento` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  `valor2` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `mes` varchar(255) NOT NULL,
+  `cliente` varchar(255) NOT NULL,
+  `venci` varchar(255) NOT NULL,
+  PRIMARY KEY  (`int_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
+
+--
+-- Extraindo dados da tabela `serv`
+--
+
+INSERT INTO `serv` (`int_id`, `id_cliente`, `id_servico`, `data`, `tipo`, `cat`, `f_pagamento`, `descricao`, `valor`, `valor2`, `status`, `mes`, `cliente`, `venci`) VALUES
+(37, 541, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Cheque', 'Novo registro', '900', '', '1', 'Junho', 'Cliente Teste', '2014-06-07'),
+(38, 541, 'Transferência de veículo', '2014-06-07', '1', '5', 'Cheque', 'Novo registro', '900', '', '1', 'Junho', 'Cliente Teste', '2014-06-07'),
+(39, 541, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Cheque', 'Novo registro', '900', '', '1', 'Junho', 'Cliente Teste', '2014-06-07'),
+(40, 541, 'Transferência de veículo', '2014-06-07', '1', '5', 'Cheque', 'Novo registro', '900', '', '1', 'Junho', 'Cliente Teste', '2014-06-07'),
+(41, 542, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Selecione', 'primeiro cadastro', '900', '', '1', 'Junho', 'benedito prazeres', '2014-06-07'),
+(42, 542, 'Transferência de veículo', '2014-06-07', '1', '5', 'Selecione', 'primeiro cadastro', '900', '', '1', 'Junho', 'benedito prazeres', '2014-06-07'),
+(43, 542, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Cheque', 'primeiro cadastro', '1000', '', '1', 'Junho', 'benedito prazeres', '2014-06-07'),
+(44, 542, 'Transferência de veículo', '2014-06-07', '1', '5', 'Cheque', 'primeiro cadastro', '1000', '', '1', 'Junho', 'benedito prazeres', '2014-06-07'),
+(45, 543, 'Transferência de veículo', '2014-06-07', '1', '5', 'Dinheiro', 'pagamento a vista', '900', '', '1', 'Junho', 'banedito prazeres', '2014-06-07'),
+(46, 543, 'Licenciamento de veículo ', '2014-06-07', '1', '5', 'Dinheiro', 'pagamento a vista', '900', '', '1', 'Junho', 'banedito prazeres', '2014-06-07'),
+(47, 544, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Cheque', 'ok', '900', '', '1', 'Junho', 'teste1', '2014-06-07'),
+(48, 544, 'Transferência de veículo', '2014-06-07', '1', '5', 'Cheque', 'ok', '900', '', '1', 'Junho', 'teste1', '2014-06-07'),
+(49, 544, 'Veículo Novo (1º. Registro + Licença)', '2014-06-07', '1', '5', 'Nota promissória', 'ok', '900', '', '1', 'Junho', 'teste1', '2014-06-07'),
+(50, 544, 'Transferência de veículo', '2014-06-07', '1', '5', 'Nota promissória', 'ok', '900', '', '1', 'Junho', 'teste1', '2014-06-07'),
+(51, 545, 'Veículo Novo (1º. Registro + Licença)', '2014-06-08', '0', '5', 'Selecione', 'ok', '', '670', '2', 'Junho', 'testeb23', '2014-06-16'),
+(52, 545, 'Transferência de veículo', '2014-06-08', '0', '5', 'Selecione', 'ok', '', '670', '2', 'Junho', 'testeb23', '2014-06-16'),
+(53, 546, 'Veículo Novo (1º. Registro + Licença)', '2014-06-08', '0', '5', 'Selecione', 'aguardando pagamento', '', '1600', '2', 'Junho', 'test45', '2014-06-20'),
+(54, 546, 'Transferência de veículo', '2014-06-08', '0', '5', 'Selecione', 'aguardando pagamento', '', '1600', '2', 'Junho', 'test45', '2014-06-20'),
+(55, 547, 'Avaliação de Imovel', '2014-06-09', '1', '5', 'Boleto', 'ook', '700', '', '1', 'Junho', 'cliente teste', '2014-06-09'),
+(56, 547, 'Comissões ', '2014-06-09', '1', '5', 'Boleto', 'ook', '700', '', '1', 'Junho', 'cliente teste', '2014-06-09');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `sevicos`
+--
+
+CREATE TABLE `sevicos` (
+  `id_servico` int(11) NOT NULL auto_increment,
+  `descricao` varchar(255) NOT NULL,
+  `valor` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_servico`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+--
+-- Extraindo dados da tabela `sevicos`
+--
+
+INSERT INTO `sevicos` (`id_servico`, `descricao`, `valor`) VALUES
+(1, 'Veículo Novo (1º. Registro + Licença)', '380'),
+(2, 'Transferência de veículo', '250'),
+(3, 'Licenciamento de veículo', '110'),
+(4, 'Licenciamento c/ débitos', '130'),
+(5, 'Cópia Autêntica', '40'),
+(6, 'Prodesp ou Certidão de Propriedade', '40'),
+(7, 'Laudo de Vistoria Lacrado', '100'),
+(8, 'Laudo de Vistoria Lacrado', '100'),
+(9, '2º. Via de Licenciamento', '120'),
+(10, 'Placa Comum ou Targeta', '78'),
+(11, 'Lacração Domiciliar', '111'),
+(12, 'Revistoria ou Relacração', '150'),
+(13, 'Remarcação de Chassi ( Processo )', '150'),
+(14, 'Licença Especial', '100'),
+(15, 'Cadastramento Motor', '50'),
+(16, 'Cadastramento Motor', '50'),
+(17, 'Bloqueio de Veículo', '40'),
+(18, 'Cadastro de Espelho p/ outra UF', '140'),
+(19, 'Desbloq. Judicial Provisório p/ Licença', '40'),
+(20, 'Taxa Registro Veiculo outro UF', '100'),
+(21, 'Renovação de CNH', '70'),
+(22, 'Registro de CNH', '170'),
+(23, 'Veículos', '106'),
+(24, 'Caminhonetes', '111'),
+(25, 'Motos', '292'),
+(26, 'Onibus (Particulares)', '248'),
+(27, 'Onibus (Alugueis)', '397');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tcategorias`
+--
+
+CREATE TABLE `tcategorias` (
+  `catCodigo` tinyint(3) unsigned NOT NULL default '0',
+  `catDescricao` char(40) NOT NULL default '',
+  `catAtualiz` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`catCodigo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `tcategorias`
+--
+
+INSERT INTO `tcategorias` (`catCodigo`, `catDescricao`, `catAtualiz`) VALUES
+(1, 'Particular', '2002-01-09 22:37:39'),
+(2, 'Aluguel', '2002-01-09 22:37:39'),
+(3, 'Oficial', '2002-01-09 22:37:39'),
+(5, 'Aprendizagem', '2002-01-09 22:37:39'),
+(6, 'Fabricante', '2002-01-09 22:37:39'),
+(8, 'Corpo consular', '2002-01-09 22:37:39'),
+(9, 'Organismos internacionais', '2002-01-09 22:37:39');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipo_imovel`
+--
+
+CREATE TABLE `tipo_imovel` (
+  `id` int(11) NOT NULL auto_increment,
+  `desc` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Extraindo dados da tabela `tipo_imovel`
+--
+
+INSERT INTO `tipo_imovel` (`id`, `desc`) VALUES
+(1, 'Apartamento'),
+(2, 'Casa '),
+(3, 'Sobrado'),
+(4, 'Sala'),
+(5, 'Sal&atilde;o'),
+(6, 'Pr&eacute;dio'),
+(7, 'Terreno'),
+(8, '&Aacute;rea');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ttiposv`
+--
+
+CREATE TABLE `ttiposv` (
+  `tpvCodigo` smallint(5) unsigned NOT NULL default '0',
+  `tpvDescricao` char(40) NOT NULL default '',
+  `tpvAtualiz` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`tpvCodigo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `ttiposv`
+--
+
+INSERT INTO `ttiposv` (`tpvCodigo`, `tpvDescricao`, `tpvAtualiz`) VALUES
+(1, 'Bicicleta', '2002-01-09 22:37:52'),
+(10, 'Reboque', '2002-01-09 22:37:52'),
+(11, 'Semi-reboque', '2002-01-09 22:37:52'),
+(12, 'Charrete', '2002-01-09 22:37:52'),
+(13, 'Camioneta', '2002-01-09 22:37:52'),
+(14, 'Caminhão', '2002-01-09 22:37:52'),
+(15, 'Carroça', '2002-01-09 22:37:52'),
+(16, 'Carro-de-mão', '2002-01-09 22:37:52'),
+(17, 'Caminhão-trator', '2002-01-09 22:37:52'),
+(18, 'Trator de rodas', '2002-01-09 22:37:52'),
+(19, 'Trator de esteiras', '2002-01-09 22:37:52'),
+(2, 'Ciclomotor', '2002-01-09 22:37:52'),
+(20, 'Trator misto', '2002-01-09 22:37:52'),
+(21, 'Quadriciclo', '2002-01-09 22:37:52'),
+(23, 'Caminhonete', '2002-01-09 22:37:52'),
+(24, 'Side-car', '2002-01-09 22:37:52'),
+(25, 'Utilitário', '2002-01-09 22:37:52'),
+(3, 'Motoneta', '2002-01-09 22:37:52'),
+(4, 'Motocicleta', '2002-01-09 22:37:52'),
+(5, 'Triciclo', '2002-01-09 22:37:52'),
+(6, 'Automóvel', '2002-01-09 22:37:52'),
+(7, 'Microônibus', '2002-01-09 22:37:52'),
+(8, 'Ônibus', '2002-01-09 22:37:52'),
+(9, 'Bonde', '2002-01-09 22:37:52');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `veiculos`
+--
+
+CREATE TABLE `veiculos` (
+  `id_veiculo` int(11) NOT NULL auto_increment,
+  `cliente` varchar(255) NOT NULL,
+  `data` varchar(255) NOT NULL,
+  `data_nota` varchar(255) default NULL,
+  `vencimento` varchar(255) default NULL,
+  `placa` varchar(255) default NULL,
+  `renavam` varchar(255) default NULL,
+  `chassi` varchar(255) default NULL,
+  `cor` varchar(255) default NULL,
+  `tipo` varchar(255) default NULL,
+  `categoria` varchar(255) default NULL,
+  `Marca_Modelo` varchar(255) default NULL,
+  `ano_fab_modelo` varchar(255) default NULL,
+  `combustivel` varchar(255) default NULL,
+  `aviso` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id_veiculo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=222 ;
+
+--
+-- Extraindo dados da tabela `veiculos`
+--
+
+INSERT INTO `veiculos` (`id_veiculo`, `cliente`, `data`, `data_nota`, `vencimento`, `placa`, `renavam`, `chassi`, `cor`, `tipo`, `categoria`, `Marca_Modelo`, `ano_fab_modelo`, `combustivel`, `aviso`) VALUES
+(221, '504', '2014-05-09', '2014-05-09', '2014-05-09', NULL, NULL, '0899889898988889', 'Branco', 'Caminhonete', 'Particular', 'Ford Ranger', '2014/2014', 'Diesil', ' » Aguardando...');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vencimento`
+--
+
+CREATE TABLE `vencimento` (
+  `id` int(11) NOT NULL auto_increment,
+  `inicial` date NOT NULL,
+  `fim` date NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Extraindo dados da tabela `vencimento`
+--
+
+INSERT INTO `vencimento` (`id`, `inicial`, `fim`) VALUES
+(4, '2014-02-01', '2014-02-06');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vencimento2`
+--
+
+CREATE TABLE `vencimento2` (
+  `id` int(11) NOT NULL auto_increment,
+  `inicial` varchar(255) NOT NULL,
+  `final` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `vencimento2`
+--
+
+INSERT INTO `vencimento2` (`id`, `inicial`, `final`) VALUES
+(1, '26/02/2014', '28/02/2014');
